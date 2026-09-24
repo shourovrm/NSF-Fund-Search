@@ -1,0 +1,12 @@
+// Cloudflare Pages project: https://nsf-fund-search.pages.dev
+// Deploy with `npx wrangler pages deploy`; `npx wrangler pages dev` runs it locally.
+{
+  "name": "nsf-fund-search",
+  "pages_build_output_dir": "./site",
+  "compatibility_date": "2026-09-24",
+  // Saved lists for "My list" sync (functions/api/list.js).
+  // Free tier: 1,000 writes and 100,000 reads a day.
+  "kv_namespaces": [
+    { "binding": "SHORTLISTS", "id": "178b350e43314efa804d146268b86fc5" }
+  ]
+}

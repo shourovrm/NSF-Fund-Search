@@ -86,8 +86,18 @@
     }
   }
   const shortlist = readShortlist();
+  const shortlistListeners = [];
 
+  // Every change is written to localStorage and announced, so sync can follow it.
   function saveShortlist() {
+    localStorage.setItem(SHORTLIST_STORAGE_KEY, JSON.stringify([...shortlist]));
+    for (const listener of shortlistListeners) listener();
+  }
+
+  // Used by sync to adopt the list stored on the server.
+  function replaceShortlist(ids) {
+    shortlist.clear();
+    for (const id of ids) shortlist.add(id);
     localStorage.setItem(SHORTLIST_STORAGE_KEY, JSON.stringify([...shortlist]));
   }
 
@@ -319,6 +329,9 @@
     applyFilters,
     isShortlisted: (piId) => shortlist.has(piId),
     shortlistSize: () => shortlist.size,
+    shortlistIds: () => [...shortlist],
+    replaceShortlist,
+    onShortlistChange: (listener) => shortlistListeners.push(listener),
     toggleShortlist,
     shortlistBackup,
     importShortlistBackup,

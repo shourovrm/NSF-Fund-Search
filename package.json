@@ -1,0 +1,12 @@
+{
+  "name": "nsf-fund-search",
+  "private": true,
+  "description": "Search NSF-funded professors with grants active in Fall 2027",
+  "scripts": {
+    "dev": "wrangler pages dev",
+    "deploy": "wrangler pages deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.138.0"
+  }
+}

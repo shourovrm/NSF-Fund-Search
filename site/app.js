@@ -320,12 +320,45 @@
     byId("list-status").classList.toggle("error", Boolean(isError));
   }
 
+  function renderSyncState() {
+    const connected = NSFSync.isConnected();
+    byId("sync-unavailable").hidden = NSFSync.isAvailable;
+    byId("sync-form").hidden = !NSFSync.isAvailable || connected;
+    byId("sync-connected").hidden = !NSFSync.isAvailable || !connected;
+  }
+
+  function setSyncStatus(message, isError) {
+    byId("sync-status").textContent = message;
+    byId("sync-status").classList.toggle("error", Boolean(isError));
+  }
+  NSFSync.onStatus(setSyncStatus);
+
+  byId("sync-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    byId("sync-submit").disabled = true;
+    try {
+      const { addedFromOnline } = await NSFSync.connect(byId("sync-passphrase").value);
+      byId("sync-passphrase").value = "";
+      if (addedFromOnline) setSyncStatus(`Sync is on. ${addedFromOnline} professor${addedFromOnline === 1 ? "" : "s"} added from your online list.`);
+      renderSyncState();
+      render();
+    } catch (error) {
+      setSyncStatus(`Could not turn on sync: ${error.message}`, true);
+    }
+    byId("sync-submit").disabled = false;
+  });
+  byId("sync-disconnect").addEventListener("click", () => {
+    NSFSync.disconnect();
+    renderSyncState();
+  });
+
   byId("open-list").addEventListener("click", () => {
     const size = NSF.shortlistSize();
     byId("list-summary").textContent = size
       ? `${size} professor${size > 1 ? "s" : ""} saved. Star or unstar anyone in the table.`
       : "Your list is empty. Use the star next to a professor to save them here.";
     setListStatus("");
+    renderSyncState();
     byId("list-dialog").showModal();
   });
   byId("close-list").addEventListener("click", () => byId("list-dialog").close());
@@ -380,4 +413,6 @@
   applyTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
   renderStaticOptions();
   render();
+  // Adopts the online list after the first paint, so the table never waits on the network.
+  NSFSync.startup().then(render);
 })();

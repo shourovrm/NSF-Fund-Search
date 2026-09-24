@@ -145,18 +145,35 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   </div>
   <div class="dialog-body">
     <p id="list-summary"></p>
-    <p>Your list is saved in this browser only. Download a backup to move it to another device or browser, then import it there.</p>
+    <p>Download a backup to keep a copy, or to move the list by hand to a browser without sync.</p>
     <button class="button primary" id="show-list" type="button">Show only my list</button>
     <button class="button" id="export-csv" type="button">Download list as spreadsheet (CSV)</button>
     <button class="button" id="export-backup" type="button">Download backup (JSON)</button>
     <button class="button" id="import-backup" type="button">Import backup…</button>
     <input type="file" id="import-file" accept="application/json,.json" hidden>
     <p class="dialog-status" id="list-status" role="status"></p>
+
+    <section class="sync-section" aria-labelledby="sync-title">
+      <h3 id="sync-title">Sync across devices</h3>
+      <p id="sync-unavailable" hidden>Sync works on the hosted site, nsf-fund-search.pages.dev. This copy was opened from a file, so the list stays in this browser.</p>
+      <form id="sync-form" hidden>
+        <p>Type the same passphrase on each device to share one list. Use four or more random words. Anyone who knows the passphrase can see and change the list, and a forgotten passphrase cannot be recovered.</p>
+        <label class="field-label" for="sync-passphrase">Passphrase</label>
+        <input class="text-input" id="sync-passphrase" type="password" autocomplete="off" minlength="12" required>
+        <button class="button primary" id="sync-submit" type="submit">Turn on sync</button>
+      </form>
+      <div id="sync-connected" hidden>
+        <p>Sync is on in this browser. Stars you add or remove are saved online within a few seconds.</p>
+        <button class="button" id="sync-disconnect" type="button">Turn off sync</button>
+      </div>
+      <p class="dialog-status" id="sync-status" role="status"></p>
+    </section>
   </div>
 </dialog>
 
 <script src="data.js"></script>
 <script src="core.js"></script>
+<script src="sync.js"></script>
 <script src="multi-select.js"></script>
 <script src="app.js"></script>
 </body>

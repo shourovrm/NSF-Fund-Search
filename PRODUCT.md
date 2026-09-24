@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Static HTML/CSS/JS, no framework. The page must open directly from disk (`file://`), so the data ships as a script file. Hosting: Cloudflare Pages (public site), chosen 2026-09-24 but deferred; the user asked for the local page first.
+Static HTML/CSS/JS, no framework. The page must still open directly from disk (`file://`), so the data ships as a script file. Hosted on classic Cloudflare Pages at https://nsf-fund-search.pages.dev (the user preferred the pages.dev address), with one Pages Function (`functions/api/list.js`) and a Workers KV namespace for list sync. Everything must stay on free plans (user requirement, 2026-09-25). Code lives at github.com/shourovrm/NSF-Fund-Search (public).
 
 ## Users
 
@@ -33,7 +33,7 @@ Built from NSF's own award files and filtered for what matters to a funding-seek
 - Search (name, university, grant title, NSF program).
 - Filters: Topic (17 keyword topics in two groups plus "Other topics"), Research field (10, from NSF division), Grant type (8, grouped by PhD-funding likelihood), PhD funding level, collaborative-only, State (full names), University (type-ahead, scoped to state), months left, funding amount, strong topic match, My list only, include centers, include undergraduate (RUI) colleges. Centers and RUI colleges are hidden by default.
 - Sort by months left (capped at 60 for ranking), newest grant, funding, name, university; column headers sort too.
-- My list: star professors; saved in browser localStorage; CSV export; JSON backup and merge-import. Cloud sync (Cloudflare KV) is planned but deferred; the site currently runs as a local page.
+- My list: star professors; saved in browser localStorage; CSV export; JSON backup and merge-import; on the hosted site, optional sync across devices keyed by a passphrase fingerprint (passphrase never sent; at least 12 characters).
 - Light theme by default, dark theme on request.
 - Category and PhD-likelihood matching is rule-based and imperfect. The page shows the reason only for "PhD: unlikely" grants (and in the PhD pill tooltip); topic-match evidence is in the spreadsheet column `match_detail`. The user asked (2026-09-25) not to show "Why listed" lines on the page.
 - Coverage limit: grants awarded before 2025 that run past 2027 are not included until those years are downloaded.

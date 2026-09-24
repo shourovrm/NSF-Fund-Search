@@ -190,6 +190,13 @@ td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; f
 .dialog-head h2 { margin: 0; font-size: 1.1rem; }
 .dialog-body { padding: 16px 20px 20px; display: grid; gap: 10px; }
 .dialog-body p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+.sync-section { display: grid; gap: 10px; margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--line); }
+.sync-section h3 { margin: 0; font-size: 1rem; }
+.sync-section form { display: grid; gap: 8px; }
+/* display:grid above would otherwise override the hidden attribute. */
+.sync-section [hidden] { display: none; }
+.sync-section .field-label { margin: 0; }
+.text-input { width: 100%; font: 500 0.95rem var(--sans); padding: 9px 10px; border: 1px solid var(--control-border); border-radius: 8px; background: var(--surface); color: var(--ink); }
 .dialog-status { min-height: 1.4em; font-size: 0.9rem; font-weight: 600; color: var(--success); }
 .dialog-status.error { color: var(--career); }
 

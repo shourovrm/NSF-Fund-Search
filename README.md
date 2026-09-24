@@ -23,10 +23,20 @@ earlier that still run past 2027 appear only after their years are downloaded.
 
 ## Site
 
-`site/index.html` is a static page that opens straight from disk. The saved
-list ("My list") lives in the browser and can be exported as CSV or as a JSON
-backup. `PRODUCT.md` and `DESIGN.md` record the product scope and the design
-system.
+Live at <https://nsf-fund-search.pages.dev> (Cloudflare Pages, free plan).
+
+`site/index.html` is a static page that also opens straight from disk. The
+saved list ("My list") lives in the browser, can be exported as CSV or as a
+JSON backup, and on the hosted site can sync across devices: the browser stores
+the list under a SHA-256 fingerprint of a passphrase the user picks, through
+`functions/api/list.js` and a Workers KV namespace. `PRODUCT.md` and
+`DESIGN.md` record the product scope and the design system.
+
+```sh
+npm install        # installs the pinned wrangler
+npm run dev        # site + sync API on http://localhost:8788 (local KV)
+npm run deploy     # publish site/ and functions/ to Cloudflare Pages
+```
 
 Source data: [NSF Award Search](https://www.nsf.gov/awardsearch/), public
 domain US government data.
