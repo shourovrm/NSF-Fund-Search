@@ -1,0 +1,664 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-24T00:09:35+00:00",
+  "title": "Design System: NSF Professor Finder",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Newsroom Blue",
+        "canonical": "oklch(48.8% 0.217 264.4)",
+        "tonalRamp": [
+          "oklch(15% 0.098 264.4)",
+          "oklch(26% 0.152 264.4)",
+          "oklch(37% 0.195 264.4)",
+          "oklch(48% 0.217 264.4)",
+          "oklch(59% 0.206 264.4)",
+          "oklch(70% 0.163 264.4)",
+          "oklch(83% 0.098 264.4)",
+          "oklch(95% 0.033 264.4)"
+        ],
+        "dark": "#7aa2ff"
+      },
+      "accent-wash": {
+        "role": "primary",
+        "displayName": "Blue Wash",
+        "canonical": "oklch(95.4% 0.019 266.0)",
+        "tonalRamp": [
+          "oklch(15% 0.008 266.0)",
+          "oklch(26% 0.013 266.0)",
+          "oklch(37% 0.017 266.0)",
+          "oklch(48% 0.019 266.0)",
+          "oklch(59% 0.018 266.0)",
+          "oklch(70% 0.014 266.0)",
+          "oklch(83% 0.008 266.0)",
+          "oklch(95% 0.003 266.0)"
+        ],
+        "dark": "#1c2a4a"
+      },
+      "on-accent": {
+        "role": "primary",
+        "displayName": "On Blue",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(26% 0.000 89.9)",
+          "oklch(37% 0.000 89.9)",
+          "oklch(48% 0.000 89.9)",
+          "oklch(59% 0.000 89.9)",
+          "oklch(70% 0.000 89.9)",
+          "oklch(83% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ],
+        "dark": "#0f1216"
+      },
+      "career": {
+        "role": "secondary",
+        "displayName": "CAREER Red",
+        "canonical": "oklch(50.0% 0.182 29.5)",
+        "tonalRamp": [
+          "oklch(15% 0.082 29.5)",
+          "oklch(26% 0.127 29.5)",
+          "oklch(37% 0.164 29.5)",
+          "oklch(48% 0.182 29.5)",
+          "oklch(59% 0.173 29.5)",
+          "oklch(70% 0.137 29.5)",
+          "oklch(83% 0.082 29.5)",
+          "oklch(95% 0.027 29.5)"
+        ],
+        "dark": "#ff8a80"
+      },
+      "career-wash": {
+        "role": "secondary",
+        "displayName": "CAREER Wash",
+        "canonical": "oklch(94.8% 0.023 20.9)",
+        "tonalRamp": [
+          "oklch(15% 0.010 20.9)",
+          "oklch(26% 0.016 20.9)",
+          "oklch(37% 0.021 20.9)",
+          "oklch(48% 0.023 20.9)",
+          "oklch(59% 0.022 20.9)",
+          "oklch(70% 0.017 20.9)",
+          "oklch(83% 0.010 20.9)",
+          "oklch(95% 0.003 20.9)"
+        ],
+        "dark": "#3a1d1c"
+      },
+      "star": {
+        "role": "secondary",
+        "displayName": "Saved Amber",
+        "canonical": "oklch(62.6% 0.125 70.4)",
+        "tonalRamp": [
+          "oklch(15% 0.056 70.4)",
+          "oklch(26% 0.087 70.4)",
+          "oklch(37% 0.112 70.4)",
+          "oklch(48% 0.125 70.4)",
+          "oklch(59% 0.119 70.4)",
+          "oklch(70% 0.094 70.4)",
+          "oklch(83% 0.056 70.4)",
+          "oklch(95% 0.019 70.4)"
+        ],
+        "dark": "#f2c14e"
+      },
+      "star-border": {
+        "role": "secondary",
+        "displayName": "Saved Amber Border",
+        "canonical": "oklch(83.1% 0.097 82.3)",
+        "tonalRamp": [
+          "oklch(15% 0.044 82.3)",
+          "oklch(26% 0.068 82.3)",
+          "oklch(37% 0.087 82.3)",
+          "oklch(48% 0.097 82.3)",
+          "oklch(59% 0.092 82.3)",
+          "oklch(70% 0.073 82.3)",
+          "oklch(83% 0.044 82.3)",
+          "oklch(95% 0.015 82.3)"
+        ],
+        "dark": "#6b5520"
+      },
+      "star-wash": {
+        "role": "secondary",
+        "displayName": "Saved Amber Wash",
+        "canonical": "oklch(98.0% 0.022 87.1)",
+        "tonalRamp": [
+          "oklch(15% 0.010 87.1)",
+          "oklch(26% 0.016 87.1)",
+          "oklch(37% 0.020 87.1)",
+          "oklch(48% 0.022 87.1)",
+          "oklch(59% 0.021 87.1)",
+          "oklch(70% 0.017 87.1)",
+          "oklch(83% 0.010 87.1)",
+          "oklch(95% 0.003 87.1)"
+        ],
+        "dark": "#2e2612"
+      },
+      "star-ink": {
+        "role": "secondary",
+        "displayName": "Saved Amber Ink",
+        "canonical": "oklch(50.9% 0.103 70.8)",
+        "tonalRamp": [
+          "oklch(15% 0.046 70.8)",
+          "oklch(26% 0.072 70.8)",
+          "oklch(37% 0.092 70.8)",
+          "oklch(48% 0.103 70.8)",
+          "oklch(59% 0.097 70.8)",
+          "oklch(70% 0.077 70.8)",
+          "oklch(83% 0.046 70.8)",
+          "oklch(95% 0.015 70.8)"
+        ],
+        "dark": "#f2c14e"
+      },
+      "likely": {
+        "role": "tertiary",
+        "displayName": "PhD Green",
+        "canonical": "oklch(44.8% 0.108 151.3)",
+        "tonalRamp": [
+          "oklch(15% 0.049 151.3)",
+          "oklch(26% 0.076 151.3)",
+          "oklch(37% 0.097 151.3)",
+          "oklch(48% 0.108 151.3)",
+          "oklch(59% 0.103 151.3)",
+          "oklch(70% 0.081 151.3)",
+          "oklch(83% 0.049 151.3)",
+          "oklch(95% 0.016 151.3)"
+        ],
+        "dark": "#86efac"
+      },
+      "likely-wash": {
+        "role": "tertiary",
+        "displayName": "PhD Green Wash",
+        "canonical": "oklch(95.1% 0.024 155.1)",
+        "tonalRamp": [
+          "oklch(15% 0.011 155.1)",
+          "oklch(26% 0.017 155.1)",
+          "oklch(37% 0.022 155.1)",
+          "oklch(48% 0.024 155.1)",
+          "oklch(59% 0.023 155.1)",
+          "oklch(70% 0.018 155.1)",
+          "oklch(83% 0.011 155.1)",
+          "oklch(95% 0.004 155.1)"
+        ],
+        "dark": "#15301f"
+      },
+      "possible": {
+        "role": "tertiary",
+        "displayName": "PhD Purple",
+        "canonical": "oklch(43.8% 0.198 303.7)",
+        "tonalRamp": [
+          "oklch(15% 0.089 303.7)",
+          "oklch(26% 0.139 303.7)",
+          "oklch(37% 0.178 303.7)",
+          "oklch(48% 0.198 303.7)",
+          "oklch(59% 0.188 303.7)",
+          "oklch(70% 0.149 303.7)",
+          "oklch(83% 0.089 303.7)",
+          "oklch(95% 0.030 303.7)"
+        ],
+        "dark": "#d8b4fe"
+      },
+      "possible-wash": {
+        "role": "tertiary",
+        "displayName": "PhD Purple Wash",
+        "canonical": "oklch(94.6% 0.033 307.2)",
+        "tonalRamp": [
+          "oklch(15% 0.015 307.2)",
+          "oklch(26% 0.023 307.2)",
+          "oklch(37% 0.029 307.2)",
+          "oklch(48% 0.033 307.2)",
+          "oklch(59% 0.031 307.2)",
+          "oklch(70% 0.025 307.2)",
+          "oklch(83% 0.015 307.2)",
+          "oklch(95% 0.005 307.2)"
+        ],
+        "dark": "#2a1a3d"
+      },
+      "success": {
+        "role": "tertiary",
+        "displayName": "Success Green",
+        "canonical": "oklch(44.8% 0.108 151.3)",
+        "tonalRamp": [
+          "oklch(15% 0.049 151.3)",
+          "oklch(26% 0.076 151.3)",
+          "oklch(37% 0.097 151.3)",
+          "oklch(48% 0.108 151.3)",
+          "oklch(59% 0.103 151.3)",
+          "oklch(70% 0.081 151.3)",
+          "oklch(83% 0.049 151.3)",
+          "oklch(95% 0.016 151.3)"
+        ],
+        "dark": "#86efac"
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Ground Grey",
+        "canonical": "oklch(97.6% 0.003 264.5)",
+        "tonalRamp": [
+          "oklch(15% 0.001 264.5)",
+          "oklch(26% 0.002 264.5)",
+          "oklch(37% 0.003 264.5)",
+          "oklch(48% 0.003 264.5)",
+          "oklch(59% 0.003 264.5)",
+          "oklch(70% 0.002 264.5)",
+          "oklch(83% 0.001 264.5)",
+          "oklch(95% 0.000 264.5)"
+        ],
+        "dark": "#0f1216"
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Panel White",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(26% 0.000 89.9)",
+          "oklch(37% 0.000 89.9)",
+          "oklch(48% 0.000 89.9)",
+          "oklch(59% 0.000 89.9)",
+          "oklch(70% 0.000 89.9)",
+          "oklch(83% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ],
+        "dark": "#171b21"
+      },
+      "surface-sunken": {
+        "role": "neutral",
+        "displayName": "Sunken White",
+        "canonical": "oklch(98.8% 0.002 247.8)",
+        "tonalRamp": [
+          "oklch(15% 0.001 247.8)",
+          "oklch(26% 0.001 247.8)",
+          "oklch(37% 0.002 247.8)",
+          "oklch(48% 0.002 247.8)",
+          "oklch(59% 0.002 247.8)",
+          "oklch(70% 0.001 247.8)",
+          "oklch(83% 0.001 247.8)",
+          "oklch(95% 0.000 247.8)"
+        ],
+        "dark": "#1c2129"
+      },
+      "row-hover": {
+        "role": "neutral",
+        "displayName": "Row Hover",
+        "canonical": "oklch(99.1% 0.003 264.5)",
+        "tonalRamp": [
+          "oklch(15% 0.001 264.5)",
+          "oklch(26% 0.002 264.5)",
+          "oklch(37% 0.003 264.5)",
+          "oklch(48% 0.003 264.5)",
+          "oklch(59% 0.003 264.5)",
+          "oklch(70% 0.002 264.5)",
+          "oklch(83% 0.001 264.5)",
+          "oklch(95% 0.000 264.5)"
+        ],
+        "dark": "#1d232b"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(20.4% 0.011 260.7)",
+        "tonalRamp": [
+          "oklch(15% 0.005 260.7)",
+          "oklch(26% 0.008 260.7)",
+          "oklch(37% 0.010 260.7)",
+          "oklch(48% 0.011 260.7)",
+          "oklch(59% 0.010 260.7)",
+          "oklch(70% 0.008 260.7)",
+          "oklch(83% 0.005 260.7)",
+          "oklch(95% 0.002 260.7)"
+        ],
+        "dark": "#e8eaee"
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "oklch(41.1% 0.018 260.7)",
+        "tonalRamp": [
+          "oklch(15% 0.008 260.7)",
+          "oklch(26% 0.013 260.7)",
+          "oklch(37% 0.017 260.7)",
+          "oklch(48% 0.018 260.7)",
+          "oklch(59% 0.018 260.7)",
+          "oklch(70% 0.014 260.7)",
+          "oklch(83% 0.008 260.7)",
+          "oklch(95% 0.003 260.7)"
+        ],
+        "dark": "#b9bfc9"
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Faint Ink",
+        "canonical": "oklch(55.1% 0.023 264.4)",
+        "tonalRamp": [
+          "oklch(15% 0.011 264.4)",
+          "oklch(26% 0.016 264.4)",
+          "oklch(37% 0.021 264.4)",
+          "oklch(48% 0.023 264.4)",
+          "oklch(59% 0.022 264.4)",
+          "oklch(70% 0.018 264.4)",
+          "oklch(83% 0.011 264.4)",
+          "oklch(95% 0.004 264.4)"
+        ],
+        "dark": "#8f97a3"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(92.4% 0.008 260.7)",
+        "tonalRamp": [
+          "oklch(15% 0.003 260.7)",
+          "oklch(26% 0.005 260.7)",
+          "oklch(37% 0.007 260.7)",
+          "oklch(48% 0.008 260.7)",
+          "oklch(59% 0.007 260.7)",
+          "oklch(70% 0.006 260.7)",
+          "oklch(83% 0.003 260.7)",
+          "oklch(95% 0.001 260.7)"
+        ],
+        "dark": "#2a3039"
+      },
+      "control-border": {
+        "role": "neutral",
+        "displayName": "Control Border",
+        "canonical": "oklch(85.0% 0.012 259.8)",
+        "tonalRamp": [
+          "oklch(15% 0.006 259.8)",
+          "oklch(26% 0.009 259.8)",
+          "oklch(37% 0.011 259.8)",
+          "oklch(48% 0.012 259.8)",
+          "oklch(59% 0.012 259.8)",
+          "oklch(70% 0.009 259.8)",
+          "oklch(83% 0.006 259.8)",
+          "oklch(95% 0.002 259.8)"
+        ],
+        "dark": "#3a424e"
+      },
+      "pill": {
+        "role": "neutral",
+        "displayName": "Tag Grey",
+        "canonical": "oklch(95.4% 0.005 258.3)",
+        "tonalRamp": [
+          "oklch(15% 0.002 258.3)",
+          "oklch(26% 0.003 258.3)",
+          "oklch(37% 0.004 258.3)",
+          "oklch(48% 0.005 258.3)",
+          "oklch(59% 0.004 258.3)",
+          "oklch(70% 0.003 258.3)",
+          "oklch(83% 0.002 258.3)",
+          "oklch(95% 0.001 258.3)"
+        ],
+        "dark": "#252b34"
+      }
+    },
+    "themes": {
+      "dark": {
+        "selector": ":root[data-theme=\"dark\"]",
+        "colorScheme": "dark",
+        "tokens": {
+          "bg": "#0f1216",
+          "surface": "#171b21",
+          "surface-sunken": "#1c2129",
+          "row-hover": "#1d232b",
+          "ink": "#e8eaee",
+          "ink-soft": "#b9bfc9",
+          "ink-faint": "#8f97a3",
+          "line": "#2a3039",
+          "control-border": "#3a424e",
+          "accent": "#7aa2ff",
+          "accent-wash": "#1c2a4a",
+          "on-accent": "#0f1216",
+          "pill": "#252b34",
+          "career": "#ff8a80",
+          "career-wash": "#3a1d1c",
+          "star": "#f2c14e",
+          "star-border": "#6b5520",
+          "star-wash": "#2e2612",
+          "star-ink": "#f2c14e",
+          "likely": "#86efac",
+          "likely-wash": "#15301f",
+          "possible": "#d8b4fe",
+          "possible-wash": "#2a1a3d",
+          "success": "#86efac"
+        },
+        "note": "Opt-in; applied before first paint from localStorage key nsf-theme."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "App Title",
+        "purpose": "Header app title only."
+      },
+      "headline": {
+        "displayName": "Dialog Heading",
+        "purpose": "My list dialog heading."
+      },
+      "title": {
+        "displayName": "Professor Name",
+        "purpose": "Names in rows and phone cards."
+      },
+      "figure": {
+        "displayName": "Months Left",
+        "purpose": "The ranking figure in each row."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Base text; tabular figures set on body."
+      },
+      "body-dense": {
+        "displayName": "Table Cell",
+        "purpose": "Table cells, selects and dropdown options."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Emails, the grant start line, field hints, notes; 0.82 to 0.9rem in faint or soft ink."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Buttons and icon buttons."
+      },
+      "label": {
+        "displayName": "Group and Column Label",
+        "purpose": "Uppercase filter field labels (0.8rem) and table headers (0.78rem, 0.04em)."
+      },
+      "pill": {
+        "displayName": "Pill",
+        "purpose": "All read-only pills."
+      }
+    },
+    "shadows": [
+      {
+        "name": "transient-lift",
+        "value": "0 8px 24px rgba(20, 23, 28, 0.08)",
+        "dark": "0 8px 24px rgba(0, 0, 0, 0.4)",
+        "purpose": "The My list dialog and an open filter dropdown panel; both use the --shadow token."
+      },
+      {
+        "name": "search-focus-halo",
+        "value": "0 0 0 3px var(--accent-wash)",
+        "purpose": "Header search field on focus, and a dropdown button while its panel is open."
+      },
+      {
+        "name": "dialog-backdrop",
+        "value": "rgba(15, 18, 22, 0.45)",
+        "purpose": "Modal backdrop behind the My list dialog."
+      }
+    ],
+    "focus": {
+      "value": "outline: 3px solid var(--accent); outline-offset: 2px",
+      "purpose": "Global :focus-visible ring."
+    },
+    "motion": [
+      {
+        "name": "disclosure-chevron",
+        "value": "transform 160ms ease-out",
+        "purpose": "Chevron rotation on the multi-select dropdown button and the more-grants disclosure; disabled under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack",
+        "value": "900px",
+        "purpose": "max-width: single column, filters behind a toggle, table rows become labelled cards, icon-button labels hidden."
+      }
+    ],
+    "sticky": [
+      {
+        "name": "filter-panel",
+        "value": "position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin",
+        "purpose": "Filters stay reachable and scroll independently on desktop."
+      },
+      {
+        "name": "table-header",
+        "value": "position: sticky; top: 0",
+        "purpose": "Sortable column headers stay visible; the results card uses overflow: clip so it does not become a scroll container."
+      }
+    ],
+    "layout": {
+      "maxWidth": "1360px",
+      "columns": "300px minmax(0, 1fr)",
+      "gap": "24px"
+    }
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Default outlined action; filter reset and dialog actions.",
+      "html": "<button class=\"ds-button\" type=\"button\">Reset all filters</button>",
+      "css": ".ds-button { font: 600 0.92rem var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); padding: 10px 12px; border-radius: 8px; border: 1px solid var(--control-border, #c9ced6); background: var(--surface, #ffffff); color: var(--ink, #14171c); cursor: pointer; } .ds-button:hover { border-color: var(--ink-faint, #6b7280); } .ds-button:focus-visible { outline: 3px solid var(--accent, #1d4ed8); outline-offset: 2px; }"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single blue-filled action, used once in the My list dialog.",
+      "html": "<button class=\"ds-button-primary\" type=\"button\">Show only my list</button>",
+      "css": ".ds-button-primary { font: 600 0.92rem var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); padding: 10px 12px; border-radius: 8px; border: 1px solid var(--accent, #1d4ed8); background: var(--accent, #1d4ed8); color: var(--on-accent, #ffffff); cursor: pointer; } .ds-button-primary:focus-visible { outline: 3px solid var(--accent, #1d4ed8); outline-offset: 2px; }"
+    },
+    {
+      "name": "Icon Button with Count Badge",
+      "kind": "button",
+      "refersTo": "icon-button",
+      "description": "Header My list button: SVG icon, label, amber saved-count badge.",
+      "html": "<button class=\"ds-icon-button\" type=\"button\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\" width=\"18\" height=\"18\"><path fill=\"currentColor\" d=\"M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z\"/></svg><span>My list</span><span class=\"ds-count-badge\">3</span></button>",
+      "css": ".ds-icon-button { display: inline-flex; align-items: center; gap: 8px; font: 600 0.92rem var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); padding: 9px 12px; min-height: 42px; border-radius: 8px; border: 1px solid var(--control-border, #c9ced6); background: var(--surface, #ffffff); color: var(--ink, #14171c); cursor: pointer; } .ds-icon-button:hover { border-color: var(--ink-faint, #6b7280); } .ds-icon-button svg { flex: none; } .ds-count-badge { font-size: 0.8rem; font-weight: 700; background: var(--star-wash, #fff8e8); color: var(--star-ink, #8a5a12); border: 1px solid var(--star-border, #e7c27d); border-radius: 999px; padding: 0 7px; } .ds-icon-button:focus-visible { outline: 3px solid var(--accent, #1d4ed8); outline-offset: 2px; }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Header search; grey at rest, white with blue border and wash halo on focus.",
+      "html": "<input class=\"ds-input-search\" type=\"search\" placeholder=\"Search name, university or grant\">",
+      "css": ".ds-input-search { width: 100%; font: 500 1rem var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); padding: 11px 14px; border: 1px solid var(--control-border, #c9ced6); border-radius: 8px; background: var(--bg, #f6f7f9); color: var(--ink, #14171c); } .ds-input-search::placeholder { color: var(--ink-faint, #6b7280); } .ds-input-search:focus { background: var(--surface, #ffffff); border-color: var(--accent, #1d4ed8); outline: none; box-shadow: 0 0 0 3px var(--accent-wash, #eaf0fd); }"
+    },
+    {
+      "name": "Pills",
+      "kind": "chip",
+      "refersTo": "pill",
+      "description": "Read-only tags; each hue carries one fixed meaning.",
+      "html": "<div class=\"ds-pills\"><span class=\"ds-pill ds-phd-likely\">PhD: likely</span><span class=\"ds-pill ds-phd-maybe\">PhD: maybe</span><span class=\"ds-pill ds-phd-unlikely\">PhD: unlikely</span><span class=\"ds-pill ds-career\">CAREER</span><span class=\"ds-pill ds-topic\">AI, NLP &amp; Software</span><span class=\"ds-pill\">Collaborative</span></div>",
+      "css": ".ds-pills { display: flex; flex-wrap: wrap; gap: 4px; font-family: var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); } .ds-pill { font-size: 0.74rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--pill, #eef0f3); color: var(--ink-soft, #454b55); white-space: nowrap; } .ds-career { background: var(--career-wash, #fde8e7); color: var(--career, #b42318); } .ds-topic { background: var(--accent-wash, #eaf0fd); color: var(--accent, #1d4ed8); } .ds-phd-likely { background: var(--likely-wash, #e3f4e8); color: var(--likely, #166534); } .ds-phd-maybe { background: var(--possible-wash, #f3e8ff); color: var(--possible, #6b21a8); } .ds-phd-unlikely { background: transparent; color: var(--ink, #14171c); border: 1px solid var(--ink-faint, #6b7280); padding: 1px 7px; }"
+    },
+    {
+      "name": "Active Filter Chip",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Removable chip in the sunken strip above the table.",
+      "html": "<div class=\"ds-chip-strip\"><button class=\"ds-filter-chip\" type=\"button\">Security &amp; Privacy <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\" width=\"14\" height=\"14\"><path fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" d=\"M6 6l12 12M18 6L6 18\"/></svg></button><button class=\"ds-clear-all\" type=\"button\">Clear all</button></div>",
+      "css": ".ds-chip-strip { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 18px; background: var(--surface-sunken, #fafbfc); border-bottom: 1px solid var(--line, #e3e6eb); } .ds-filter-chip { display: inline-flex; align-items: center; gap: 6px; font: 600 0.82rem var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); padding: 4px 6px 4px 10px; border-radius: 999px; border: 1px solid var(--control-border, #c9ced6); background: var(--surface, #ffffff); color: var(--ink, #14171c); cursor: pointer; } .ds-filter-chip:hover { border-color: var(--ink-faint, #6b7280); } .ds-filter-chip svg { color: var(--ink-faint, #6b7280); } .ds-clear-all { font: 600 0.82rem var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); background: none; border: 0; color: var(--accent, #1d4ed8); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; padding: 4px; } .ds-filter-chip:focus-visible { outline: 3px solid var(--accent, #1d4ed8); outline-offset: 2px; }"
+    },
+    {
+      "name": "Star Toggle",
+      "kind": "button",
+      "refersTo": "star-toggle",
+      "description": "Save a professor; amber only when pressed.",
+      "html": "<div style=\"display:flex;gap:8px\"><button class=\"ds-star\" type=\"button\" aria-pressed=\"false\" aria-label=\"Save\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\" width=\"18\" height=\"18\"><path fill=\"currentColor\" d=\"M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z\"/></svg></button><button class=\"ds-star\" type=\"button\" aria-pressed=\"true\" aria-label=\"Saved\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\" width=\"18\" height=\"18\"><path fill=\"currentColor\" d=\"M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z\"/></svg></button></div>",
+      "css": ".ds-star { width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--control-border, #c9ced6); background: var(--surface, #ffffff); color: var(--ink-faint, #6b7280); cursor: pointer; display: grid; place-items: center; } .ds-star:hover { border-color: var(--ink-faint, #6b7280); } .ds-star[aria-pressed=\"true\"] { color: var(--star, #b7791f); border-color: var(--star-border, #e7c27d); background: var(--star-wash, #fff8e8); } .ds-star:focus-visible { outline: 3px solid var(--accent, #1d4ed8); outline-offset: 2px; }"
+    },
+    {
+      "name": "Multi-select Dropdown",
+      "kind": "input",
+      "refersTo": "multi-select",
+      "description": "Labelled filter field: select-styled button that opens a checkbox panel in place, with search, group labels, counts, Clear and Done.",
+      "html": "<div class=\"ds-field\"><span class=\"ds-field-label\">Topic</span><div class=\"ds-ms ds-has-value\"><button class=\"ds-ms-button\" type=\"button\" aria-expanded=\"true\"><span class=\"ds-ms-value\">2 selected</span><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" d=\"M6 9l6 6 6-6\"/></svg></button><div class=\"ds-ms-panel\"><input class=\"ds-ms-search\" type=\"search\" placeholder=\"Search topic\"><div class=\"ds-ms-options\"><p class=\"ds-ms-group\">Computing</p><label class=\"ds-check\"><input type=\"checkbox\" checked> AI, NLP &amp; Software <span class=\"ds-n\">1,204</span></label><label class=\"ds-check\"><input type=\"checkbox\" checked> Security &amp; Privacy <span class=\"ds-n\">318</span></label><p class=\"ds-ms-group\">Physical sciences</p><label class=\"ds-check\"><input type=\"checkbox\"> Quantum <span class=\"ds-n\">282</span></label></div><div class=\"ds-ms-footer\"><button type=\"button\">Clear</button><button type=\"button\">Done</button></div></div></div></div>",
+      "css": ".ds-field { width: 264px; font-family: var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); color: var(--ink, #14171c); } .ds-field-label { display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint, #6b7280); margin: 0 0 5px; } .ds-ms-button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; font: 500 0.95rem var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); padding: 9px 10px; border: 1px solid var(--control-border, #c9ced6); border-radius: 8px; background: var(--surface, #ffffff); color: var(--ink-soft, #454b55); cursor: pointer; text-align: left; } .ds-ms-button:hover { border-color: var(--ink-faint, #6b7280); } .ds-ms-button:focus-visible { outline: 3px solid var(--accent, #1d4ed8); outline-offset: 2px; } .ds-ms-button svg { width: 16px; height: 16px; flex: none; transition: transform 160ms ease-out; } .ds-ms-button[aria-expanded=\"true\"] { border-color: var(--accent, #1d4ed8); box-shadow: 0 0 0 3px var(--accent-wash, #eaf0fd); } .ds-ms-button[aria-expanded=\"true\"] svg { transform: rotate(180deg); } .ds-has-value .ds-ms-button { color: var(--accent, #1d4ed8); font-weight: 600; border-color: var(--accent, #1d4ed8); } .ds-ms-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-ms-panel { margin-top: 6px; border: 1px solid var(--control-border, #c9ced6); border-radius: 8px; background: var(--surface, #ffffff); box-shadow: 0 8px 24px rgba(20, 23, 28, 0.08); overflow: hidden; } .ds-ms-search { width: 100%; box-sizing: border-box; font: 500 0.92rem var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); padding: 9px 10px; border: 0; border-bottom: 1px solid var(--line, #e3e6eb); background: var(--surface-sunken, #fafbfc); color: var(--ink, #14171c); } .ds-ms-search::placeholder { color: var(--ink-faint, #6b7280); } .ds-ms-search:focus { outline: none; background: var(--surface, #ffffff); } .ds-ms-options { max-height: 300px; overflow-y: auto; padding: 4px 10px; } .ds-ms-group { margin: 8px 0 2px; font-size: 0.76rem; font-weight: 700; color: var(--ink-faint, #6b7280); } .ds-check { display: flex; gap: 10px; align-items: center; padding: 5px 0; font-size: 0.95rem; cursor: pointer; } .ds-check input { width: 17px; height: 17px; accent-color: var(--accent, #1d4ed8); margin: 0; flex: none; } .ds-n { margin-left: auto; color: var(--ink-faint, #6b7280); font-size: 0.85rem; padding-left: 8px; } .ds-ms-footer { display: flex; justify-content: space-between; padding: 6px 10px; border-top: 1px solid var(--line, #e3e6eb); background: var(--surface-sunken, #fafbfc); } .ds-ms-footer button { font: 600 0.85rem var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); background: none; border: 0; padding: 4px 2px; cursor: pointer; color: var(--accent, #1d4ed8); } .ds-ms-footer button:focus-visible { outline: 3px solid var(--accent, #1d4ed8); outline-offset: 2px; } @media (prefers-reduced-motion: reduce) { .ds-ms-button svg { transition: none; } }"
+    },
+    {
+      "name": "Professor Row",
+      "kind": "custom",
+      "refersTo": "table-header",
+      "description": "Signature results row under a sticky sortable header; numbers right-aligned in tabular figures.",
+      "html": "<table class=\"ds-table\"><thead><tr><th></th><th>Professor</th><th>Lead grant</th><th class=\"ds-num\">Ends</th><th class=\"ds-num ds-sorted\">Months left</th><th class=\"ds-num\">Funding</th></tr></thead><tbody><tr><td><button class=\"ds-star\" type=\"button\" aria-pressed=\"true\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\" width=\"18\" height=\"18\"><path fill=\"currentColor\" d=\"M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z\"/></svg></button></td><td><div class=\"ds-name\">Lori Peek</div><div class=\"ds-inst\">University of Colorado at Boulder, CO</div><div class=\"ds-pi-start\">Grant started Aug 2025</div></td><td><a href=\"#\">A Clearinghouse for Natural Hazards Research</a><div class=\"ds-pills\"><span class=\"ds-pill ds-phd-likely\">PhD: likely</span><span class=\"ds-pill ds-topic\">Climate, Environment &amp; Water</span></div></td><td class=\"ds-num\">Jul 2032</td><td class=\"ds-num\"><span class=\"ds-months\">59</span> mo</td><td class=\"ds-num\">$1.5M</td></tr></tbody></table>",
+      "css": ".ds-table { width: 100%; border-collapse: collapse; font: 400 16px/1.5 var(--sans, \"Libre Franklin\", \"Helvetica Neue\", Arial, sans-serif); font-variant-numeric: tabular-nums; background: var(--surface, #ffffff); color: var(--ink, #14171c); } .ds-table th { text-align: left; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint, #6b7280); padding: 10px 14px; background: var(--surface-sunken, #fafbfc); border-bottom: 1px solid var(--line, #e3e6eb); } .ds-table th.ds-sorted { color: var(--accent, #1d4ed8); } .ds-table td { padding: 14px; border-bottom: 1px solid var(--line, #e3e6eb); vertical-align: top; font-size: 0.95rem; } .ds-table tbody tr:hover td { background: var(--row-hover, #fbfcfe); } .ds-table a { color: var(--accent, #1d4ed8); text-underline-offset: 3px; font-weight: 500; } .ds-num { text-align: right; white-space: nowrap; } .ds-table th.ds-num { text-align: right; } .ds-name { font-weight: 700; } .ds-inst { color: var(--ink-soft, #454b55); font-size: 0.9rem; } .ds-pi-start { margin-top: 4px; font-size: 0.85rem; color: var(--ink-soft, #454b55); } .ds-months { font-weight: 800; font-size: 1.05rem; } .ds-pills { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; } .ds-pill { font-size: 0.74rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; } .ds-topic { background: var(--accent-wash, #eaf0fd); color: var(--accent, #1d4ed8); } .ds-phd-likely { background: var(--likely-wash, #e3f4e8); color: var(--likely, #166534); } .ds-star { width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; color: var(--star, #b7791f); border: 1px solid var(--star-border, #e7c27d); background: var(--star-wash, #fff8e8); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Clean Results Desk",
+    "overview": "The page is the category-standard research tool: a filter panel on the left, a sortable results table on the right, both set on white rounded panels over a pale grey ground (`bg`). The user chose this conventional layout over two own-world directions, so the system's job is execution quality, not novelty: hairline rules, one blue accent, colored pills that each carry one fixed meaning, and a single news-sans family (Libre Franklin) whose weights carry the hierarchy.\n\nDensity is high and deliberate. The table shows roughly 8,700 professors, so rows are separated by 1px lines rather than cards, numbers use tabular figures and right alignment, and every metadata line drops to a smaller size and a fainter ink instead of adding boxes. The filter panel and the table header both stay pinned while the results scroll, so narrowing and sorting are always one click away.\n\nLight is the default theme and the one the user pinned. Dark is opt-in through `:root[data-theme=\"dark\"]`, which re-tunes every role token (surfaces, inks, accent, pill hues) to hold 4.5:1 text contrast; no component rule branches on theme except the theme toggle swapping its moon and sun icons. The dark values live in the sidecar under `extensions.themes.dark`.",
+    "keyCharacteristics": [
+      "Grey ground, white panels with 10px corners and 1px hairline borders; no shadows except the My list dialog and an open dropdown panel.",
+      "One blue accent for everything interactive or selected.",
+      "Fixed-meaning hues: red is CAREER, amber is saved, green, purple and an outline mark PhD likelihood.",
+      "Libre Franklin only, weights 400 to 800, tabular figures everywhere.",
+      "Sticky, independently scrolling filter panel and sticky sortable table header on desktop; table becomes labelled cards at 900px and below."
+    ],
+    "rules": [
+      {
+        "name": "The One Blue Rule",
+        "body": "Blue means \"you can act on this\" or \"this is selected\". No second accent exists; any new interactive element uses `accent`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reserved Hue Rule",
+        "body": "Red is CAREER (and error text), amber is saved, green is PhD likely, purple is PhD maybe. None of these hues appears for decoration or for any other category.",
+        "section": "colors"
+      },
+      {
+        "name": "The Role Token Rule",
+        "body": "Components reference role tokens (`--ink`, `--surface`, `--accent`), never literal colors, so the dark block re-tunes the whole page by redefining the tokens alone.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "`font-variant-numeric: tabular-nums` is set on the body, and numeric columns (Ends, Months left, Funding) are right-aligned and never wrap, so digits line up down 8,700 rows.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Libre Franklin sets every glyph on the page. Weight, size and ink shade do the work a second family would do.",
+        "section": "typography"
+      },
+      {
+        "name": "The Always-Reachable Rule",
+        "body": "On desktop the filters and the column headers never scroll out of view; the filter panel scrolls independently when it is taller than the viewport.",
+        "section": "layout"
+      },
+      {
+        "name": "The Self-Labelled Number Rule",
+        "body": "When the header row is hidden on phones, every number carries its own label inline.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Panels Rule",
+        "body": "Panels, rows, cards and buttons carry no shadow. Separation is a hairline or a tone step; only a transient layer (the modal dialog, an open dropdown panel) lifts.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use `accent` for every link, selected state, active sort and focus ring, and for nothing decorative.",
+      "Do pair each signal hue with its own wash (`career-wash`, `likely-wash`, `possible-wash`, `star-wash`, `accent-wash`) as the pill or toggle background.",
+      "Do style every new component through role tokens so the dark theme works by token redefinition alone.",
+      "Do right-align numeric columns with tabular figures and `white-space: nowrap`.",
+      "Do separate content with 1px `line` hairlines and tone steps.",
+      "Do give every number an inline label wherever its column header is not visible.",
+      "Do keep hover washes behind `@media (hover: hover)` so touch devices do not stick in a hover state."
+    ],
+    "donts": [
+      "Don't introduce a second accent or reuse red, amber, green or purple for anything beyond their assigned meanings.",
+      "Don't add shadows to panels, rows, buttons or cards; the dialog and an open dropdown panel are the only lifted surfaces.",
+      "Don't add a second typeface; Libre Franklin is the only face in `fonts/fonts.css`.",
+      "Don't give \"PhD: unlikely\" a filled grey pill; it stays outlined so it never reads as one more neutral tag.",
+      "Don't hardcode hex colors in component rules; the only literal colors in the stylesheet are the token blocks and the dialog backdrop."
+    ]
+  }
+}

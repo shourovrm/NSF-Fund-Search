@@ -1,0 +1,18 @@
+# NSF yearly zips (about 100 MB); re-download with `uv run nsf_awards.py download <years>`
+data/raw/
+# Spreadsheets and CSVs; rebuilt by `uv run nsf_awards.py build`
+data/output/
+
+__pycache__/
+*.pyc
+
+# Secrets and local Cloudflare state
+.env
+.dev.vars
+.wrangler/
+node_modules/
+
+# Impeccable review screenshots and per-machine build state
+.impeccable/review/
+.impeccable/build/
+.impeccable/hook.cache.json

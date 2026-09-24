@@ -1,0 +1,16 @@
+/* Self-hosted so the site renders identically offline. Libre Franklin is a
+   Franklin Gothic revival, the news-sans family CNN-style layouts are built on. */
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("LibreFranklin.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("LibreFranklin-Italic.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}

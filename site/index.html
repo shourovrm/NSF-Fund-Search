@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NSF Professor Finder · Grants active in Fall 2027</title>
+<meta name="description" content="Search professors whose NSF grants are still running in August 2027, by topic, field, grant type and location.">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="app.css">
+<script>
+  // Applied before first paint so a saved dark theme never flashes white.
+  try { if (localStorage.getItem("nsf-theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (error) {}
+</script>
+</head>
+<body>
+<!--
+THESIS: The category standard: sidebar filters and a sortable table, executed cleanly; chosen by the user over two own-world directions.
+OWN-WORLD: Grey app ground, white rounded panels, one blue accent, pills for topics and grant types, amber saved stars; Libre Franklin throughout; a re-tuned dark theme on request.
+STORY: Narrow roughly 9,000 funded professors by topic, field, grant type and place; star the ones to email; export the list.
+FIRST VIEWPORT: Header with search, My list and theme buttons; filter panel at left; result count, active-filter chips and the table.
+FORM: Canon card, seed 1a7e87c5.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+-->
+<header class="app-header">
+  <div class="app-header-inner">
+    <div>
+      <h1 class="app-title">NSF Professor Finder</h1>
+      <p class="app-sub" id="app-sub">NSF grants active on Aug 15, 2027</p>
+    </div>
+    <label class="header-search">
+      <span class="visually-hidden">Search</span>
+      <input id="search" type="search" placeholder="Search name, university or grant" autocomplete="off">
+    </label>
+    <div class="header-actions">
+      <button class="icon-button" id="open-list" type="button" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>
+        <span class="button-label">My list</span>
+        <span class="count-badge" id="list-count">0</span>
+      </button>
+      <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
+        <span class="button-label" id="theme-toggle-label">Dark mode</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="filters" id="filters" data-open="false" aria-label="Filters">
+    <button class="button filters-toggle" id="filters-toggle" type="button" aria-expanded="false" aria-controls="filters-body">
+      Filters <span id="filters-toggle-count"></span>
+    </button>
+    <div class="filters-body" id="filters-body">
+      <div class="filter-field">
+        <span class="field-label">Topic</span>
+        <div id="ms-topics"></div>
+      </div>
+      <div class="filter-field">
+        <span class="field-label">Research field</span>
+        <div id="ms-fields"></div>
+      </div>
+      <div class="filter-field">
+        <span class="field-label">Grant type</span>
+        <div id="ms-grant-types"></div>
+      </div>
+      <div class="filter-field">
+        <label class="field-label" for="phd-level">PhD funding</label>
+        <select class="select" id="phd-level">
+          <option value="any">Any grant</option>
+          <option value="possible">Likely or possible</option>
+          <option value="likely">Likely only</option>
+        </select>
+      </div>
+      <div class="filter-field">
+        <span class="field-label">State</span>
+        <div id="ms-states"></div>
+      </div>
+      <div class="filter-field">
+        <span class="field-label">University</span>
+        <div id="ms-institutions"></div>
+        <p class="field-hint" id="institution-hint"></p>
+      </div>
+      <div class="filter-field">
+        <label class="field-label" for="min-months">Months left at Aug 15, 2027</label>
+        <select class="select" id="min-months">
+          <option value="0">Any</option><option value="12">12 or more</option><option value="24">24 or more</option><option value="36">36 or more</option>
+        </select>
+      </div>
+      <div class="filter-field">
+        <label class="field-label" for="min-amount">Funding (matching grants)</label>
+        <select class="select" id="min-amount">
+          <option value="0">Any amount</option><option value="300000">$300K or more</option><option value="600000">$600K or more</option><option value="1000000">$1M or more</option>
+        </select>
+      </div>
+      <div class="filter-field">
+        <span class="field-label">Show</span>
+        <div id="ms-show"></div>
+      </div>
+      <div class="filters-actions">
+        <button class="button" id="reset" type="button">Reset all filters</button>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="table-card">
+      <div class="table-top">
+        <span id="count" aria-live="polite"></span>
+        <label><span class="visually-hidden">Sort by</span>
+          <select class="select" id="sort">
+            <option value="runway">Sort: months left</option>
+            <option value="newest">Sort: newest grant</option>
+            <option value="amount">Sort: funding</option>
+            <option value="name">Sort: name</option>
+            <option value="institution">Sort: university</option>
+          </select>
+        </label>
+      </div>
+      <p class="coverage-note" id="coverage-note"></p>
+      <div class="active-filters" id="active-filters" aria-label="Active filters"></div>
+      <table>
+        <thead><tr>
+          <th><span class="visually-hidden">Saved</span></th>
+          <th data-sort-key="name"><button class="sort-header" type="button" data-sort="name">Professor</button></th>
+          <th data-sort-key="newest"><button class="sort-header" type="button" data-sort="newest">Lead grant</button></th>
+          <th class="num">Ends</th>
+          <th class="num" data-sort-key="runway"><button class="sort-header" type="button" data-sort="runway">Months left</button></th>
+          <th class="num" data-sort-key="amount"><button class="sort-header" type="button" data-sort="amount">Funding</button></th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <button class="load-more" id="load-more" type="button" hidden>Show more</button>
+    </div>
+    <p class="note" id="source-note"></p>
+  </main>
+</div>
+
+<dialog class="list-dialog" id="list-dialog" aria-labelledby="list-dialog-title">
+  <div class="dialog-head">
+    <h2 id="list-dialog-title">My list</h2>
+    <button class="icon-button" id="close-list" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="dialog-body">
+    <p id="list-summary"></p>
+    <p>Your list is saved in this browser only. Download a backup to move it to another device or browser, then import it there.</p>
+    <button class="button primary" id="show-list" type="button">Show only my list</button>
+    <button class="button" id="export-csv" type="button">Download list as spreadsheet (CSV)</button>
+    <button class="button" id="export-backup" type="button">Download backup (JSON)</button>
+    <button class="button" id="import-backup" type="button">Import backup…</button>
+    <input type="file" id="import-file" accept="application/json,.json" hidden>
+    <p class="dialog-status" id="list-status" role="status"></p>
+  </div>
+</dialog>
+
+<script src="data.js"></script>
+<script src="core.js"></script>
+<script src="multi-select.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
