@@ -99,7 +99,7 @@
 
     const years = NSF.meta.sourceYears;
     const yearRange = years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : years[0];
-    byId("app-sub").textContent = `NSF awards made ${yearRange}, still active on Aug 15, 2027`;
+    byId("app-sub").textContent = `NSF awards ${yearRange}, updated at ${NSF.formatShortDate(NSF.meta.generated)}`;
     byId("coverage-note").textContent =
       `Covers grants NSF awarded in ${yearRange}. Older grants that still run past 2027 are not included yet.`;
     byId("source-note").textContent =

@@ -1,0 +1,10 @@
+[Unit]
+Description=Check 10 minutes after login whether the NSF Fund Search data needs updating
+
+[Timer]
+# The user manager starts at login (lingering is off), so this is login + 10 min.
+# The 7-day rule is in the script, not here.
+OnStartupSec=10min
+
+[Install]
+WantedBy=timers.target

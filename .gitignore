@@ -14,6 +14,9 @@ __pycache__/
 .wrangler/
 node_modules/
 
+# Playwright MCP page snapshots
+.playwright-mcp/
+
 # Impeccable review screenshots and per-machine build state
 .impeccable/review/
 .impeccable/build/

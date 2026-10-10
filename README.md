@@ -14,12 +14,29 @@ education grants. Category rules (fields, topics, grant types, PhD-funding
 likelihood) live in `taxonomy.py`.
 
 ```sh
-uv run nsf_awards.py download 2025 2026   # fetch NSF yearly zips into data/raw/
-uv run nsf_awards.py build                # write data/output/* and site/data.js
+uv run nsf_awards.py download 2025 2026   # first time: fetch NSF yearly zips into data/raw/
+uv run nsf_awards.py update               # later: fetch only what changed, then rebuild
+uv run nsf_awards.py build                # rebuild data/output/* and site/data.js from local files
 ```
 
-The site data currently covers awards NSF made in 2025 and 2026. Grants made
-earlier that still run past 2027 appear only after their years are downloaded.
+`update` reads only the index at the end of each NSF zip (about 0.5 MB per
+year) and compares checksums with the local copy, so it downloads only the
+awards that are new or changed. It falls back to a full download when most of a
+file changed, and it picks up a new year file when NSF adds one. NSF re-stamps
+every file daily, so file dates do not show whether anything changed;
+`nsf_remote.py` holds the comparison.
+
+The site data covers awards NSF made from 2025 on. Grants made earlier that
+still run past 2027 appear only after their years are downloaded.
+
+## Update reminder
+
+`reminder/install.sh` installs a systemd user timer that runs
+`reminder/update_reminder.py` 10 minutes after each login. The script stays
+silent when the data was updated within the last 7 days or when NSF has nothing
+new. Otherwise it shows one desktop notification, for example "No update since
+25 Sep 26. Update found: 520 awards." Then run `update` and `npm run deploy`.
+`reminder/install.sh --uninstall` removes it.
 
 ## Site
 

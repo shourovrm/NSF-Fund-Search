@@ -304,6 +304,16 @@
     return new Date(isoDate + "T00:00:00").toLocaleDateString("en-US", { month: "short", year: "numeric" });
   }
 
+  // Formats as "10 Oct 26". Both parsing and formatting use UTC so the day
+  // cannot shift with the browser's timezone.
+  function formatShortDate(isoDate) {
+    const date = new Date(isoDate + "T00:00:00Z");
+    const day = date.getUTCDate();
+    const month = date.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
+    const twoDigitYear = date.toLocaleDateString("en-US", { year: "2-digit", timeZone: "UTC" });
+    return `${day} ${month} ${twoDigitYear}`;
+  }
+
   function escapeHtml(text) {
     return String(text ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
   }
@@ -341,6 +351,7 @@
     awardUrl,
     formatMoney,
     formatDate,
+    formatShortDate,
     escapeHtml,
   };
 })();

@@ -1,0 +1,6 @@
+[Unit]
+Description=Remind to update the NSF Fund Search data
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 @PROJECT_DIR@/reminder/update_reminder.py

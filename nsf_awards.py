@@ -6,7 +6,8 @@
 PhD student would start (Fall 2027), with field, topic and grant-type labels.
 
 Usage:
-    uv run nsf_awards.py download 2025 2026      # fetch yearly award zips
+    uv run nsf_awards.py download 2025 2026      # fetch yearly award zips in full
+    uv run nsf_awards.py update                  # refresh local zips, fetching only changed awards, then build
     uv run nsf_awards.py analyze                 # build data/output/*.xlsx and *.csv
     uv run nsf_awards.py site                    # build site/data.js for the web page
     uv run nsf_awards.py build                   # both of the above in one pass
@@ -25,15 +26,20 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
+import nsf_remote
 import taxonomy
 
 PROJECT_DIR = Path(__file__).parent
-RAW_DIR = PROJECT_DIR / "data" / "raw"
+RAW_DIR = nsf_remote.RAW_DIR
 OUTPUT_DIR = PROJECT_DIR / "data" / "output"
 SITE_DIR = PROJECT_DIR / "site"
 
-# NSF's "Download Awards by Year" page gets its signed S3 links from this endpoint.
-FILE_LIST_URL = "https://api.nsf.gov/services/v2/s3/list-files"
+# `update` fetches only the changed awards when they are a small part of the
+# year's zip. Each award costs one network round trip (about a second), and a
+# full zip downloads in a few minutes, so past either limit the full download
+# is faster. The byte limit also covers the case where most awards changed.
+PARTIAL_FETCH_MAX_BYTE_FRACTION = 0.10
+PARTIAL_FETCH_MAX_MEMBER_COUNT = 150
 
 # A grant must still be running on this date to fund a student starting Fall 2027.
 FALL_2027_START = datetime.date(2027, 8, 15)
@@ -44,11 +50,17 @@ EXCLUDED_PROGRAM_CODES = {
     "537100", "537300", "150500", "159100", "287Y00", "286Y00", "809100",  # SBIR / STTR
     "802300", "170Y00",  # I-Corps
     "113900", "135900",  # REU / RET sites
+    # S-STEM and Noyce undergraduate scholarships. They were excluded with their old
+    # DUE division, but now share SFT with the DGE traineeships, so the program code does it.
+    "153600", "179500",
 }
 EXCLUDED_INSTRUMENTS = {"Fellowship Award", "Interagency Agreement"}
 # Undergraduate teaching (DUE) and K-12/informal learning (DRL) grants rarely hire
 # PhD research assistants. DGE stays because it holds NRT traineeships.
-EXCLUDED_DIVISIONS = {"DUE", "DRL"}
+# After the 2026 reorganisation DUE and DRL awards sit mostly in EIT, ECBT and WTC
+# (and EDCP, a tiny core-programs division); SFT, which mixes former DGE and DUE
+# awards, stays like DGE.
+EXCLUDED_DIVISIONS = {"DUE", "DRL", "EIT", "ECBT", "WTC", "EDCP"}
 EXCLUDED_TITLE_PATTERN = re.compile(
     r"\b(conference|workshop|symposium|summer school|travel|meeting|REU site|"
     r"student support|doctoral consortium|hackathon|planning grant|I-Corps|MRI|"
@@ -78,21 +90,90 @@ CSV_FIELDNAMES = [
 ]
 
 
+def download_full_zip(entry, destination):
+    """Download one listed zip to `destination`; an interrupted download leaves any old file intact."""
+    RAW_DIR.mkdir(parents=True, exist_ok=True)
+    partial_path = destination.with_name(destination.name + ".part")
+    try:
+        urllib.request.urlretrieve(entry["downloadUrl"], partial_path)
+        partial_path.replace(destination)
+    finally:
+        partial_path.unlink(missing_ok=True)
+    print(f"  saved {destination} ({destination.stat().st_size / 1e6:.1f} MB)")
+
+
 def download_years(years):
     """Fetch the yearly award zips named in `years` into data/raw/."""
-    RAW_DIR.mkdir(parents=True, exist_ok=True)
-    with urllib.request.urlopen(FILE_LIST_URL) as response:
-        file_listing = json.load(response)
-    download_urls = {entry["fileName"]: entry["downloadUrl"] for entry in file_listing["files"]}
+    file_listing = nsf_remote.fetch_file_listing()
     for year in years:
         file_name = f"{year}.zip"
-        if file_name not in download_urls:
+        if file_name not in file_listing:
             print(f"NSF has no file named {file_name}; skipping")
             continue
-        destination = RAW_DIR / file_name
         print(f"Downloading {file_name} ...")
-        urllib.request.urlretrieve(download_urls[file_name], destination)
-        print(f"  saved {destination} ({destination.stat().st_size / 1e6:.1f} MB)")
+        download_full_zip(file_listing[file_name], RAW_DIR / file_name)
+    # Only the first download sets the date. Adding one older year later must not
+    # make the years already here look fresh; `update` moves the date after that.
+    if nsf_remote.read_last_fetch_date() is None:
+        nsf_remote.write_last_fetch_date(datetime.date.today())
+
+
+def is_partial_fetch_worthwhile(remote_zip, member_diff, remote_size):
+    """True when fetching just the added and changed awards beats downloading the whole zip."""
+    names_to_fetch = set(member_diff.added + member_diff.changed)
+    if len(names_to_fetch) > PARTIAL_FETCH_MAX_MEMBER_COUNT:
+        return False
+    compressed_bytes = sum(info.compress_size for info in remote_zip.infolist() if info.filename in names_to_fetch)
+    return compressed_bytes <= remote_size * PARTIAL_FETCH_MAX_BYTE_FRACTION
+
+
+def write_merged_zip(remote_zip, local_zip_path, names_to_fetch, destination):
+    """Write a zip with the remote zip's awards, reusing local copies of the unchanged ones.
+
+    Members are copied by uncompressed content, so their checksums match the
+    remote index. Remote members are read in archive order so that neighbouring
+    awards share one buffered network read.
+    """
+    with zipfile.ZipFile(local_zip_path) as local_zip, zipfile.ZipFile(destination, "w", zipfile.ZIP_DEFLATED) as merged_zip:
+        for remote_info in remote_zip.infolist():
+            name = remote_info.filename
+            if not name.endswith(".json"):
+                continue
+            source_zip = remote_zip if name in names_to_fetch else local_zip
+            member_info = zipfile.ZipInfo(name, date_time=remote_info.date_time)
+            member_info.compress_type = zipfile.ZIP_DEFLATED
+            merged_zip.writestr(member_info, source_zip.read(name))
+
+
+def update_year(file_name, entry):
+    """Bring one local year zip in line with NSF's copy; return a one-line summary."""
+    local_zip_path = RAW_DIR / file_name
+    with nsf_remote.open_remote_zip(entry) as remote_zip:
+        member_diff = nsf_remote.diff_against_local(remote_zip, local_zip_path)
+        counts = f"{len(member_diff.added)} added, {len(member_diff.changed)} changed, {len(member_diff.removed)} removed"
+        if member_diff.total == 0:
+            return f"{file_name}: {counts}; already current"
+        if local_zip_path.exists() and is_partial_fetch_worthwhile(remote_zip, member_diff, int(entry["size"])):
+            partial_path = local_zip_path.with_name(local_zip_path.name + ".part")
+            try:
+                write_merged_zip(remote_zip, local_zip_path, set(member_diff.added + member_diff.changed), partial_path)
+                partial_path.replace(local_zip_path)
+            finally:
+                partial_path.unlink(missing_ok=True)
+            return f"{file_name}: {counts}; partial fetch"
+    print(f"{file_name}: {counts}; downloading the whole file ...")
+    download_full_zip(entry, local_zip_path)
+    return f"{file_name}: {counts}; full download"
+
+
+def update_years():
+    """Refresh every tracked year zip, then rebuild the spreadsheets and site data."""
+    file_listing = nsf_remote.fetch_file_listing()
+    for file_name in nsf_remote.tracked_year_file_names(file_listing):
+        print(update_year(file_name, file_listing[file_name]))
+    # Recorded only after every year succeeded, so a failed run still looks stale.
+    nsf_remote.write_last_fetch_date(datetime.date.today())
+    build()
 
 
 def load_awards():
@@ -349,7 +430,8 @@ def export_site(rows=None):
     SITE_DIR.mkdir(exist_ok=True)
     records = build_site_records(rows if rows is not None else eligible_rows())
     payload = {
-        "generated": datetime.date.today().isoformat(),
+        # When the data was fetched from NSF, so the site shows freshness rather than build time.
+        "generated": (nsf_remote.read_last_fetch_date() or datetime.date.today()).isoformat(),
         "sourceYears": sorted(path.stem for path in RAW_DIR.glob("*.zip")),
         "fallStart": FALL_2027_START.isoformat(),
         "fields": taxonomy.FIELDS,
@@ -378,6 +460,7 @@ def build():
 def main():
     commands = {
         "download": lambda: download_years(sys.argv[2:]),
+        "update": update_years,
         "analyze": analyze,
         "site": export_site,
         "build": build,

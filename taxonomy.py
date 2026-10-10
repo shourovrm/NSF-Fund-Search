@@ -24,16 +24,29 @@ FIELDS = {
     "other": "Other / Cross-cutting",
 }
 
+# NSF reorganised its divisions in autumn 2026, so one award can carry an old or
+# a new code. Both are listed. Where one new code gathers awards from old
+# divisions in different fields, the field holding most of those awards wins:
+# GCP (GEO core programs) took AGS, EAR, OCE and RISE awards, all earth science;
+# MCP (MPS core programs) took 27 awards from OSI and 11 from AST, and OSI was
+# never mapped, so MCP stays "other".
 FIELD_BY_DIVISION = {
+    # Computing: CCF, CNS and IIS were redistributed over six new divisions.
     "CCF": "computing", "CNS": "computing", "IIS": "computing", "OAC": "computing",
+    "CAIF": "computing", "CCP": "computing", "CPIS": "computing", "CST": "computing",
+    "HCCE": "computing", "SSF": "computing",
     "ECCS": "electrical",
     "CBET": "engineering", "CMMI": "engineering", "EEC": "engineering", "EFMA": "engineering",
-    "DMS": "math",
+    "ENCP": "engineering",
+    "DMS": "math", "MMS": "math",
     "PHY": "physics_astronomy", "AST": "physics_astronomy",
-    "CHE": "chemistry_materials", "DMR": "chemistry_materials",
+    "CHE": "chemistry_materials", "DMR": "chemistry_materials", "MRS": "chemistry_materials",
     "EAR": "earth_environment", "OCE": "earth_environment", "AGS": "earth_environment",
     "RISE": "earth_environment", "OPP": "earth_environment",
+    "GCP": "earth_environment", "PPCP": "earth_environment",
     "DEB": "biology", "MCB": "biology", "IOS": "biology", "DBI": "biology", "EF": "biology",
+    "BCP": "biology", "CDP": "biology", "EPP": "biology", "IFG": "biology", "IIC": "biology",
+    "MBS": "biology", "OIE": "biology",
     "BCS": "social_behavioral", "SES": "social_behavioral", "SMA": "social_behavioral",
     "NCSE": "social_behavioral",
 }
@@ -328,6 +341,9 @@ EXPLORATORY_PREFIXES = {"EAGER", "RAPID"}
 TRAINING_PREFIXES = {"NRT", "CyberTraining", "IRES", "CyberAI SFS", "CyberAI Innovation", "Research Traineeship"}
 INFRASTRUCTURE_PREFIXES = {"Elements", "Frameworks", "Research Infrastructure", "CCRI", "CC*", "Disciplinary Improvements", "MRI"}
 INFRASTRUCTURE_PROGRAMS = {"735900", "808000", "289000", "800400"}
+# DGE holds the NRT traineeships; SFT (Scholarships, Fellowships, and Traineeships)
+# is its successor, made mostly of former DGE awards.
+TRAINING_DIVISIONS = {"DGE", "SFT"}
 INDUSTRY_PREFIXES = {"GOALI", "POSE", "PFI", "IUCRC", "Phase I", "Phase II"}
 
 UNDERGRADUATE_INSTITUTION_REFERENCE = "9229"  # NSF program reference "RES IN UNDERGRAD INST-RESEARCH"
@@ -352,7 +368,7 @@ def grant_type_of(award):
         return "center"
     if prefixes & EXPLORATORY_PREFIXES:
         return "exploratory"
-    if prefixes & TRAINING_PREFIXES or award.get("div_abbr") == "DGE":
+    if prefixes & TRAINING_PREFIXES or award.get("div_abbr") in TRAINING_DIVISIONS:
         return "training"
     if prefixes & INFRASTRUCTURE_PREFIXES or programs & INFRASTRUCTURE_PROGRAMS:
         return "infrastructure"
