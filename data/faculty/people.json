@@ -177,8 +177,8 @@
   "website": "http://chaverrifungi.com"
  },
  "000063921": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Statistics",
   "email": "aaue@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
@@ -186,8 +186,12 @@
   "orcid": null,
   "role": "unknown",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://statistics.ucdavis.edu/people/alexander-aue"
  },
  "000064268": {
   "confidence": null,
@@ -351,30 +355,41 @@
   "website": "http://www3.nd.edu/~dchiang"
  },
  "000072111": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Public Policy and Urban Affairs",
   "email": "m.zellner@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Moira Zellner",
   "orcid": "0000-0002-4111-3357",
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=D60rc7gAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://cssh.northeastern.edu/faculty/moira-zellner"
  },
  "000073199": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Physics and Astronomy",
   "email": "Maura.McLaughlin@mail.wvu.edu",
   "institution": "West Virginia University Research Corporation",
-  "job_title": null,
+  "job_title": "Eberly Distinguished Professor of Physics and Astronomy",
   "name": "Maura A McLaughlin",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://gwac.wvu.edu/about/people/maura-mclaughlin"
  },
  "000073264": {
   "confidence": "high",
@@ -1051,7 +1066,7 @@
   "website": null
  },
  "000086715": {
-  "confidence": null,
+  "confidence": "medium",
   "department": null,
   "email": "zannea@caryinstitute.org",
   "institution": "Cary Institute of Ecosystem Studies, Inc.",
@@ -1059,9 +1074,13 @@
   "name": "Amy E Zanne",
   "orcid": null,
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=H2fDZJ0AAAAJ",
+  "source": {
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://amyzanne.org"
  },
  "000086752": {
   "confidence": "high",
@@ -1794,20 +1813,22 @@
  },
  "0000A00ZQ": {
   "confidence": "high",
-  "department": "Engineering Department",
+  "department": "Engineering",
   "email": "i.zografopoulos@umb.edu",
   "institution": "University of Massachusetts Boston",
-  "job_title": "Assistand Professor",
+  "job_title": "Assistant Professor",
   "name": "Ioannis Zografopoulos",
   "orcid": "0000-0002-0453-4347",
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=ldQPhIwAAAAJ&hl=en",
   "source": {
-   "department": "orcid",
-   "role": "orcid",
-   "scholar": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "orcid",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://zografop.github.io/people.html"
  },
  "0000A0171": {
   "confidence": "high",
@@ -2243,7 +2264,7 @@
  },
  "0000A03G6": {
   "confidence": "high",
-  "department": null,
+  "department": "Computer Science and Electrical Engineering",
   "email": "rmwillia@umbc.edu",
   "institution": "University of Maryland Baltimore County",
   "job_title": null,
@@ -2252,9 +2273,11 @@
   "role": "faculty",
   "scholar": null,
   "source": {
+   "department": "web",
    "role": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://www.csee.umbc.edu/people/faculty/rebecca-williams"
  },
  "0000A03JB": {
@@ -2430,19 +2453,22 @@
  },
  "0000A05GV": {
   "confidence": "high",
-  "department": "Chemical and Biomolecular Engineering Department",
+  "department": "Chemical and Biomolecular Engineering",
   "email": "SGAO11@TULANE.EDU",
   "institution": "Tulane University",
-  "job_title": "PI",
+  "job_title": "Assistant Professor",
   "name": "Shuaihua Gao",
   "orcid": "0000-0003-3303-3856",
-  "role": "unknown",
+  "role": "faculty",
   "scholar": "https://scholar.google.com/citations?hl=en&user=0I6luNoAAAAJ&view_op=list_works&sortby=pubdate",
   "source": {
-   "department": "orcid",
-   "scholar": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "orcid",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sse.tulane.edu/cbe/faculty/gao"
  },
  "0000A05H2": {
   "confidence": null,
@@ -2739,17 +2765,22 @@
   "website": null
  },
  "0000A08D0": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Soil and Crop Sciences",
   "email": "felipe.aburto@tamu.edu",
   "institution": "Texas A&M AgriLife Research",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Felipe Andres Aburto Guerrero",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://soilcrop.tamu.edu/people/aburto-guerrero-felipe"
  },
  "0000A08D1": {
   "confidence": "high",
@@ -3008,12 +3039,15 @@
   "name": "Chenchen Song",
   "orcid": "0000-0001-6294-2253",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=wAR7Ry8AAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "orcid",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sites.google.com/view/ccsong"
  },
  "0000A0CC0": {
   "confidence": null,
@@ -3146,18 +3180,21 @@
  },
  "0000A0D96": {
   "confidence": "high",
-  "department": null,
+  "department": "AgriLife Information Technology",
   "email": "tim.ramsey@ag.tamu.edu",
   "institution": "Texas A&M AgriLife Research",
-  "job_title": "Director of Information Technology",
+  "job_title": "Director of IT – College of Agriculture and Life Sciences",
   "name": "Timothy D Ramsey",
   "orcid": "0009-0002-5689-080X",
   "role": "not faculty",
   "scholar": null,
   "source": {
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://agrilifepeople.tamu.edu/people/view/23492"
  },
  "0000A0DB3": {
   "confidence": "high",
@@ -3779,7 +3816,7 @@
  },
  "0000A0HRS": {
   "confidence": "high",
-  "department": null,
+  "department": "Computer Science",
   "email": "zao@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
@@ -3788,10 +3825,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=TRZB0J4AAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://cs.ucdavis.edu/people/zhe-zhao"
  },
  "0000A0HRX": {
@@ -4072,17 +4111,22 @@
   "website": null
  },
  "0000A0KSC": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Chemistry",
   "email": "ruforbes@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
   "name": "Ruaridh Forbes",
   "orcid": null,
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=pXjQKA8AAAAJ",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://chemistry.ucdavis.edu/people/ruaridh-forbes"
  },
  "0000A0KVG": {
   "confidence": "high",
@@ -4119,19 +4163,22 @@
  },
  "0000A0M9P": {
   "confidence": "high",
-  "department": "Marine and Environmental Sciences, Civil and Environmental Engineering",
+  "department": "Civil and Environmental Engineering",
   "email": "c.schultz@northeastern.edu",
   "institution": "Northeastern University",
   "job_title": "Assistant Professor",
   "name": "Cristina Schultz",
   "orcid": "0000-0003-2006-7053",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=r5eR-6YAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://coe.northeastern.edu/people/schultz-cristina"
  },
  "0000A0MK0": {
   "confidence": "high",
@@ -4528,6 +4575,7 @@
    "department": "orcid",
    "role": "orcid"
   },
+  "web_checked": true,
   "website": null
  },
  "0000A0V52": {
@@ -4906,6 +4954,7 @@
    "department": "orcid",
    "role": "orcid"
   },
+  "web_checked": true,
   "website": null
  },
  "0000A12F0": {
@@ -4927,17 +4976,23 @@
   "website": "https://viterbi.usc.edu/directory/faculty/Li/Mengyuan"
  },
  "0000A12P5": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Civil and Environmental Engineering",
   "email": "y.ye@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Yang Ye",
   "orcid": "0000-0003-0101-5290",
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=xCMKpr0AAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://gilbert-yangye.github.io"
  },
  "0000A12WN": {
   "confidence": null,
@@ -5192,17 +5247,23 @@
   "website": null
  },
  "0000A1D4S": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Civil, Environmental, and Geospatial Engineering",
   "email": "schitta@mtu.edu",
   "institution": "Michigan Technological University",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Sai Sandeep Chitta",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=2erAOGoAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.mtu.edu/cege/people/faculty-staff/faculty/chitta"
  },
  "0000A1D9V": {
   "confidence": null,
@@ -5544,12 +5605,15 @@
   "name": "Benjamin M Deen",
   "orcid": "0000-0001-6361-6329",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=OA5Dc_gAAAAJ&hl=en",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://bendeen.com"
  },
  "0000A1VKM": {
   "confidence": "high",
@@ -6267,9 +6331,13 @@
   "name": "Taylor Maavara",
   "orcid": "0000-0001-6677-9262",
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=Mc1CIQ0AAAAJ&hl=en",
+  "source": {
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.caryinstitute.org/science/our-scientists/dr-taylor-maavara"
  },
  "0000A2QRN": {
   "confidence": null,
@@ -6334,7 +6402,7 @@
  },
  "0000A2TPL": {
   "confidence": "high",
-  "department": null,
+  "department": "Electrical & Computer Engineering",
   "email": "k.fu@northeastern.edu",
   "institution": "Northeastern University",
   "job_title": "Professor",
@@ -6343,10 +6411,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=pZQuSyUAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://web.eecs.umich.edu/~kevinfu"
  },
  "0000A2V1B": {
@@ -7464,6 +7534,7 @@
   "role": "unknown",
   "scholar": null,
   "source": {},
+  "web_checked": true,
   "website": null
  },
  "0000A58XH": {
@@ -7564,12 +7635,15 @@
   "name": "Jennifer S Fang",
   "orcid": "0000-0001-5703-2239",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=Zq-yJ4EAAAAJ&hl=en",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sse.tulane.edu/jennifer-fang"
  },
  "0000A5BKZ": {
   "confidence": null,
@@ -8242,17 +8316,23 @@
   "website": null
  },
  "000104783": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Physics",
   "email": "robin.cote@umb.edu",
   "institution": "University of Massachusetts Boston",
-  "job_title": null,
+  "job_title": "Distinguished Professor",
   "name": "Robin J Cote",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=6cQFiREAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.umb.edu/directory/robincote"
  },
  "000104794": {
   "confidence": null,
@@ -8411,6 +8491,7 @@
   "source": {
    "department": "orcid"
   },
+  "web_checked": true,
   "website": null
  },
  "000106437": {
@@ -8713,16 +8794,20 @@
   "website": null
  },
  "000111089": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Physics",
   "email": "min.wu@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Mingzhong Wu",
   "orcid": "0000-0002-7159-2547",
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
+  "source": {
+   "department": "web",
+   "role": "web"
+  },
+  "web_checked": true,
   "website": null
  },
  "000111434": {
@@ -9435,30 +9520,40 @@
   "website": "http://physics.nyu.edu/grierlab/"
  },
  "000129269": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Engineering",
   "email": "kim.hamad@umb.edu",
   "institution": "University of Massachusetts Boston",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Kimberly Hamad-Schifferli",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://blogs.umb.edu/kimhamad"
  },
  "000129298": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Chemical, Biochemical and Environmental Engineering",
   "email": "marten@umbc.edu",
   "institution": "University of Maryland Baltimore County",
-  "job_title": null,
+  "job_title": "Professor & Department Chair",
   "name": "Mark R Marten",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://martenlab.umbc.edu/mark-r-marten"
  },
  "000129416": {
   "confidence": "medium",
@@ -9824,12 +9919,15 @@
   "name": "Herbert Levine",
   "orcid": "0000-0002-8819-9055",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=gHjHIvAAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://cos.northeastern.edu/people/herbie-levine"
  },
  "000150535": {
   "confidence": "high",
@@ -9950,19 +10048,22 @@
   "website": null
  },
  "000153861": {
-  "confidence": "medium",
+  "confidence": "high",
   "department": "Colleges of Nanoscale Science and Engineering",
   "email": "mcarpenter@sunypoly.edu",
   "institution": "SUNY Polytechnic Institute",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Michael A Carpenter",
   "orcid": "0000-0002-9259-1551",
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.albany.edu/nanoscale-science-engineering/carpenter-research-group"
  },
  "000154633": {
   "confidence": "medium",
@@ -10367,12 +10468,15 @@
   "name": "Zhi Ding",
   "orcid": "0000-0002-2649-2125",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=G0oZBhUAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://faculty.engineering.ucdavis.edu/ding"
  },
  "000162544": {
   "confidence": null,
@@ -11539,12 +11643,15 @@
   "name": "Aleksey V Smirnov",
   "orcid": "0000-0002-9915-5138",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=QQIhDqIAAAAJ&hl=en",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.mtu.edu/geo/department/faculty/smirnov"
  },
  "000185968": {
   "confidence": "high",
@@ -12245,6 +12352,7 @@
   "role": "unknown",
   "scholar": null,
   "source": {},
+  "web_checked": true,
   "website": null
  },
  "000198059": {
@@ -14040,6 +14148,7 @@
    "department": "orcid",
    "role": "orcid"
   },
+  "web_checked": true,
   "website": null
  },
  "000232942": {
@@ -14270,15 +14379,17 @@
   "department": "Geological and Mining Engineering and Sciences",
   "email": "scarn@mtu.edu",
   "institution": "Michigan Technological University",
-  "job_title": "Professor",
+  "job_title": "Distinguished Professor",
   "name": "Simon A Carn",
   "orcid": "0000-0002-0360-6660",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=o6-_Hf4AAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web"
   },
+  "web_checked": true,
   "website": null
  },
  "000235992": {
@@ -14337,12 +14448,15 @@
   "name": "Todd B Pittman",
   "orcid": "0000-0001-8712-3051",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=lI_ztUsAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://umbc.edu/academics/faculty/todd-pittman"
  },
  "000237894": {
   "confidence": null,
@@ -14416,12 +14530,15 @@
   "name": "Stephanie E Hampton",
   "orcid": "0000-0003-2389-4249",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=fGmGC5UAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "orcid",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://desp.ucdavis.edu/people/stephanie-hampton"
  },
  "000238849": {
   "confidence": "high",
@@ -14472,7 +14589,7 @@
  },
  "000240605": {
   "confidence": "high",
-  "department": null,
+  "department": "Computer Science",
   "email": "jmayo@mtu.edu",
   "institution": "Michigan Technological University",
   "job_title": null,
@@ -14481,10 +14598,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=MjIy_X0AAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://www.mtu.edu/cs/department/faculty-staff/faculty/mayo"
  },
  "000240738": {
@@ -15951,16 +16070,18 @@
   "department": "Chemical Engineering",
   "email": "landis@mtu.edu",
   "institution": "Michigan Technological University",
-  "job_title": "Professor",
+  "job_title": "Associate Dean for Graduate and Online Education; Professor, Chemical Engineering",
   "name": "Amy E Landis",
   "orcid": "0000-0003-3405-6355",
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.mtu.edu/engineering/about/administration/landis"
  },
  "000280554": {
   "confidence": "high",
@@ -16161,12 +16282,15 @@
   "name": "Jin W Choi",
   "orcid": "0000-0002-9210-9681",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=7xQ6_8gAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.mtu.edu/ece/department/faculty/choi"
  },
  "000284724": {
   "confidence": "high",
@@ -17128,9 +17252,10 @@
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
+   "department": "web",
    "role": "orcid"
   },
+  "web_checked": true,
   "website": null
  },
  "000301464": {
@@ -17942,17 +18067,22 @@
   "website": null
  },
  "000315741": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Physics and Astronomy",
   "email": "jing.shi@ucr.edu",
   "institution": "University of California-Riverside",
-  "job_title": null,
+  "job_title": "Distinguished Professor of Physics",
   "name": "Jing Shi",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://shigroup.ucr.edu/people/jing-shi"
  },
  "000316164": {
   "confidence": null,
@@ -18921,16 +19051,19 @@
   "department": "Chemistry",
   "email": "taj@ku.edu",
   "institution": "University of Kansas Center for Research Inc",
-  "job_title": "Professor",
+  "job_title": "Professor; Department Chair",
   "name": "Timothy A Jackson",
   "orcid": "0000-0002-3529-2715",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=_YRU5CEAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://jacksonlab.ku.edu"
  },
  "000333652": {
   "confidence": null,
@@ -19613,12 +19746,15 @@
   "name": "Mohammed A Qazi",
   "orcid": "0000-0002-1243-379X",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=Nh03MysAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.tuskegee.edu/academics/colleges-schools/cas/Mohammed-Qazi.html"
  },
  "000350733": {
   "confidence": "high",
@@ -20845,18 +20981,21 @@
   "website": null
  },
  "000384259": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Mechanical Engineering",
   "email": "heejung@engr.ucr.edu",
   "institution": "University of California-Riverside",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Heejung Jung",
   "orcid": "0000-0003-0366-7284",
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
   "source": {
+   "department": "web",
+   "role": "web",
    "website": "orcid"
   },
+  "web_checked": true,
   "website": "http://www.engr.ucr.edu/~heejung"
  },
  "000384902": {
@@ -21133,16 +21272,19 @@
   "department": "Biological and Agricultural Engineering",
   "email": "bmohanty@tamu.edu",
   "institution": "Texas A&M AgriLife Research",
-  "job_title": "Professor and COALS Chair in Hydrologic Engineering and Science",
+  "job_title": "University Distinguished Professor, Regents Professor",
   "name": "Binayak P Mohanty",
   "orcid": "0000-0001-9381-7279",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=WkwDC9kAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://vadosezone.tamu.edu/binayak-p-mohanty"
  },
  "000391201": {
   "confidence": "high",
@@ -21308,18 +21450,19 @@
  },
  "000393832": {
   "confidence": "high",
-  "department": "Department of Chemistry",
+  "department": "Chemistry",
   "email": "shifang@mtu.edu",
   "institution": "Michigan Technological University",
-  "job_title": "Professor",
+  "job_title": "Department Chair; Professor, Chemistry",
   "name": "Shiyue Fang",
   "orcid": "0000-0002-6523-7557",
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web"
   },
+  "web_checked": true,
   "website": null
  },
  "000394204": {
@@ -21482,12 +21625,15 @@
   "name": "Daniel J Kliebenstein",
   "orcid": "0000-0001-5759-3175",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=-OdJO1UAAAAJ&hl=en",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "orcid",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.plantsciences.ucdavis.edu/people/daniel-kliebenstein"
  },
  "000397410": {
   "confidence": "high",
@@ -21683,7 +21829,7 @@
  },
  "000403438": {
   "confidence": "high",
-  "department": null,
+  "department": "Khoury College of Computer Sciences",
   "email": "noubir@ccs.neu.edu",
   "institution": "Northeastern University",
   "job_title": null,
@@ -21692,10 +21838,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=pUaHHjUAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "http://www.ccs.neu.edu/home/noubir"
  },
  "000403896": {
@@ -21778,16 +21926,20 @@
   "website": null
  },
  "000404934": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Mathematics and Statistics",
   "email": "snigchat@umbc.edu",
   "institution": "University of Maryland Baltimore County",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Snigdhansu B Chatterjee",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
+  "source": {
+   "department": "web",
+   "role": "web"
+  },
+  "web_checked": true,
   "website": null
  },
  "000405648": {
@@ -21984,17 +22136,23 @@
   "website": null
  },
  "000409428": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Physics & Astronomy",
   "email": "zamkovm@bgsu.edu",
   "institution": "Bowling Green State University",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Mikhail Zamkov",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=5Uy6lIYAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.bgsu.edu/arts-and-sciences/center-for-photochemical-sciences/ResearchFaculty/mikhail-zamkov.html"
  },
  "000409778": {
   "confidence": "high",
@@ -22248,12 +22406,15 @@
   "name": "Dawn Y Sumner",
   "orcid": "0000-0002-7343-2061",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=723TEFUAAAAJ&hl=en",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "orcid",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://eps.ucdavis.edu/people/dawn-sumner"
  },
  "000417202": {
   "confidence": "high",
@@ -22427,17 +22588,22 @@
   "website": "http://homes.cs.washington.edu/~yoshi"
  },
  "000419934": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Plant Sciences",
   "email": "tpyoung@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
   "name": "Truman P Young",
   "orcid": null,
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=UwiumvkAAAAJ",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://tpyoung.ucdavis.edu"
  },
  "000419963": {
   "confidence": "high",
@@ -22788,7 +22954,7 @@
   "website": null
  },
  "000428250": {
-  "confidence": "medium",
+  "confidence": "high",
   "department": "Biology",
   "email": "kkaroly@reed.edu",
   "institution": "Reed College",
@@ -22798,10 +22964,12 @@
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.reed.edu/biology/professors/kkaroly"
  },
  "000428356": {
   "confidence": "high",
@@ -23489,17 +23657,23 @@
   "website": null
  },
  "000443697": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Chemical and Environmental Engineering",
   "email": "mrz@engr.ucr.edu",
   "institution": "University of California-Riverside",
-  "job_title": null,
+  "job_title": "Distinguished Professor of Chemical Engineering and Material Science",
   "name": "Michael R Zachariah",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=PHfksawAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://mrzgroup.ucr.edu/people/michael-zachariah"
  },
  "000443994": {
   "confidence": "high",
@@ -24284,19 +24458,23 @@
   "website": "http://www.ics.uci.edu/~smyth"
  },
  "000458846": {
-  "confidence": "medium",
+  "confidence": "high",
   "department": "Electrical and Computer Engineering",
   "email": "d.horsley@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "David A Horsley",
   "orcid": "0000-0003-0473-0863",
-  "role": "unknown",
-  "scholar": null,
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=Ve7_Hk0AAAAJ",
   "source": {
-   "department": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://coe.northeastern.edu/people/horsley-david"
  },
  "000458868": {
   "confidence": "high",
@@ -24426,8 +24604,8 @@
   "website": null
  },
  "000460334": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Chemical Engineering",
   "email": "kamcdonald@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
@@ -24435,8 +24613,12 @@
   "orcid": null,
   "role": "unknown",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://faculty.engineering.ucdavis.edu/mcdonald"
  },
  "000460507": {
   "confidence": "high",
@@ -24639,17 +24821,23 @@
   "website": null
  },
  "000464417": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Ecology and Evolutionary Biology",
   "email": "jk@tulane.edu",
   "institution": "Tulane University",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Jordan Karubian",
   "orcid": "0000-0001-8201-9992",
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=OjPu1IUAAAAJ&hl=en",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://sse.tulane.edu/jordan-karubian"
  },
  "000464737": {
   "confidence": null,
@@ -24883,9 +25071,11 @@
   "scholar": null,
   "source": {
    "department": "orcid",
-   "role": "orcid"
+   "role": "orcid",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.baileyserreslab.org/people"
  },
  "000469131": {
   "confidence": "high",
@@ -24934,19 +25124,21 @@
  },
  "000470798": {
   "confidence": "high",
-  "department": "Chemical engineering and materials science",
+  "department": "Chemical Engineering",
   "email": "bcgates@ucdavis.edu",
   "institution": "University of California-Davis",
-  "job_title": "Professor",
+  "job_title": "Professor Emeritus",
   "name": "Bruce C Gates",
   "orcid": "0000-0003-0274-4882",
-  "role": "faculty",
+  "role": "not faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://faculty.engineering.ucdavis.edu/gates/"
  },
  "000471339": {
   "confidence": "high",
@@ -25509,7 +25701,7 @@
  },
  "000482766": {
   "confidence": "high",
-  "department": "Department of Chemistry and Biochemistry",
+  "department": "Chemistry and Biochemistry",
   "email": "mhoffman@brockport.edu",
   "institution": "SUNY College at Brockport",
   "job_title": "Professor",
@@ -25518,10 +25710,12 @@
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.brockport.edu/live/profiles/1290-markus-hoffmann"
  },
  "000483117": {
   "confidence": "high",
@@ -25650,17 +25844,23 @@
   "website": "https://www.cs.utah.edu/~kirby"
  },
  "000484518": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "School of Freshwater Sciences",
   "email": "kravtsov@uwm.edu",
   "institution": "University of Wisconsin-Milwaukee",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Sergey V Kravtsov",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=lJnKGBsAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://sites.uwm.edu/kravtsov"
  },
  "000484547": {
   "confidence": "high",
@@ -26687,17 +26887,22 @@
   "website": "https://cocosci.princeton.edu/tom/index.php"
  },
  "000488592": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Civil and Environmental Engineering",
   "email": "amkanvinde@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
   "name": "Amit M Kanvinde",
   "orcid": null,
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=GHYWISAAAAAJ",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://faculty.engineering.ucdavis.edu/kanvinde"
  },
  "000488596": {
   "confidence": "high",
@@ -26889,8 +27094,8 @@
   "website": "https://scale-lab.github.io/pages/sreda.html"
  },
  "000489141": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Statistics",
   "email": "wpolonik@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
@@ -26898,7 +27103,10 @@
   "orcid": null,
   "role": "unknown",
   "scholar": null,
-  "source": {},
+  "source": {
+   "department": "web"
+  },
+  "web_checked": true,
   "website": null
  },
  "000489169": {
@@ -26914,6 +27122,7 @@
   "source": {
    "department": "email"
   },
+  "web_checked": true,
   "website": null
  },
  "000489242": {
@@ -27686,19 +27895,23 @@
   "website": null
  },
  "000492916": {
-  "confidence": "medium",
+  "confidence": "high",
   "department": "Chemistry",
   "email": "pavel@bgnet.bgsu.edu",
   "institution": "Bowling Green State University",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Pavel Anzenbacher",
   "orcid": "0000-0001-8407-1663",
-  "role": "unknown",
-  "scholar": null,
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=7Ztg4TcAAAAJ",
   "source": {
-   "department": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.bgsu.edu/arts-and-sciences/chemistry/faculty/pavel-anzenbacher-jr.html"
  },
  "000492954": {
   "confidence": "high",
@@ -29658,16 +29871,19 @@
   "department": "Mathematics",
   "email": "matjohn@ku.edu",
   "institution": "University of Kansas Center for Research Inc",
-  "job_title": "Professor",
+  "job_title": "Professor; Chair",
   "name": "Mathew A Johnson",
   "orcid": "0000-0003-0551-4986",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=3XHYDMsAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://matjohn.ku.edu"
  },
  "000511896": {
   "confidence": "high",
@@ -29729,19 +29945,23 @@
   "website": null
  },
  "000512258": {
-  "confidence": "medium",
+  "confidence": "high",
   "department": "Mathematics",
   "email": "gdidier@tulane.edu",
   "institution": "Tulane University",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Gustavo Didier",
   "orcid": "0000-0003-1363-5868",
-  "role": "unknown",
-  "scholar": null,
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=tA0hHTEAAAAJ&hl=en",
   "source": {
-   "department": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sse.tulane.edu/gustavo-didier"
  },
  "000512459": {
   "confidence": "medium",
@@ -30382,10 +30602,12 @@
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://biology.wvu.edu/faculty-and-staff/faculty/edward-brzostek"
  },
  "000518657": {
   "confidence": "high",
@@ -30438,12 +30660,15 @@
   "name": "Francisco R Hung",
   "orcid": "0000-0003-3096-0945",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=liFtvBwAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://coe.northeastern.edu/people/hung-francisco"
  },
  "000519052": {
   "confidence": null,
@@ -31208,17 +31433,22 @@
   "website": "https://cm.utexas.edu/component/cobalt/item/12-chemistry/1277-roberts-sean?Itemid=1251"
  },
  "000528402": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Chemistry",
   "email": "Koski@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
   "name": "Kristie J Koski",
   "orcid": null,
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=9ChVTiEAAAAJ&hl=en",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://chemistry.ucdavis.edu/people/kristie-koski"
  },
  "000528990": {
   "confidence": null,
@@ -31554,17 +31784,22 @@
   "website": null
  },
  "000534361": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Language, Literacy, and Culture",
   "email": "clmallin@umbc.edu",
   "institution": "University of Maryland Baltimore County",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Christine L Mallinson",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://christinemallinson.com"
  },
  "000534517": {
   "confidence": "high",
@@ -31893,17 +32128,23 @@
   "website": null
  },
  "000537243": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Physics",
   "email": "petra@mtu.edu",
   "institution": "Michigan Technological University",
-  "job_title": null,
+  "job_title": "Distinguished Professor of Physics",
   "name": "Petra Huentemeyer",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=cH3FsD8AAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.mtu.edu/physics/department/faculty/huentemeyer"
  },
  "000537366": {
   "confidence": "high",
@@ -32057,12 +32298,15 @@
   "name": "Kyle Straub",
   "orcid": "0000-0002-4731-6200",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=apqlkA4AAAAJ&hl=en",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sse.tulane.edu/eens/sediment-dynamics-lab/group"
  },
  "000537804": {
   "confidence": "high",
@@ -32356,9 +32600,11 @@
   "source": {
    "department": "orcid",
    "role": "orcid",
-   "scholar": "orcid"
+   "scholar": "orcid",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://acceleration.utoronto.ca/people/joshua-schrier"
  },
  "000540705": {
   "confidence": "high",
@@ -32409,7 +32655,7 @@
  },
  "000541215": {
   "confidence": "high",
-  "department": null,
+  "department": "Computer Science",
   "email": "lflai@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
@@ -32418,10 +32664,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=gOhaCfUAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://cs.ucdavis.edu/directory/lifeng-lai"
  },
  "000541560": {
@@ -32506,19 +32754,22 @@
  },
  "000543003": {
   "confidence": "high",
-  "department": "Dept. of Chemistry",
+  "department": "Chemistry",
   "email": "jonathan.rochford@umb.edu",
   "institution": "University of Massachusetts Boston",
-  "job_title": "Associate Professor",
+  "job_title": "Professor",
   "name": "Jonathan Rochford",
   "orcid": "0000-0003-2397-9162",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=uulIJUgAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.umb.edu/directory/jonathanrochford"
  },
  "000543257": {
   "confidence": "medium",
@@ -32766,16 +33017,21 @@
   "website": null
  },
  "000544969": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Physics",
   "email": "Jose.Dincao@umb.edu",
   "institution": "University of Massachusetts Boston",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Jose P D'Incao",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=gQ-q3lcAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web"
+  },
+  "web_checked": true,
   "website": null
  },
  "000545007": {
@@ -32854,17 +33110,22 @@
   "website": null
  },
  "000545399": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Center for STEM Research",
   "email": "agordon@lwta.net",
   "institution": "Hofstra University",
-  "job_title": "Principal Investigator",
+  "job_title": "Research Associate",
   "name": "Anthony T Gordon",
   "orcid": "0000-0001-7644-3754",
-  "role": "unknown",
+  "role": "not faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.hofstra.edu/academics/colleges-and-schools/engineering-applied-science/stem-research"
  },
  "000545435": {
   "confidence": "high",
@@ -33030,12 +33291,15 @@
   "name": "William C Wimley",
   "orcid": "0000-0003-2967-5186",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=35aZmI8AAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://medicine.tulane.edu/wimley-lab"
  },
  "000546489": {
   "confidence": null,
@@ -33167,17 +33431,22 @@
   "website": null
  },
  "000548385": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Physics",
   "email": "kaplan@uwm.edu",
   "institution": "University of Wisconsin-Milwaukee",
-  "job_title": null,
+  "job_title": "Professor, Physics & Astronomy",
   "name": "David L Kaplan",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://uwm.edu/physics/about/directory/kaplan-david"
  },
  "000548637": {
   "confidence": "high",
@@ -33569,19 +33838,23 @@
   "website": null
  },
  "000552951": {
-  "confidence": "medium",
+  "confidence": "high",
   "department": "Tandy School of Computer Science",
   "email": "yi-qian@utulsa.edu",
   "institution": "University of Tulsa",
-  "job_title": null,
+  "job_title": "Dean's Professor in Computer Science",
   "name": "Yi Qian",
   "orcid": "0000-0001-5671-916X",
-  "role": "unknown",
-  "scholar": null,
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=_h5oUuYAAAAJ",
   "source": {
-   "department": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://utulsa.edu/people/yi-qian"
  },
  "000553214": {
   "confidence": "high",
@@ -33922,17 +34195,22 @@
   "website": null
  },
  "000555784": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Plant Biology",
   "email": "sbrady@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
   "name": "Siobhan Brady",
   "orcid": null,
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=lQmvO3cAAAAJ",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://biology.ucdavis.edu/people/siobhan-brady"
  },
  "000556081": {
   "confidence": null,
@@ -34387,8 +34665,8 @@
   "website": null
  },
  "000561392": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Plant Sciences",
   "email": "gdrakakaki@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
@@ -34396,8 +34674,12 @@
   "orcid": null,
   "role": "unknown",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://drakakaki.ucdavis.edu"
  },
  "000561642": {
   "confidence": "high",
@@ -35602,12 +35884,15 @@
   "name": "Robert D Guy",
   "orcid": "0000-0002-0602-7015",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=FSka6MIAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "http://www.math.ucdavis.edu/~guy"
  },
  "000575225": {
   "confidence": "medium",
@@ -35923,17 +36208,22 @@
   "website": null
  },
  "000579455": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Viticulture and Enology",
   "email": "mkbartlett@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
   "name": "Megan K Bartlett",
   "orcid": null,
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=4UGcfSUAAAAJ",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://mbartlett.faculty.ucdavis.edu/people"
  },
  "000580245": {
   "confidence": null,
@@ -36317,9 +36607,13 @@
   "name": "Christopher T Solomon",
   "orcid": "0000-0002-2850-4257",
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=uEWAKCIAAAAJ",
+  "source": {
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.caryinstitute.org/science/our-scientists/dr-christopher-t-solomon"
  },
  "000585601": {
   "confidence": "high",
@@ -36408,19 +36702,22 @@
  },
  "000587157": {
   "confidence": "high",
-  "department": "Mechanical Engineering, Material Science and Engineering",
+  "department": "Mechanical Engineering",
   "email": "lmangolini@engr.ucr.edu",
   "institution": "University of California-Riverside",
-  "job_title": "Professor",
+  "job_title": "Assistant Professor",
   "name": "Lorenzo Mangolini",
   "orcid": "0000-0002-0057-2450",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=ni1mqkEAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://lorenzo.engr.ucr.edu"
  },
  "000587292": {
   "confidence": "medium",
@@ -36604,6 +36901,7 @@
   "role": "unknown",
   "scholar": null,
   "source": {},
+  "web_checked": true,
   "website": null
  },
  "000589547": {
@@ -37616,17 +37914,22 @@
   "website": null
  },
  "000600757": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Physics and Astronomy",
   "email": "ianc@ku.edu",
   "institution": "University of Kansas Center for Research Inc",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Ian Crossfield",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://crossfield.ku.edu"
  },
  "000600782": {
   "confidence": "high",
@@ -38149,17 +38452,22 @@
   "website": null
  },
  "000604712": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Statistics",
   "email": "shujie.ma@ucr.edu",
   "institution": "University of California-Riverside",
-  "job_title": null,
+  "job_title": "Professor and Graduate Advisor",
   "name": "Shujie Ma",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://sites.google.com/view/shujiema"
  },
  "000604810": {
   "confidence": "high",
@@ -38261,17 +38569,23 @@
   "website": null
  },
  "000606122": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Geology",
   "email": "nbartlow@ku.edu",
   "institution": "University of Kansas Center for Research Inc",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Noel M Jackson",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=Ocm07n4AAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://geo.ku.edu/people/noel-bartlow"
  },
  "000606173": {
   "confidence": null,
@@ -38357,12 +38671,15 @@
   "name": "Adrienn Ruzsinszky",
   "orcid": "0000-0002-2200-1122",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=CXdHVzIAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sse.tulane.edu/adrienn-ruzsinszky"
  },
  "000606430": {
   "confidence": null,
@@ -39684,11 +40001,14 @@
   "name": "Amanda M Thomas",
   "orcid": "0000-0001-6997-3140",
   "role": "unknown",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=4YmGtHrnnGQC",
   "source": {
-   "department": "orcid"
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://eps.ucdavis.edu/people/amanda-thomas"
  },
  "000623633": {
   "confidence": "high",
@@ -40277,15 +40597,16 @@
   "department": "Chemistry",
   "email": "petersonl@rhodes.edu",
   "institution": "Rhodes College",
-  "job_title": "Professor",
+  "job_title": "Professor of Chemistry; Chair",
   "name": "Larryn W Peterson",
   "orcid": "0000-0003-4448-9154",
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web"
   },
+  "web_checked": true,
   "website": null
  },
  "000627063": {
@@ -40395,17 +40716,22 @@
   "website": "https://engineering.virginia.edu/faculty/somayeh-asadi"
  },
  "000627472": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Wadsworth Department of Civil and Environmental Engineering",
   "email": "fei.dai@mail.wvu.edu",
   "institution": "West Virginia University Research Corporation",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Fei Dai",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://feidai.faculty.wvu.edu"
  },
  "000627494": {
   "confidence": null,
@@ -40514,17 +40840,22 @@
   "website": null
  },
  "000628542": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Mathematics",
   "email": "amayeli@gc.cuny.edu",
   "institution": "CUNY Graduate School University Center",
   "job_title": null,
   "name": "Azita Mayeli",
   "orcid": null,
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=1xcM7mIAAAAJ",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://sites.google.com/view/azitamayeli"
  },
  "000628758": {
   "confidence": "medium",
@@ -40768,7 +41099,7 @@
  },
  "000629991": {
   "confidence": "high",
-  "department": null,
+  "department": "Khoury College of Computer Sciences",
   "email": "choffnes@ccs.neu.edu",
   "institution": "Northeastern University",
   "job_title": null,
@@ -40777,10 +41108,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=OG2QONwAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "http://david.choffnes.com"
  },
  "000630109": {
@@ -41351,17 +41684,23 @@
   "website": "https://engineering.virginia.edu/faculty/mona-zebarjadi"
  },
  "000632495": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Physics & Astronomy",
   "email": "lsun@bgsu.edu",
   "institution": "Bowling Green State University",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Liangfeng Sun",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=q9LdJyAAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.bgsu.edu/arts-and-sciences/center-for-photochemical-sciences/ResearchFaculty/about-liangfeng-sun.html"
  },
  "000632631": {
   "confidence": "high",
@@ -42101,19 +42440,22 @@
  },
  "000641508": {
   "confidence": "high",
-  "department": "Physics",
+  "department": "Physics and Astronomy",
   "email": "Aldo.Romero@mail.wvu.edu",
   "institution": "West Virginia University Research Corporation",
-  "job_title": "Professor",
+  "job_title": "Eberly Distinguished Professor of Physics and Astronomy",
   "name": "Aldo H Romero",
   "orcid": "0000-0001-5968-0571",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=pwte-hQAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://physics.wvu.edu/directory/faculty/aldo-romero"
  },
  "000641658": {
   "confidence": null,
@@ -42488,19 +42830,22 @@
  },
  "000644234": {
   "confidence": "high",
-  "department": "Marine and Environmental Sciences; Chemistry; CEE",
+  "department": "Marine and Environmental Sciences",
   "email": "a.stubbins@northeastern.edu",
   "institution": "Northeastern University",
   "job_title": "Professor",
   "name": "Aron Stubbins",
   "orcid": "0000-0002-3994-1946",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=Yfzt9vUAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://cos.northeastern.edu/people/aron-stubbins"
  },
  "000644310": {
   "confidence": "high",
@@ -42527,12 +42872,15 @@
   "name": "Younjin Min",
   "orcid": "0000-0002-1156-3373",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=OvWtddgAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://yminlab.engr.ucr.edu/people/younjin-min"
  },
  "000644753": {
   "confidence": "high",
@@ -42600,19 +42948,22 @@
  },
  "000645394": {
   "confidence": "high",
-  "department": "Department of Chemical, Biochemical and Environmental Engineering",
+  "department": "Chemical, Biochemical and Environmental Engineering",
   "email": "hennigan@umbc.edu",
   "institution": "University of Maryland Baltimore County",
   "job_title": "Professor",
   "name": "Christopher Hennigan",
   "orcid": "0000-0002-2454-2838",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=pJCpTcoAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://cbee.umbc.edu/christopher-hennigan"
  },
  "000645641": {
   "confidence": "high",
@@ -43002,12 +43353,15 @@
   "name": "Fabien Goulay",
   "orcid": "0000-0002-7807-1023",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=YnCxF74AAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://fabiengoulay.faculty.wvu.edu"
  },
  "000649365": {
   "confidence": "high",
@@ -43242,17 +43596,23 @@
   "website": null
  },
  "000650504": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Plant Pathology and Microbiology",
   "email": "junqi.song@ag.tamu.edu",
   "institution": "Texas A&M AgriLife Research",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Junqi Song",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=gl3D8UkAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://plantpathology.tamu.edu/people/song-junqi"
  },
  "000650582": {
   "confidence": "high",
@@ -43535,33 +43895,41 @@
   "website": "https://homes.luddy.indiana.edu/fchen25"
  },
  "000652320": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Bioengineering",
   "email": "s.shefelbine@neu.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Professor",
   "name": "Sandra J Shefelbine",
   "orcid": "0000-0002-4011-9044",
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
- },
- "000652342": {
-  "confidence": "high",
-  "department": "Civil and Environmental Engineering & Great Lakes Research Center",
-  "email": "pexue@mtu.edu",
-  "institution": "Michigan Technological University",
-  "job_title": "Professor",
-  "name": "Pengfei Xue",
-  "orcid": "0000-0002-5702-421X",
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://coe.northeastern.edu/people/shefelbine-sandra"
+ },
+ "000652342": {
+  "confidence": "high",
+  "department": "Civil, Environmental, and Geospatial Engineering",
+  "email": "pexue@mtu.edu",
+  "institution": "Michigan Technological University",
+  "job_title": "Professor; Associate Director, Great Lakes Research Center",
+  "name": "Pengfei Xue",
+  "orcid": "0000-0002-5702-421X",
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=WvSHYe0AAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.mtu.edu/cege/people/faculty-staff/faculty/xue"
  },
  "000652349": {
   "confidence": "high",
@@ -44197,9 +44565,13 @@
   "name": "Aaron C Hartmann",
   "orcid": "0000-0002-1916-537X",
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=qgaIJHkAAAAJ",
+  "source": {
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.aaronhartmann.com"
  },
  "000655142": {
   "confidence": "high",
@@ -44249,16 +44621,21 @@
   "website": "http://www.fabiopas.it"
  },
  "000655301": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Electrical and Computer Engineering",
   "email": "ming.liu@ucr.edu",
   "institution": "University of California-Riverside",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Ming Liu",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=1bPwuWgAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web"
+  },
+  "web_checked": true,
   "website": null
  },
  "000655692": {
@@ -44726,17 +45103,23 @@
   "website": null
  },
  "000657941": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Mechanical and Aerospace Engineering",
   "email": "tsain@mtu.edu",
   "institution": "Michigan Technological University",
-  "job_title": null,
+  "job_title": "Associate Professor, Mechanical and Aerospace Engineering",
   "name": "Trisha Sain",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=Bv2rXDIAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.mtu.edu/mechanical-aerospace/people/faculty/sain"
  },
  "000658176": {
   "confidence": null,
@@ -47604,19 +47987,22 @@
   "website": "https://math.hunter.cuny.edu/vmartine"
  },
  "000678389": {
-  "confidence": "medium",
+  "confidence": "high",
   "department": "Physics and Astronomy",
   "email": "escime@wvu.edu",
   "institution": "West Virginia University Research Corporation",
-  "job_title": null,
+  "job_title": "Oleg D. Jefimenko Professor of Physics and Astronomy",
   "name": "EARL E SCIME",
   "orcid": "0000-0003-4128-492X",
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://kineticplasma.wvu.edu/people/earl-scime"
  },
  "000678513": {
   "confidence": null,
@@ -47714,7 +48100,7 @@
  },
  "000678961": {
   "confidence": "high",
-  "department": null,
+  "department": "Computer Science and Engineering",
   "email": "silas.richelson@gmail.com",
   "institution": "University of California-Riverside",
   "job_title": null,
@@ -47723,10 +48109,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=RI2U3JYAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://www.cs.ucr.edu/~silas"
  },
  "000678974": {
@@ -48115,7 +48503,7 @@
  },
  "000681323": {
   "confidence": "high",
-  "department": null,
+  "department": "Khoury College of Computer Sciences",
   "email": "rwalters@northeastern.edu",
   "institution": "Northeastern University",
   "job_title": null,
@@ -48124,10 +48512,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=fnprJmUAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://www.khoury.northeastern.edu/people/robin-walters"
  },
  "000681429": {
@@ -48567,16 +48957,19 @@
   "department": "Chemistry",
   "email": "mcaricato@ku.edu",
   "institution": "University of Kansas Center for Research Inc",
-  "job_title": "Associate Professor",
+  "job_title": "Professor",
   "name": "Marco Caricato",
   "orcid": "0000-0001-7830-0562",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=c6GdbL4AAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://chem.ku.edu/people/marco-caricato"
  },
  "000683107": {
   "confidence": null,
@@ -48793,12 +49186,15 @@
   "name": "Yi Wang",
   "orcid": "0000-0002-0192-3195",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=IAjH48YAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "orcid",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://bae.ucdavis.edu/people/dr-yi-wang"
  },
  "000684950": {
   "confidence": null,
@@ -48866,18 +49262,22 @@
  },
  "000685681": {
   "confidence": "high",
-  "department": null,
+  "department": "Computer Science and Electrical Engineering",
   "email": "kevin.bandura@mail.wvu.edu",
   "institution": "West Virginia University Research Corporation",
-  "job_title": "Assistant Professor",
+  "job_title": "Associate Professor",
   "name": "Kevin Bandura",
   "orcid": "0000-0003-3772-2798",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=Qi3FG7cAAAAJ",
   "source": {
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://community.wvu.edu/~kmbandura"
  },
  "000685829": {
   "confidence": "high",
@@ -49325,12 +49725,15 @@
   "name": "Ember Morrissey",
   "orcid": "0000-0002-5810-1096",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=mqII1g8AAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://biology.wvu.edu/faculty-and-staff/faculty/ember-morrissey"
  },
  "000690447": {
   "confidence": null,
@@ -49504,10 +49907,12 @@
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "http://www.coe.neu.edu/~wxie"
  },
  "000692017": {
   "confidence": "high",
@@ -49729,16 +50134,19 @@
   "department": "Biology",
   "email": "aritz@reed.edu",
   "institution": "Reed College",
-  "job_title": "Assistant Professor",
+  "job_title": "Associate Professor of Bioinformatics",
   "name": "Anna Ritz",
   "orcid": "0000-0002-7925-5369",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=AYdoj2AAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.reed.edu/biology/ritz"
  },
  "000695540": {
   "confidence": "high",
@@ -51278,6 +51686,7 @@
   "source": {
    "department": "email"
   },
+  "web_checked": true,
   "website": null
  },
  "000704046": {
@@ -52656,6 +53065,7 @@
   "role": "unknown",
   "scholar": null,
   "source": {},
+  "web_checked": true,
   "website": null
  },
  "000710111": {
@@ -52869,7 +53279,7 @@
  },
  "000711788": {
   "confidence": "high",
-  "department": null,
+  "department": "Electrical and Computer Engineering",
   "email": "ioannidis@northeastern.edu",
   "institution": "Northeastern University",
   "job_title": "Professor",
@@ -52878,10 +53288,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=GPIB5kUAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://ece.northeastern.edu/fac-ece/ioannidis"
  },
  "000711892": {
@@ -53391,16 +53803,21 @@
   "website": null
  },
  "000716891": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Entomology",
   "email": "matthewhvandam@gmail.com",
   "institution": "California Academy of Sciences",
-  "job_title": null,
+  "job_title": "Research Scientist",
   "name": "Matthew H Van Dam",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
+  "role": "not faculty",
+  "scholar": "https://scholar.google.com/citations?user=y5GRfdwAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web"
+  },
+  "web_checked": true,
   "website": null
  },
  "000717054": {
@@ -53437,17 +53854,22 @@
   "website": "https://aheathco.wordpress.com/"
  },
  "000717323": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Civil, Environmental and Architectural Engineering",
   "email": "enjsutley@ku.edu",
   "institution": "University of Kansas Center for Research Inc",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Elaina J Sutley",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://ceae.ku.edu/people/elaina-j-sutley"
  },
  "000717431": {
   "confidence": "high",
@@ -53769,16 +54191,21 @@
  },
  "000719756": {
   "confidence": "medium",
-  "department": null,
+  "department": "Environmental Science and Policy",
   "email": "fmoore@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
   "name": "Frances Moore",
   "orcid": "0000-0003-3866-9642",
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=ysvd9c0AAAAJ&hl=en",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://franmoore.faculty.ucdavis.edu"
  },
  "000720332": {
   "confidence": "medium",
@@ -53855,16 +54282,19 @@
   "department": "Psychology",
   "email": "john.franchak@ucr.edu",
   "institution": "University of California-Riverside",
-  "job_title": "Associate Professor",
+  "job_title": "Associate Professor of Psychology",
   "name": "John Franchak",
   "orcid": "0000-0002-0751-2864",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=R-w4kRcAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://padlab.ucr.edu/people/john-franchak.html"
  },
  "000722135": {
   "confidence": "high",
@@ -54670,7 +55100,7 @@
  },
  "000728412": {
   "confidence": "high",
-  "department": null,
+  "department": "Electrical and Computer Engineering",
   "email": "sasif@ucr.edu",
   "institution": "University of California-Riverside",
   "job_title": null,
@@ -54679,10 +55109,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=Dl0puDcAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "http://www.ece.ucr.edu/~sasif"
  },
  "000728441": {
@@ -55804,20 +56236,26 @@
   "role": "unknown",
   "scholar": null,
   "source": {},
+  "web_checked": true,
   "website": null
  },
  "000732989": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Chemical and Environmental Engineering",
   "email": "jyliu@engr.ucr.edu",
   "institution": "University of California-Riverside",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Jinyong Liu",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://chem-environ.weebly.com/contact.html"
  },
  "000733048": {
   "confidence": "medium",
@@ -57684,12 +58122,15 @@
   "name": "Inna Vishik",
   "orcid": "0000-0002-8534-9329",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=Siot7kkAAAAJ&hl=en",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "orcid",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "http://vishiklab.faculty.ucdavis.edu/"
  },
  "000743583": {
   "confidence": "medium",
@@ -57809,17 +58250,22 @@
   "website": null
  },
  "000744280": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Electrical and Computer Engineering",
   "email": "c.cassella@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Cristian Cassella",
   "orcid": "0000-0001-6966-7338",
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://coe.northeastern.edu/people/cassella-cristian"
  },
  "000744384": {
   "confidence": null,
@@ -57958,17 +58404,22 @@
   "website": "https://faculty.uml.edu/ming_shao"
  },
  "000745000": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Information Systems",
   "email": "edward.dillon@umbc.edu",
   "institution": "University of Maryland Baltimore County",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Edward Dillon",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.edwarddillonjrphd.com"
  },
  "000745028": {
   "confidence": "high",
@@ -58043,12 +58494,15 @@
   "name": "Alina Lungeanu",
   "orcid": "0000-0003-3368-6339",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=WXBOCjwAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://camd.northeastern.edu/people/alina-ionica-lungeanu"
  },
  "000745619": {
   "confidence": "high",
@@ -58127,17 +58581,23 @@
   "website": null
  },
  "000747132": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Social Sciences",
   "email": "rsidortsov@mtu.edu",
   "institution": "Michigan Technological University",
-  "job_title": null,
+  "job_title": "Associate Professor, Energy Policy",
   "name": "Roman Sidortsov",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=XnRBKpYAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.mtu.edu/social-sciences/department/faculty/sidortsov"
  },
  "000747334": {
   "confidence": "medium",
@@ -58587,9 +59047,10 @@
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web"
   },
+  "web_checked": true,
   "website": null
  },
  "000753213": {
@@ -58686,12 +59147,15 @@
   "name": "Sameer Iyer",
   "orcid": "0000-0002-0365-9092",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=e4OQ7CEAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.math.ucdavis.edu/people/general-profile?fac_id=sameer"
  },
  "000753343": {
   "confidence": "high",
@@ -60032,18 +60496,20 @@
  },
  "000759518": {
   "confidence": "high",
-  "department": "ECE",
+  "department": "Electrical and Computer Engineering",
   "email": "ken.chen@northeastern.edu",
   "institution": "Northeastern University",
   "job_title": "Associate Professor",
   "name": "Kenle Chen",
   "orcid": "0009-0004-6175-0064",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=dmQhpLMAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web"
   },
+  "web_checked": true,
   "website": null
  },
  "000759520": {
@@ -60065,17 +60531,22 @@
   "website": "https://www.ytian.info"
  },
  "000759577": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Electrical Engineering & Computer Science",
   "email": "hongyang.sun@ku.edu",
   "institution": "University of Kansas Center for Research Inc",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Hongyang Sun",
   "orcid": "0000-0002-4379-4467",
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.ittc.ku.edu/~sun"
  },
  "000759599": {
   "confidence": "high",
@@ -60747,18 +61218,19 @@
  },
  "000761944": {
   "confidence": "high",
-  "department": "Department of Physics and Astronomy",
+  "department": "Physics and Astronomy",
   "email": "sbird@ucr.edu",
   "institution": "University of California-Riverside",
-  "job_title": "Professor",
+  "job_title": "Assistant Professor",
   "name": "Simeon P Bird",
   "orcid": "0000-0001-5803-5490",
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web"
   },
+  "web_checked": true,
   "website": null
  },
  "000761955": {
@@ -61108,9 +61580,11 @@
   "role": "unknown",
   "scholar": null,
   "source": {
-   "department": "orcid"
+   "department": "orcid",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sites.google.com/ucr.edu/hzhang/home"
  },
  "000763884": {
   "confidence": "high",
@@ -63420,17 +63894,23 @@
   "website": "https://sites.google.com/view/roer/home?pli=1"
  },
  "000784861": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Mechanical & Industrial Engineering",
   "email": "s.shahrampour@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Shahin Shahrampour",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=nr4EJS8AAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://coe.northeastern.edu/people/shahrampour-shahin"
  },
  "000784917": {
   "confidence": "high",
@@ -64248,16 +64728,19 @@
   "department": "Biological & Agricultural Engineering",
   "email": "zongliu@tamu.edu",
   "institution": "Texas A&M AgriLife Extension Service",
-  "job_title": "Associate Professor & Extension Specia",
+  "job_title": "Associate Professor and Extension Specialist",
   "name": "Zong Liu",
   "orcid": "0000-0001-9309-8788",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=w35e44MAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://baen.tamu.edu/people/liu-zong"
  },
  "000787946": {
   "confidence": "high",
@@ -65945,12 +66428,15 @@
   "name": "Angus A Lamar",
   "orcid": "0000-0002-2962-0137",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=RSzFRKAAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://utulsa.edu/people/angus-lamar"
  },
  "000795800": {
   "confidence": "high",
@@ -66756,19 +67242,22 @@
  },
  "000799029": {
   "confidence": "high",
-  "department": "Chemistry & Chemical Biology",
+  "department": "Chemistry and Chemical Biology",
   "email": "s.lopez@northeastern.edu",
   "institution": "Northeastern University",
   "job_title": "Associate Professor",
   "name": "Steven A Lopez",
   "orcid": "0000-0002-8418-3638",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=XFov1RwAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://lopez.sites.northeastern.edu"
  },
  "000799136": {
   "confidence": "high",
@@ -66975,17 +67464,23 @@
   "website": "http://jenniferjacobs.mat.ucsb.edu"
  },
  "000800364": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Electrical Engineering and Computer Science",
   "email": "mhashemi@ku.edu",
   "institution": "University of Kansas Center for Research Inc",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Morteza Hashemi",
   "orcid": "0000-0002-9253-6608",
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=RGUwmCMAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://hashemi.ku.edu"
  },
  "000800413": {
   "confidence": null,
@@ -67096,18 +67591,22 @@
   "website": null
  },
  "000801131": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Electrical and Computer Engineering",
   "email": "x.xu@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Xiaolin Xu",
   "orcid": "0000-0001-8393-2783",
-  "role": "unknown",
-  "scholar": null,
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=U6TRlVgAAAAJ",
   "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
    "website": "orcid"
   },
+  "web_checked": true,
   "website": "http://www.xiaolinxu.com"
  },
  "000801172": {
@@ -67479,16 +67978,18 @@
   "department": "Biology",
   "email": "dschulz@g.hmc.edu",
   "institution": "Harvey Mudd College",
-  "job_title": "Assistant Professor",
+  "job_title": "Associate Professor of Biology",
   "name": "Danae Schulz",
   "orcid": "0000-0002-0392-7245",
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sites.google.com/a/g.hmc.edu/schulzlab/people"
  },
  "000803240": {
   "confidence": null,
@@ -67886,12 +68387,15 @@
   "name": "Suzanne V van der Feest",
   "orcid": "0000-0003-0744-917X",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=X2QF0VMAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "orcid",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://suzannevanderfeest.ws.gc.cuny.edu"
  },
  "000805332": {
   "confidence": "high",
@@ -68760,16 +69264,18 @@
   "department": "Chemistry",
   "email": "mogba@g.hmc.edu",
   "institution": "Harvey Mudd College",
-  "job_title": "Assistant Professor",
+  "job_title": "Assistant Professor of Chemistry",
   "name": "Onyekwere M Ogba",
   "orcid": "0000-0002-5718-6761",
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.hmc.edu/chemistry/faculty-staff/o-maduka-ogba"
  },
  "000808471": {
   "confidence": "medium",
@@ -71651,14 +72157,17 @@
   "department": "Chemistry",
   "email": "ahujas@reed.edu",
   "institution": "Reed College",
-  "job_title": "Visiting Assistant Professor of Chemistry",
+  "job_title": "Assistant Professor of Chemistry",
   "name": "Shivani Ahuja",
   "orcid": "0000-0002-0123-711X",
-  "role": "unknown",
-  "scholar": null,
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=rOFwfi0AAAAJ",
   "source": {
-   "department": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web"
   },
+  "web_checked": true,
   "website": null
  },
  "000820171": {
@@ -71966,17 +72475,23 @@
   "website": "http://anuragkhandelwal.com"
  },
  "000821745": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Chemical and Biomolecular Engineering",
   "email": "mmontemore@tulane.edu",
   "institution": "Tulane University",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Matthew M Montemore",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=q3AwzA4AAAAJ&hl=en",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://sse.tulane.edu/matthew-m-montemore-phd"
  },
  "000821877": {
   "confidence": "high",
@@ -72407,17 +72922,23 @@
   "website": null
  },
  "000824100": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Mathematics",
   "email": "avindasmelendez@g.hmc.edu",
   "institution": "Harvey Mudd College",
-  "job_title": null,
+  "job_title": "Assistant Professor of Mathematics",
   "name": "Andres R Vindas Melendez",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=_4O0rFkAAAAJ&hl=en",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://math.hmc.edu/arvm"
  },
  "000824321": {
   "confidence": "medium",
@@ -73299,6 +73820,7 @@
   "role": "unknown",
   "scholar": null,
   "source": {},
+  "web_checked": true,
   "website": null
  },
  "000829201": {
@@ -73430,17 +73952,23 @@
   "website": null
  },
  "000829752": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Chemical Engineering",
   "email": "b.woolston@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Associate Professor and Associate Chair for Graduate Studies",
   "name": "Benjamin Woolston",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=jIkYyYsAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://woolstonlab.org"
  },
  "000829774": {
   "confidence": null,
@@ -73726,12 +74254,15 @@
   "name": "Yi Wang",
   "orcid": "0000-0001-5633-3312",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=TruBXPUAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sites.google.com/umich.edu/yiwang/home"
  },
  "000830955": {
   "confidence": "high",
@@ -74872,17 +75403,22 @@
   "website": "http://www.davisglidelab.com"
  },
  "000835246": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Earth and Environmental Sciences",
   "email": "tdecarlo@tulane.edu",
   "institution": "Tulane University",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Thomas DeCarlo",
   "orcid": "0000-0003-3269-1320",
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://sse.tulane.edu/thomas-decarlo"
  },
  "000835428": {
   "confidence": "high",
@@ -75058,21 +75594,27 @@
   "website": "https://sites.duke.edu/nianyi"
  },
  "000835944": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Electrical and Computer Engineering",
   "email": "f.restuccia@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Francesco Restuccia",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=mg__NBAAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://coe.northeastern.edu/people/restuccia-francesco"
  },
  "000836068": {
   "confidence": "high",
-  "department": null,
+  "department": "Tandy School of Computer Science",
   "email": "mahdi-khodayar@utulsa.edu",
   "institution": "University of Tulsa",
   "job_title": null,
@@ -75081,10 +75623,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=GIn1dpUAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://utulsa.edu/people/mahdi-khodayar"
  },
  "000836094": {
@@ -75525,16 +76069,19 @@
   "department": "Earth and Planetary Sciences",
   "email": "eric.barefoot@ucr.edu",
   "institution": "University of California-Riverside",
-  "job_title": "Assistant Professor of Geology",
+  "job_title": "Assistant Professor",
   "name": "Eric A Barefoot",
   "orcid": "0000-0001-5770-2116",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=ZoZ30qAAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://ericbarefoot.com/about_me.html"
  },
  "000837370": {
   "confidence": null,
@@ -76228,11 +76775,14 @@
   "name": "Xiucai Ding",
   "orcid": "0009-0009-7363-2811",
   "role": "unknown",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=BOUOu8YAAAAJ",
   "source": {
-   "department": "orcid"
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://xcding1212.github.io"
  },
  "000839405": {
   "confidence": "high",
@@ -76847,7 +77397,7 @@
  },
  "000841610": {
   "confidence": "high",
-  "department": null,
+  "department": "Computer Science",
   "email": "lfuhuang@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
@@ -76856,10 +77406,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=76IEGtYAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://cs.ucdavis.edu/people/lifu-huang"
  },
  "000841688": {
@@ -77753,17 +78305,22 @@
   "website": null
  },
  "000844618": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Civil and Environmental Engineering",
   "email": "mhgardner@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
   "name": "Michael H Gardner",
   "orcid": null,
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=uBZ3QUgAAAAJ",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://cee.engineering.ucdavis.edu/directory/michaelgardner"
  },
  "000844628": {
   "confidence": "high",
@@ -78100,17 +78657,22 @@
   "website": null
  },
  "000845796": {
-  "confidence": "medium",
-  "department": null,
+  "confidence": "high",
+  "department": "Chemical and Biomedical Engineering",
   "email": "oishi.sanyal@mail.wvu.edu",
   "institution": "West Virginia University Research Corporation",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Oishi Sanyal",
   "orcid": "0000-0001-5714-7191",
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://directory.statler.wvu.edu/faculty-staff-directory/oishi-sanyal"
  },
  "000845805": {
   "confidence": null,
@@ -79026,17 +79588,23 @@
   "website": null
  },
  "000849267": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Physics",
   "email": "j.blazek@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Jonathan Blazek",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=eOkc_L0AAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://cos.northeastern.edu/people/jonathan-blazek"
  },
  "000849271": {
   "confidence": null,
@@ -79558,17 +80126,22 @@
   "website": "https://www.jessekim.com"
  },
  "000853025": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Chemical and Petroleum Engineering",
   "email": "ana.morais@ku.edu",
   "institution": "University of Kansas Center for Research Inc",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Ana Colaco Morais",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://directory.ku.edu/details/HQoGtUP1pn-GTDalNp2MuA"
  },
  "000853058": {
   "confidence": null,
@@ -79641,10 +80214,12 @@
   "role": "not faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.utpb.edu/directory/faculty-staff/shedd_b"
  },
  "000853322": {
   "confidence": "high",
@@ -79986,6 +80561,7 @@
   "role": "unknown",
   "scholar": null,
   "source": {},
+  "web_checked": true,
   "website": null
  },
  "000855196": {
@@ -83769,17 +84345,23 @@
   "website": "http://rios.umd.edu"
  },
  "000870090": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Computer Science",
   "email": "jpanetta@ucdavis.edu",
   "institution": "University of California-Davis",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Francis J Panetta",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=1rQ_OTEAAAAJ&hl=en",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://julianpanetta.com"
  },
  "000870139": {
   "confidence": "high",
@@ -84519,12 +85101,15 @@
   "name": "Sunil Mittal",
   "orcid": "0000-0001-8462-1768",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=-uAgSUIAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://coe.northeastern.edu/people/mittal-sunil"
  },
  "000872480": {
   "confidence": "high",
@@ -84561,7 +85146,7 @@
   "website": "https://case.edu/engineering/about/faculty-and-staff-directory/andrew-watkins"
  },
  "000872597": {
-  "confidence": null,
+  "confidence": "medium",
   "department": null,
   "email": "anybrown@ucdavis.edu",
   "institution": "University of California-Davis",
@@ -84569,9 +85154,13 @@
   "name": "Anya L Brown",
   "orcid": null,
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=SByzJYUAAAAJ",
+  "source": {
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://biology.ucdavis.edu/people/anya-brown"
  },
  "000872624": {
   "confidence": "high",
@@ -85507,17 +86096,23 @@
   "website": "https://cse.buffalo.edu/~akhirsch"
  },
  "000877263": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Electrical and Computer Engineering",
   "email": "m.polese@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Assistant Research Professor",
   "name": "Michele Polese",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=JmMEy-QAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://wineslab.github.io/team/michele-polese"
  },
  "000877295": {
   "confidence": "high",
@@ -85722,12 +86317,15 @@
   "name": "Xiaoyu Tang",
   "orcid": "0000-0001-5257-4362",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=qU67VeQAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://tanglab.sites.northeastern.edu"
  },
  "000877901": {
   "confidence": "high",
@@ -86333,16 +86931,18 @@
   "department": "AI Institute for Next Generation Food Systems (AIFS)",
   "email": "sfbrown@ucdavis.edu",
   "institution": "University of California-Davis",
-  "job_title": "Associate Director",
+  "job_title": "Associate Director of AIFS",
   "name": "Stephen F Brown",
   "orcid": "0000-0001-8218-8550",
   "role": "not faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://aifs.ucdavis.edu/about/people/steve-brown"
  },
  "000880902": {
   "confidence": null,
@@ -87656,12 +88256,15 @@
   "name": "Qing Zhao",
   "orcid": "0000-0002-5003-9355",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=jWCDst4AAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.qzhao-neu.com"
  },
  "000892319": {
   "confidence": null,
@@ -88089,17 +88692,23 @@
   "website": "https://shcarton.github.io"
  },
  "000897015": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Chemistry",
   "email": "amcskimming@tulane.edu",
   "institution": "Tulane University",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Alex McSkimming",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=9CmKpjsAAAAJ&hl=en",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://sse.tulane.edu/alex-mcskimming"
  },
  "000897046": {
   "confidence": "medium",
@@ -88194,10 +88803,12 @@
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://weipingpei.github.io"
  },
  "000897971": {
   "confidence": "high",
@@ -89247,16 +89858,19 @@
   "department": "Mechanical and Industrial Engineering",
   "email": "j.zhu@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": "Assistant Professor",
+  "job_title": "Associate Professor",
   "name": "Juner Zhu",
   "orcid": "0000-0001-7072-2293",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=YBZM5asAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://coe.northeastern.edu/people/zhu-juner"
  },
  "000907788": {
   "confidence": "high",
@@ -90636,19 +91250,22 @@
  },
  "000919067": {
   "confidence": "high",
-  "department": "Department of Statistics",
+  "department": "Statistics",
   "email": "yuzhou.chen@ucr.edu",
   "institution": "University of California-Riverside",
-  "job_title": "Assistant Professor",
+  "job_title": "Associate Professor",
   "name": "Yuzhou Chen",
   "orcid": "0000-0001-7945-7940",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=4HVVIr0AAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sites.google.com/view/ygchen"
  },
  "000919085": {
   "confidence": "high",
@@ -91036,16 +91653,19 @@
   "department": "Environmental Sciences",
   "email": "jpomeranz@coloradomesa.edu",
   "institution": "Colorado Mesa University",
-  "job_title": "Assistant Professor",
+  "job_title": "Assistant Professor of Environmental Sciences & Technology",
   "name": "Justin Pomeranz",
   "orcid": "0000-0002-3882-7666",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=cNqGrWMAAAAJ&hl=en",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.coloradomesa.edu/directory/physical-environmental-sciences/justin-pomeranz.html"
  },
  "000920989": {
   "confidence": null,
@@ -91062,7 +91682,7 @@
  },
  "000920999": {
   "confidence": "high",
-  "department": null,
+  "department": "Khoury College of Computer Sciences",
   "email": "p.pandey@northeastern.edu",
   "institution": "Northeastern University",
   "job_title": null,
@@ -91071,10 +91691,12 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=VO62HkEAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://www.khoury.northeastern.edu/people/prashant-pandey"
  },
  "000921070": {
@@ -93139,19 +93761,22 @@
  },
  "000931210": {
   "confidence": "high",
-  "department": "Electrical anf Computer Engineering",
+  "department": "Electrical and Computer Engineering",
   "email": "a.nagulu@northeastern.edu",
   "institution": "Northeastern University",
   "job_title": "Assistant Professor",
   "name": "Aravind Nagulu",
   "orcid": "0000-0002-1481-6137",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=_n8uX5EAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://coe.northeastern.edu/people/nagulu-aravind"
  },
  "000931230": {
   "confidence": "high",
@@ -93436,17 +94061,23 @@
   "website": null
  },
  "000933337": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Physics",
   "email": "y.you@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Yizhi You",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=4Li839IAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://cos.northeastern.edu/people/yizhi-you"
  },
  "000933390": {
   "confidence": "high",
@@ -93921,6 +94552,7 @@
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "https://jiachenli94.github.io"
  },
  "000936438": {
@@ -94028,10 +94660,12 @@
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://www.brockport.edu/live/profiles/1272-elizabeth-morton"
  },
  "000936856": {
   "confidence": null,
@@ -94768,12 +95402,15 @@
   "name": "Ahmad Amiri",
   "orcid": "0000-0002-7731-4003",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=HJTUGw0AAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sites.utulsa.edu/energy-storage/home/about-us"
  },
  "000940821": {
   "confidence": null,
@@ -94842,7 +95479,7 @@
  },
  "000941101": {
   "confidence": "high",
-  "department": null,
+  "department": "Khoury College of Computer Sciences",
   "email": "s.behnezhad@northeastern.edu",
   "institution": "Northeastern University",
   "job_title": null,
@@ -94851,26 +95488,30 @@
   "role": "faculty",
   "scholar": "https://scholar.google.com/citations?user=uWNrcTUAAAAJ",
   "source": {
+   "department": "web",
    "role": "csrankings",
    "scholar": "csrankings",
    "website": "csrankings"
   },
+  "web_checked": true,
   "website": "http://behnezhad.com"
  },
  "000941123": {
   "confidence": "high",
-  "department": "Computer Science Department",
+  "department": "Computer Science",
   "email": "ozgun.babur@umb.edu",
   "institution": "University of Massachusetts Boston",
   "job_title": "Assistant Professor",
   "name": "Ozgun Babur",
   "orcid": "0000-0002-0239-5259",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=njFSsvYAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web"
   },
+  "web_checked": true,
   "website": null
  },
  "000941248": {
@@ -94984,19 +95625,22 @@
  },
  "000941698": {
   "confidence": "high",
-  "department": "Physiology & Membrane Biology",
+  "department": "Physiology and Membrane Biology",
   "email": "tgriffith@ucdavis.edu",
   "institution": "University of California-Davis",
-  "job_title": "Assistant Professor",
+  "job_title": "Associate Professor",
   "name": "Theanne N Griffith",
   "orcid": "0000-0003-0090-6286",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=MU-6kloAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://health.ucdavis.edu/basic-sciences/physiology/team/faculty/griffith"
  },
  "000941778": {
   "confidence": null,
@@ -95186,17 +95830,22 @@
   "website": null
  },
  "000943466": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Biomedical Engineering",
   "email": "mmondrinos@tulane.edu",
   "institution": "Tulane University",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Mark Mondrinos",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://sse.tulane.edu/mark-mondrinos"
  },
  "000943509": {
   "confidence": "high",
@@ -96109,12 +96758,15 @@
   "name": "Yunpeng Shi",
   "orcid": "0000-0003-2388-2766",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=GSJm93kAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://yunpeng-shi.github.io"
  },
  "000952052": {
   "confidence": null,
@@ -97116,9 +97768,11 @@
   "role": "unknown",
   "scholar": null,
   "source": {
-   "department": "orcid"
+   "department": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://morris.umn.edu/directory/wenkai-guan"
  },
  "000962716": {
   "confidence": "high",
@@ -97251,17 +97905,22 @@
   "website": null
  },
  "000965072": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Electrical and Computer Engineering",
   "email": "m.dasari@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Mallesham Dasari",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://sinrg.org/"
  },
  "000965320": {
   "confidence": "medium",
@@ -97545,11 +98204,13 @@
   "name": "Julie A Peterson",
   "orcid": "0000-0001-5758-4017",
   "role": "faculty",
-  "scholar": null,
+  "scholar": "https://scholar.google.com/citations?user=mL7WdGUAAAAJ",
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "scholar": "web"
   },
+  "web_checked": true,
   "website": null
  },
  "000969329": {
@@ -97846,6 +98507,7 @@
    "department": "orcid",
    "role": "orcid"
   },
+  "web_checked": true,
   "website": null
  },
  "000973722": {
@@ -98377,17 +99039,22 @@
   "website": "https://sharflab.ucsc.edu/"
  },
  "000979793": {
-  "confidence": null,
-  "department": null,
+  "confidence": "medium",
+  "department": "Plant Biology",
   "email": "yrlou@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
   "name": "Yann-Ru Lou",
   "orcid": null,
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=Lj80gr0AAAAJ",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://loulab.faculty.ucdavis.edu/lab-members"
  },
  "000979940": {
   "confidence": null,
@@ -99101,29 +99768,40 @@
  },
  "000986102": {
   "confidence": "medium",
-  "department": null,
+  "department": "Civil and Environmental Engineering",
   "email": "aescriva@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
   "name": "Alvar Escriva-Bou",
   "orcid": "0000-0001-6438-3897",
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=gZHlRkcAAAAJ",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://cee.engineering.ucdavis.edu/people/alvar-escriva-bou"
  },
  "000986115": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Mechanical and Industrial Engineering",
   "email": "x.yue@northeastern.edu",
   "institution": "Northeastern University",
-  "job_title": null,
+  "job_title": "Assistant Professor",
   "name": "Xubo Yue",
   "orcid": null,
-  "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=NJd8WnAAAAAJ",
+  "source": {
+   "department": "web",
+   "role": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://sites.google.com/a/umich.edu/maxyxb"
  },
  "000986157": {
   "confidence": null,
@@ -100197,9 +100875,11 @@
   "scholar": null,
   "source": {
    "department": "orcid",
-   "role": "orcid"
+   "role": "orcid",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://sites.google.com/view/ucr-real/home"
  },
  "000993017": {
   "confidence": "high",
@@ -100459,7 +101139,7 @@
  },
  "000993988": {
   "confidence": "high",
-  "department": "Physics and Astronomt",
+  "department": "Physics and Astronomy",
   "email": "testeinberger@mail.wvu.edu",
   "institution": "West Virginia University Research Corporation",
   "job_title": "Assistant Professor",
@@ -100468,23 +101148,30 @@
   "role": "faculty",
   "scholar": null,
   "source": {
-   "department": "orcid",
-   "role": "orcid"
+   "department": "web",
+   "role": "web",
+   "website": "web"
   },
-  "website": null
+  "web_checked": true,
+  "website": "https://physics.wvu.edu/directory/faculty/thomas-steinberger"
  },
  "000994167": {
-  "confidence": null,
-  "department": null,
+  "confidence": "high",
+  "department": "Earth Sciences",
   "email": "jmaliekal@brockport.edu",
   "institution": "SUNY College at Brockport",
-  "job_title": null,
+  "job_title": "Associate Professor",
   "name": "Jose A Maliekal",
   "orcid": null,
-  "role": "unknown",
+  "role": "faculty",
   "scholar": null,
-  "source": {},
-  "website": null
+  "source": {
+   "department": "web",
+   "role": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://www.brockport.edu/live/profiles/5784-jose-maliekal"
  },
  "000994187": {
   "confidence": "high",
@@ -100534,16 +101221,21 @@
  },
  "000994299": {
   "confidence": "medium",
-  "department": null,
+  "department": "Mechanical and Aerospace Engineering",
   "email": "mohabibi@ucdavis.edu",
   "institution": "University of California-Davis",
   "job_title": null,
   "name": "Mohsen Habibi",
   "orcid": "0000-0002-3793-454X",
   "role": "unknown",
-  "scholar": null,
-  "source": {},
-  "website": null
+  "scholar": "https://scholar.google.com/citations?user=rF2h-8QAAAAJ",
+  "source": {
+   "department": "web",
+   "scholar": "web",
+   "website": "web"
+  },
+  "web_checked": true,
+  "website": "https://aml.ucdavis.edu/people/mohsen-habibi"
  },
  "000994314": {
   "confidence": "high",
