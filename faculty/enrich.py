@@ -6,9 +6,11 @@
 
 Usage:
     uv run faculty/enrich.py free                 # ORCID, CSRankings and email for everyone; resumable
+    uv run faculty/enrich.py free-without-orcid   # records from CSRankings and email for people ORCID has not reached
     uv run faculty/enrich.py coverage             # how many records have each field
     uv run faculty/enrich.py web-batch 200        # write lookup files for 200 unresolved people, grouped by university
     uv run faculty/enrich.py web-batch 200 again  # the same, for people an earlier web lookup left unresolved
+    uv run faculty/enrich.py web-batch 7000 new 350   # a third number sets how many people go in each lookup file
     uv run faculty/enrich.py web-verify           # fetch every link the web lookups returned
     uv run faculty/enrich.py web-merge            # copy the verified web results into people.json
 
@@ -57,12 +59,14 @@ def print_coverage():
 
 def write_web_batch():
     looked_up_before = len(sys.argv) > 3 and sys.argv[3] == "again"
-    web_lookup.write_batch(investigators.load_lead_investigators(), int(sys.argv[2]), looked_up_before)
+    people_per_file = int(sys.argv[4]) if len(sys.argv) > 4 else web_lookup.DEFAULT_PEOPLE_PER_LOOKUP_FILE
+    web_lookup.write_batch(investigators.load_lead_investigators(), int(sys.argv[2]), looked_up_before, people_per_file)
 
 
 def main():
     commands = {
         "free": run_free_sources,
+        "free-without-orcid": lambda: free_sources.add_records_without_orcid(investigators.load_lead_investigators()),
         "coverage": print_coverage,
         "web-batch": write_web_batch,
         "web-verify": web_lookup.verify_results,

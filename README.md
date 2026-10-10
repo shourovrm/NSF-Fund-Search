@@ -62,6 +62,20 @@ search: `TAVILY_API_KEY=... uv run faculty/pi_lookup.py` runs every lookup file
 that has no results yet, using the instructions in `faculty/web_lookup_prompt.md`.
 `web-batch 200 again` queues people an earlier lookup left unresolved.
 
+For thousands of people, one Google search per person through Serper is cheaper
+than agents that search for themselves. `web-batch 7000 new 350` writes large
+lookup files, then `uv run faculty/serper_search.py` (it reads `SERPER_API_KEY`
+from the environment or `.env`) attaches each person's search results to the
+lookup files and writes them again as `read_NN_pKK.txt`. Agents read those with
+the instructions in `faculty/web_read_prompt.md` and answer with the number of
+a result, never a retyped link; `web-verify` and `web-merge` then run as
+before. Every search is kept in `data/faculty/cache/serper_results.jsonl`, so a
+person is paid for once.
+
+`free-without-orcid` builds records from CSRankings and the email address for
+people ORCID has not been asked about, for days when ORCID's quota is spent; a
+later `free` run asks ORCID about them and fills in what it knows.
+
 `web-merge` keeps a field only when its page loaded and named the person
 (`high`) or the site refused scripts (`medium`); Google Scholar always refuses.
 

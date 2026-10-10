@@ -23,14 +23,16 @@ CHECKED_PATH = WEB_DIR / "checked.jsonl"
 # dealt evenly into this many files, one per agent.
 RETRY_FILE_COUNT = 3
 
-# Small enough that a cheap model finishes its file without losing track of the output format.
-PEOPLE_PER_LOOKUP_FILE = 10
+# Small enough that a cheap model doing its own searches finishes its file
+# without losing track of the output format.
+DEFAULT_PEOPLE_PER_LOOKUP_FILE = 10
 # Fixed so that re-running web-batch before any merge selects the same people.
 BATCH_RANDOM_SEED = 20261010
 
 LINK_FIELDS = ("department_url", "website", "scholar")
 LINK_TIMEOUT_SECONDS = 25
-LINK_WORKER_COUNT = 8
+# The links are spread over hundreds of university sites, so no single site sees many requests at once.
+LINK_WORKER_COUNT = 24
 # The person's name sits near the top of a profile page; this is enough to reach it on heavy pages.
 LINK_READ_BYTES = 1_500_000
 # Some university sites refuse clients that do not look like a browser.
@@ -67,7 +69,7 @@ def write_jsonl(path, entries):
             handle.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 
-def write_batch(investigators, batch_size, looked_up_before):
+def write_batch(investigators, batch_size, looked_up_before, people_per_file=DEFAULT_PEOPLE_PER_LOOKUP_FILE):
     """Write lookup files for batch_size unresolved people, whole universities at a time.
 
     Universities are drawn at random, so the batch's hit rate estimates the
@@ -109,9 +111,9 @@ def write_batch(investigators, batch_size, looked_up_before):
     for old_file in WEB_DIR.glob("*.jsonl"):
         old_file.unlink()
     file_count = 0
-    for start in range(0, len(batch), PEOPLE_PER_LOOKUP_FILE):
+    for start in range(0, len(batch), people_per_file):
         file_count += 1
-        write_jsonl(WEB_DIR / f"lookup_{file_count:02d}.jsonl", batch[start:start + PEOPLE_PER_LOOKUP_FILE])
+        write_jsonl(WEB_DIR / f"lookup_{file_count:02d}.jsonl", batch[start:start + people_per_file])
     institution_count = len({entry["institution"] for entry in batch})
     print(f"{len(batch)} people at {institution_count} universities -> {file_count} files in {WEB_DIR}")
 
@@ -170,7 +172,28 @@ def load_agent_results(prefix):
     return results
 
 
+def link_of_numbered_result(lookup_entry, result_number):
+    search_results = lookup_entry.get("search_results") or []
+    if isinstance(result_number, int) and 1 <= result_number <= len(search_results):
+        return search_results[result_number - 1]["link"]
+    return None
+
+
+def resolve_result_numbers(result, lookup_entry):
+    """Turn an agent's picks by result number into links.
+
+    Agents that read saved search results answer with the number of a result,
+    which keeps them from retyping, and so altering, a URL.
+    """
+    for number_field, link_field in (("department_result", "department_url"), ("website_result", "website")):
+        if number_field in result:
+            result[link_field] = link_of_numbered_result(lookup_entry, result.pop(number_field))
+
+
 def check_result(result, lookup_entry):
+    # A Scholar profile the search step matched by name and verified email domain needs no agent to report it.
+    if not result.get("scholar") and lookup_entry.get("scholar_from_search"):
+        result["scholar"] = lookup_entry["scholar_from_search"]
     link_status = {}
     for field in LINK_FIELDS:
         if result.get(field):
@@ -195,6 +218,8 @@ def verify_results():
     results = {**first_results, **retry_results}
 
     known_ids = [nsf_id for nsf_id in results if nsf_id in lookup_entries]
+    for nsf_id in known_ids:
+        resolve_result_numbers(results[nsf_id], lookup_entries[nsf_id])
     with concurrent.futures.ThreadPoolExecutor(max_workers=LINK_WORKER_COUNT) as executor:
         statuses = list(executor.map(lambda nsf_id: check_result(results[nsf_id], lookup_entries[nsf_id]), known_ids))
     link_status_by_id = dict(zip(known_ids, statuses))
@@ -246,10 +271,14 @@ def merge_results():
             accepted_counts["department"] += 1
             if department_status == LINK_OK:
                 record["confidence"] = "high"
-            # The role was read from the same page as the department.
-            role_is_usable = result.get("role") in (roles.FACULTY, roles.NOT_FACULTY)
+            # The role was read from the same page as the department. Where the title itself settles
+            # the role, the title rule decides, so that every agent treats "Dean" or "Chair" alike.
+            role = roles.role_from_job_title(result.get("job_title") or "")
+            if role == roles.UNKNOWN:
+                role = result.get("role")
+            role_is_usable = role in (roles.FACULTY, roles.NOT_FACULTY)
             if role_is_usable and department_status == LINK_OK and record["source"].get("role") != "csrankings":
-                record["role"], record["source"]["role"] = result["role"], "web"
+                record["role"], record["source"]["role"] = role, "web"
                 record["job_title"] = result.get("job_title") or record["job_title"]
                 accepted_counts["role"] += 1
         for field in ("website", "scholar"):
@@ -258,6 +287,9 @@ def merge_results():
                 accepted_counts[field] += 1
         if record["confidence"] is None and any(record[field] for field in ("department", "website", "scholar")):
             record["confidence"] = "medium"
+    # People the lookup returned nothing for were still tried, so a later batch must not count them as new.
+    for nsf_id in load_lookup_entries():
+        people[nsf_id]["web_checked"] = True
     people_store.save_people(people)
     still_unresolved = sum(1 for result in checked if is_unresolved(people[result["id"]]))
     print(f"merged {len(checked)} people; fields accepted: {accepted_counts}")
