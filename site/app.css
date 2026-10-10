@@ -154,7 +154,7 @@ td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; f
 .pi-start { margin-top: 4px; font-size: 0.85rem; color: var(--ink-soft); }
 .name { font-weight: 700; font-size: 1rem; }
 .name-line { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
-/* Outlined like "PhD: unlikely": a caution, not one more neutral tag. */
+/* Outlined like "PhD funding: unlikely": a caution, not one more neutral tag. */
 .role-tag { font-size: 0.74rem; font-weight: 600; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--ink-faint); color: var(--ink); }
 .post { font-size: 0.9rem; }
 .post-unknown { font-size: 0.85rem; color: var(--ink-faint); }
@@ -170,7 +170,6 @@ td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; f
 .pill { font-size: 0.74rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--pill); color: var(--ink-soft); white-space: nowrap; }
 .pill.career { background: var(--career-wash); color: var(--career); }
 .pill.topic { background: var(--accent-wash); color: var(--accent); }
-.pill.phd-likely { background: var(--likely-wash); color: var(--likely); }
 .pill.phd-possible { background: var(--possible-wash); color: var(--possible); }
 /* Outlined rather than filled, so it never reads as one more neutral tag. */
 .pill.phd-unlikely { background: transparent; color: var(--ink); border: 1px solid var(--ink-faint); padding: 1px 7px; }

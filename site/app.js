@@ -15,7 +15,6 @@
   const starIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>';
   const chevronIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>';
   const websiteIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></g></svg>';
-  const scholarIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L12 5l9.5 4.5L12 14z"/><path d="M6.5 11.8V16c1.6 1.4 3.4 2 5.5 2s3.9-.6 5.5-2v-4.2"/></g></svg>';
   const removeIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M7 7l10 10M17 7L7 17"/></svg>';
 
   // ---------------------------------------------------------------------------
@@ -164,13 +163,15 @@
     return `Grant ${hasStarted ? "started" : "starts"} ${NSF.formatDate(startDate)}`;
   }
 
+  // Most grants usually fund PhD students, so only the exceptions carry a pill.
   function phdPill(grant) {
+    if (grant.phd === "likely") return "";
     return `<span class="pill phd-${grant.phd}" title="${escapeHtml(grant.phdReason)}">${PHD_PILL_LABELS[grant.phd]}</span>`;
   }
 
-  const PHD_PILL_LABELS = { likely: "PhD: likely", possible: "PhD: maybe", unlikely: "PhD: unlikely" };
+  const PHD_PILL_LABELS = { possible: "PhD funding: possible", unlikely: "PhD funding: unlikely" };
 
-  // Only "unlikely" earns a visible line; "maybe" keeps its reason in the pill's tooltip
+  // Only "unlikely" earns a visible line; "possible" keeps its reason in the pill's tooltip
   // so rows stay short.
   function phdCaveat(grant) {
     if (grant.phd !== "unlikely") return "";
@@ -222,11 +223,10 @@
 
   // A missing website is said in words, so the gap reads as "not found" rather than as an oversight.
   function profileLinks(pi) {
-    const links = [];
-    if (pi.website) links.push(`<a class="link-button" href="${escapeHtml(pi.website)}" target="_blank" rel="noopener">${websiteIcon}Website</a>`);
-    if (pi.scholar) links.push(`<a class="link-button" href="${escapeHtml(pi.scholar)}" target="_blank" rel="noopener">${scholarIcon}Scholar</a>`);
-    if (!pi.website) links.push('<span class="link-missing">No website found</span>');
-    return `<div class="link-row">${links.join("")}</div>`;
+    const link = pi.website
+      ? `<a class="link-button" href="${escapeHtml(pi.website)}" target="_blank" rel="noopener">${websiteIcon}Website</a>`
+      : '<span class="link-missing">No website found</span>';
+    return `<div class="link-row">${link}</div>`;
   }
 
   function renderRow(result) {

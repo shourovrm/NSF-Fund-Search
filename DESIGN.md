@@ -144,12 +144,6 @@ components:
     typography: "{typography.pill}"
     rounded: "{rounded.pill}"
     padding: "2px 8px"
-  pill-phd-likely:
-    backgroundColor: "{colors.likely-wash}"
-    textColor: "{colors.likely}"
-    typography: "{typography.pill}"
-    rounded: "{rounded.pill}"
-    padding: "2px 8px"
   pill-phd-maybe:
     backgroundColor: "{colors.possible-wash}"
     textColor: "{colors.possible}"
@@ -239,15 +233,15 @@ The palette is cool neutral greys with one saturated blue and four reserved sign
 - **Saved Amber** (`star`, `star-border`, `star-wash`, `star-ink`): the pressed star toggle and the count badge on the My list button. `star-ink` is the darker amber used for badge text so the number stays legible.
 
 ### Tertiary
-- **PhD Green** (`likely`, on `likely-wash`): the "PhD: likely" pill. `success` shares this value and colors the dialog's success status line.
-- **PhD Purple** (`possible`, on `possible-wash`): the "PhD: maybe" pill.
+- **PhD Green** (`likely`, on `likely-wash`): no pill uses it since grants that usually fund PhD students carry none; `success` shares this value and colors the dialog's success status line.
+- **PhD Purple** (`possible`, on `possible-wash`): the "PhD funding: possible" pill.
 
 ### Neutral
 - **Ground Grey** (`bg`): page background and the resting fill of the header search field.
 - **Panel White** (`surface`): header bar, filter panel, results card, dialog, buttons, chips, star toggles.
 - **Sunken White** (`surface-sunken`): table header row, active-filter chip strip, "Show more" bar, the search strip and footer inside a dropdown panel.
 - **Row Hover** (`row-hover`): whole-row hover wash on hover-capable devices only.
-- **Ink** (`ink`): primary text, professor names, button text, the outlined "PhD: unlikely" pill text.
+- **Ink** (`ink`): primary text, professor names, button text, the outlined "PhD funding: unlikely" pill text.
 - **Soft Ink** (`ink-soft`): institutions, the grant start line, the coverage note, dialog prose, neutral pill text, and the placeholder value of an empty filter dropdown.
 - **Faint Ink** (`ink-faint`): uppercase field and column labels, group labels inside a dropdown, counts beside filter options, field hints, the PhD caveat line, placeholders, the inline number labels on phones, and the hover border of controls.
 - **Hairline** (`line`): every divider and panel border.
@@ -325,7 +319,7 @@ Corners come in four fixed steps: 8px for controls (buttons, inputs, selects, dr
 - **Text actions:** "Clear all" is an underlined blue text button; "Show more" is a full-width sunken bar with blue 600 text.
 
 ### Chips
-- **Pills (read-only tags):** fully rounded, 0.74rem 600, 2px 8px. Neutral grey for grant types and "Collaborative"; blue wash for matched topics (selected topics sort first); red wash for CAREER; green wash for "PhD: likely"; purple wash for "PhD: maybe"; transparent with a 1px `ink-faint` outline and full ink for "PhD: unlikely".
+- **Pills (read-only tags):** fully rounded, 0.74rem 600, 2px 8px. Neutral grey for grant types and "Collaborative"; blue wash for matched topics (selected topics sort first); red wash for CAREER; no PhD pill on grants that usually fund PhD students; purple wash for "PhD funding: possible"; transparent with a 1px `ink-faint` outline and full ink for "PhD funding: unlikely".
 - **Active-filter chips:** white, 1px `control-border`, 0.82rem 600, a 14px close icon in faint ink; they sit in a sunken strip under the coverage note and remove their filter on click. The strip disappears when empty.
 
 ### Cards / Containers
@@ -345,7 +339,7 @@ Corners come in four fixed steps: 8px for controls (buttons, inputs, selects, dr
 - **Sortable headers:** column-header buttons inherit the uppercase label style; hover shifts them to full ink; the active sort turns blue with a direction caret and sets `aria-sort`.
 
 ### Professor Row (signature)
-Star toggle, then professor (name, with an outlined "Title · not faculty" tag beside it for people who are not professors; a "Job title · Department" line; institution; email; outlined 32px Website and Scholar link buttons in accent ink with a globe and a mortarboard icon; and "Grant started/starts Mon YYYY" for the lead grant; a department or website that was not found is said in faint ink), then the lead grant (blue linked title, pill row, a PhD caveat line only for "PhD: unlikely", and a "N more grants" disclosure with a left-ruled list), then Ends, Months left and Funding as right-aligned figures. The star toggle is a 40px outlined square in faint ink; pressed, it fills with amber wash, amber border and amber star.
+Star toggle, then professor (name, with an outlined "Title · not faculty" tag beside it for people who are not professors; a "Job title · Department" line; institution; email; an outlined 32px Website link button in accent ink with a globe icon; and "Grant started/starts Mon YYYY" for the lead grant; a department or website that was not found is said in faint ink), then the lead grant (blue linked title, pill row, a PhD caveat line only for "PhD funding: unlikely", and a "N more grants" disclosure with a left-ruled list), then Ends, Months left and Funding as right-aligned figures. The star toggle is a 40px outlined square in faint ink; pressed, it fills with amber wash, amber border and amber star.
 
 ### My list Dialog
 Native modal `dialog`, 480px max, 12px corners, hairline-separated head with an icon close button, and a stacked column of full-width buttons (one primary) with a status line in green (success) or red (error).
@@ -365,5 +359,5 @@ Native modal `dialog`, 480px max, 12px corners, hairline-separated head with an 
 - **Don't** introduce a second accent or reuse red, amber, green or purple for anything beyond their assigned meanings.
 - **Don't** add shadows to panels, rows, buttons or cards; the dialog and an open dropdown panel are the only lifted surfaces.
 - **Don't** add a second typeface; Libre Franklin is the only face in `fonts/fonts.css`.
-- **Don't** give "PhD: unlikely" a filled grey pill; it stays outlined so it never reads as one more neutral tag.
+- **Don't** give "PhD funding: unlikely" a filled grey pill; it stays outlined so it never reads as one more neutral tag.
 - **Don't** hardcode hex colors in component rules; the only literal colors in the stylesheet are the token blocks and the dialog backdrop.

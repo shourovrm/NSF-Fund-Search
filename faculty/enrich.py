@@ -11,8 +11,10 @@ Usage:
     uv run faculty/enrich.py web-batch 200        # write lookup files for 200 unresolved people, grouped by university
     uv run faculty/enrich.py web-batch 200 again  # the same, for people an earlier web lookup left unresolved
     uv run faculty/enrich.py web-batch 7000 new 350   # a third number sets how many people go in each lookup file
+    uv run faculty/enrich.py web-batch 900 all 180    # everyone unresolved, looked up before or not
     uv run faculty/enrich.py web-verify           # fetch every link the web lookups returned
     uv run faculty/enrich.py web-merge            # copy the verified web results into people.json
+    uv run faculty/enrich.py web-clean            # replace or remove websites that are files, news or lists of people
 
 Results go to data/faculty/people.json, keyed by NSF investigator ID.
 """
@@ -24,6 +26,7 @@ import free_sources
 import investigators
 import people_store
 import web_lookup
+import website_cleanup
 
 
 def run_free_sources():
@@ -63,7 +66,8 @@ def print_coverage():
 
 
 def write_web_batch():
-    looked_up_before = len(sys.argv) > 3 and sys.argv[3] == "again"
+    group = sys.argv[3] if len(sys.argv) > 3 else "new"
+    looked_up_before = {"new": False, "again": True, "all": None}[group]
     people_per_file = int(sys.argv[4]) if len(sys.argv) > 4 else web_lookup.DEFAULT_PEOPLE_PER_LOOKUP_FILE
     web_lookup.write_batch(investigators.load_lead_investigators(), int(sys.argv[2]), looked_up_before, people_per_file)
 
@@ -76,6 +80,7 @@ def main():
         "web-batch": write_web_batch,
         "web-verify": web_lookup.verify_results,
         "web-merge": web_lookup.merge_results,
+        "web-clean": lambda: website_cleanup.clean_websites(investigators.load_lead_investigators()),
     }
     if len(sys.argv) < 2 or sys.argv[1] not in commands:
         print(__doc__)

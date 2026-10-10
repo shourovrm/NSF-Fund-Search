@@ -8,6 +8,7 @@ Usage:
     uv run faculty/serper_search.py                 # one search per person; agents see the best 3 results
     uv run faculty/serper_search.py --results 8     # agents see 8 results of each search; no new credits
     uv run faculty/serper_search.py --site-search   # a second search, of the name on the institution's own site
+    uv run faculty/serper_search.py --email-search --profile-search   # two more, for people still unresolved
 
 Reads SERPER_API_KEY from the environment or from .env in the project root.
 Every answer is kept in data/faculty/cache/serper_results.jsonl, so a second
@@ -39,6 +40,7 @@ import urllib.request
 import names
 import people_store
 import web_lookup
+import weak_websites
 
 SERPER_URL = "https://google.serper.dev/search"
 RESULTS_CACHE_PATH = people_store.CACHE_DIR / "serper_results.jsonl"
@@ -59,6 +61,13 @@ GRANT_TITLE_CHARACTERS = 70
 
 NAME_SEARCH = "name"
 SITE_SEARCH = "site"
+# The email address is printed on the person's directory page whatever first name they go by, and
+# wherever NSF's institution differs from the one they write from.
+EMAIL_SEARCH = "email"
+# Without quotes Google matches "Mary Beth Monroe" for NSF's "Mary Monroe", which the quoted searches miss.
+PROFILE_SEARCH = "profile"
+# The narrower a search, the earlier its results are shown to the agents.
+SEARCH_KINDS = (EMAIL_SEARCH, SITE_SEARCH, PROFILE_SEARCH, NAME_SEARCH)
 # Addresses at these providers say nothing about where the person works, so there is no site to search.
 PERSONAL_EMAIL_DOMAINS = {"gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "icloud.com", "aol.com"}
 
@@ -73,12 +82,6 @@ CHARACTERS_AFTER_MENTION = 110
 MENTIONS_KEPT = 3
 # What is kept of a page that mentions no department; its opening lines usually say who the person is.
 PAGE_OPENING_CHARACTERS = 250
-# Pages about the person on shared services; an agent needs the person's own or the university's pages.
-UNHELPFUL_HOSTS = re.compile(
-    r"(^|\.)(linkedin|facebook|twitter|x|instagram|youtube|researchgate|ratemyprofessors|rocketreach|zoominfo"
-    r"|academia|semanticscholar|openreview|ieeexplore\.ieee|dl\.acm|scilit|alphaxiv|arxiv|orcid|scholar\.google"
-    r"|wikipedia|amazon|signalhire|contactout|expertisefinder|academictree|mathgenealogy)\.[a-z.]+$"
-)
 
 
 def read_api_key():
@@ -108,9 +111,14 @@ def search(query, api_key):
 def query_for(entry, search_kind):
     """Return the Google query for this person, or None when this kind of search does not apply to them."""
     # The middle initial NSF records is rarely written on a profile page, and a quoted name must match exactly.
-    quoted_name = f'"{entry["first_name"].split()[0]} {entry["last_name"]}"'
+    short_name = f'{entry["first_name"].split()[0]} {entry["last_name"]}'
+    quoted_name = f'"{short_name}"'
     if search_kind == NAME_SEARCH:
         return f'{quoted_name} {entry["institution"]}'
+    if search_kind == PROFILE_SEARCH:
+        return f'{short_name} {entry["institution"]} faculty profile'
+    if search_kind == EMAIL_SEARCH:
+        return f'"{entry["email"].lower()}"' if entry["email"] else None
     domain = web_lookup.registered_email_domain(entry)
     if not domain or domain in PERSONAL_EMAIL_DOMAINS:
         return None
@@ -145,10 +153,11 @@ def results_for_agent(results, entry, results_per_person):
     useful = []
     for result in results:
         link = result.get("link", "")
-        if UNHELPFUL_HOSTS.search(web_lookup.host_of(link)):
+        if weak_websites.SHARED_SERVICE_HOSTS.search(web_lookup.host_of(link)):
             continue
-        text = result.get("title", "") + " " + result.get("snippet", "")
-        if names.fold_accents(entry["last_name"]) not in names.fold_accents(text):
+        text = names.fold_accents(result.get("title", "") + " " + result.get("snippet", ""))
+        shows_email = bool(entry["email"]) and entry["email"].lower() in text
+        if names.fold_accents(entry["last_name"]) not in text and not shows_email:
             continue
         useful.append({"title": result.get("title", ""), "link": link,
                        "snippet": result.get("snippet", "")[:SNIPPET_CHARACTERS]})
@@ -217,7 +226,7 @@ def reading_text(entries):
     """Return the people and their numbered results as compact text for an agent to read."""
     blocks = []
     for entry in entries:
-        lines = [f"## {entry['id']} | {entry['name']} | {entry['institution']} | grant: "
+        lines = [f"## {entry['id']} | {entry['name']} | {entry['institution']} | {entry['email']} | grant: "
                  f"{entry['grant_title'][:GRANT_TITLE_CHARACTERS]}"]
         if entry["known_department"]:
             lines[0] += f" | department on record: {entry['known_department']}"
@@ -291,16 +300,25 @@ def main():
                         help="how many results of each person's search the agents see")
     parser.add_argument("--site-search", action="store_true",
                         help="also search each person's name on their institution's own site")
+    parser.add_argument("--email-search", action="store_true", help="also search each person's email address")
+    parser.add_argument("--profile-search", action="store_true",
+                        help="also search the name without quotes, for people who go by another first name")
     arguments = parser.parse_args()
+    requested_kinds = {NAME_SEARCH}
+    for search_kind, is_requested in ((SITE_SEARCH, arguments.site_search), (EMAIL_SEARCH, arguments.email_search),
+                                      (PROFILE_SEARCH, arguments.profile_search)):
+        if is_requested:
+            requested_kinds.add(search_kind)
 
     api_key = read_api_key()
     lookup_paths = sorted(web_lookup.WEB_DIR.glob("lookup_*.jsonl"))
     entries = [entry for path in lookup_paths for entry in web_lookup.read_jsonl(path)]
-    name_results = run_searches(entries, NAME_SEARCH, api_key)
-    # Read from the cache even without --site-search, so an earlier site search is not lost on a later run.
-    site_results = load_cached_results(SITE_SEARCH)
-    if arguments.site_search:
-        site_results = run_searches(entries, SITE_SEARCH, api_key)
+    # A search that was not requested is still read from the cache, so an earlier run's results are not lost.
+    results_by_kind = {
+        search_kind: run_searches(entries, search_kind, api_key) if search_kind in requested_kinds
+        else load_cached_results(search_kind)
+        for search_kind in SEARCH_KINDS
+    }
     website_texts = load_website_texts(entries)
 
     with_results_count = 0
@@ -308,8 +326,8 @@ def main():
     for path in lookup_paths:
         file_entries = web_lookup.read_jsonl(path)
         for entry in file_entries:
-            # The site search is the narrower one, so its results lead.
-            results = without_repeated_links(site_results.get(entry["id"], []) + name_results.get(entry["id"], []))
+            results = without_repeated_links(
+                [result for search_kind in SEARCH_KINDS for result in results_by_kind[search_kind].get(entry["id"], [])])
             entry["search_results"] = results_for_agent(results, entry, arguments.results)
             if needs_website_text(entry):
                 entry["search_results"].append(website_on_record_result(entry, website_texts[entry["id"]]))

@@ -84,6 +84,23 @@ returns directory and profile pages where the first search returned news. A
 person whose website is known but whose department is not also gets the text
 of that website as a last result to read the department from.
 
+For people still unresolved after that, `web-batch 900 all 180` followed by
+`uv run faculty/serper_search.py --results 10 --email-search --profile-search`
+adds two more searches. The email search (`"name@university.edu"`) finds the
+directory page of a person who goes by another first name, or whose NSF
+institution is not the one they write from. The profile search leaves the
+name unquoted, so Google matches "Mary Beth Monroe" for NSF's "Mary Monroe".
+
+`web-clean` goes through the stored websites and deals with those that are not
+the person's own page: a file such as a CV, a profile on a shared service, a
+news story, a list of people, or an ORCID or CSRankings link that no longer
+loads. A weak link is replaced by the page above it on the same site when that
+page names the person (`example.edu/~smith/cv.pdf` becomes
+`example.edu/~smith/`); otherwise the website is removed and the next web
+lookup searches for it again. `web-merge` applies the same rules, so a lookup
+cannot store such a link. Every change is logged in
+`data/faculty/cache/website_cleanup.jsonl`.
+
 `free-without-orcid` builds records from CSRankings and the email address for
 people ORCID has not been asked about, for days when ORCID's quota is spent; a
 later `free` run asks ORCID about them and fills in what it knows.
@@ -98,7 +115,9 @@ scripts or only Google's result vouches for the page (`medium`); Google
 Scholar always refuses. A page that answers 404 or 410 is never kept.
 
 `uv run nsf_awards.py site` reads `data/faculty/people.json` and puts the
-department, website, Google Scholar link and role on each professor's row.
+department, website and role on each professor's row. The Google Scholar
+links stay in `people.json` but are not shown: fewer than half of the people
+have one.
 
 ## Update reminder
 

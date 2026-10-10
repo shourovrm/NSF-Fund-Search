@@ -33,7 +33,7 @@ PROJECT_DIR = Path(__file__).parent
 RAW_DIR = nsf_remote.RAW_DIR
 OUTPUT_DIR = PROJECT_DIR / "data" / "output"
 SITE_DIR = PROJECT_DIR / "site"
-# Department, website, Google Scholar link and role per investigator, written by faculty/enrich.py.
+# Department, website and role per investigator, written by faculty/enrich.py.
 FACULTY_PEOPLE_PATH = PROJECT_DIR / "data" / "faculty" / "people.json"
 
 # `update` fetches only the changed awards when they are a small part of the
@@ -398,10 +398,9 @@ def faculty_details(person):
     details = {}
     if person["department"]:
         details["department"] = person["department"]
-    for field in ("website", "scholar"):
-        # The links came from the web; anything that is not a web address must not become a link on the page.
-        if person[field] and person[field].startswith(("http://", "https://")):
-            details[field] = person[field]
+    # The link came from the web; anything that is not a web address must not become a link on the page.
+    if person["website"] and person["website"].startswith(("http://", "https://")):
+        details["website"] = person["website"]
     if person["role"] != "unknown":
         details["role"] = person["role"]
         if person["job_title"]:

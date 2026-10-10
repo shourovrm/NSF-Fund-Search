@@ -67,7 +67,6 @@
       state: rawPi.state || "",
       department: rawPi.department || "",
       website: rawPi.website || "",
-      scholar: rawPi.scholar || "",
       // "faculty", "not faculty", or "" when the lookup could not tell.
       role: rawPi.role || "",
       jobTitle: rawPi.jobTitle || "",
@@ -275,12 +274,12 @@
   }
 
   function shortlistCsv() {
-    const header = ["Name", "Email", "Department", "Institution", "State", "Role", "Website", "Google Scholar", "Grant", "Grant type", "PhD funding", "Collaborative", "Field", "Topics", "Starts", "Ends", "Months left at Fall 2027", "Amount USD", "Award URL"];
+    const header = ["Name", "Email", "Department", "Institution", "State", "Role", "Website", "Grant", "Grant type", "PhD funding", "Collaborative", "Field", "Topics", "Starts", "Ends", "Months left at Fall 2027", "Amount USD", "Award URL"];
     const rows = pis
       .filter((pi) => shortlist.has(pi.id))
       .flatMap((pi) =>
         pi.grants.map((grant) => [
-          pi.name, pi.email, pi.department, pi.institution, stateLabel(pi.state), pi.role, pi.website, pi.scholar,
+          pi.name, pi.email, pi.department, pi.institution, stateLabel(pi.state), pi.role, pi.website,
           grant.fullTitle, GRANT_TYPE_LABELS[grant.type], PHD_LABELS[grant.phd], grant.collab ? "yes" : "no", FIELD_LABELS[grant.field],
           grant.topicKeys.map((key) => TOPIC_LABELS[key]).join("; "),
           grant.start, grant.end, grant.monthsLeft, grant.amount, awardUrl(grant.id),

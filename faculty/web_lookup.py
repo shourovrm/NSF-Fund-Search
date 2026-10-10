@@ -20,6 +20,7 @@ import urllib.request
 import names
 import people_store
 import roles
+import weak_websites
 
 WEB_DIR = people_store.CACHE_DIR / "web"
 CHECKED_PATH = WEB_DIR / "checked.jsonl"
@@ -123,14 +124,15 @@ def write_batch(investigators, batch_size, looked_up_before, people_per_file=DEF
 
     Universities are drawn at random, so the batch's hit rate estimates the
     hit rate for everyone still unresolved. looked_up_before chooses between
-    people no web lookup has tried yet (False) and people an earlier lookup
-    left unresolved (True).
+    people no web lookup has tried yet (False), people an earlier lookup left
+    unresolved (True) and both (None).
     """
     people = people_store.load_people()
     unresolved_by_institution = {}
     for nsf_id, record in people.items():
         was_looked_up = bool(record.get("web_checked"))
-        if is_unresolved(record) and was_looked_up == looked_up_before and nsf_id in investigators:
+        in_chosen_group = looked_up_before is None or was_looked_up == looked_up_before
+        if is_unresolved(record) and in_chosen_group and nsf_id in investigators:
             unresolved_by_institution.setdefault(record["institution"], []).append(nsf_id)
     institutions = sorted(unresolved_by_institution)
     random.Random(BATCH_RANDOM_SEED).shuffle(institutions)
@@ -354,6 +356,7 @@ def merge_results():
     people = people_store.load_people()
     accepted_counts = {"department": 0, "website": 0, "scholar": 0, "role": 0}
     checked = read_jsonl(CHECKED_PATH)
+    lookup_entries = load_lookup_entries()
     for result in checked:
         record = people[result["id"]]
         link_status = result["link_status"]
@@ -376,6 +379,10 @@ def merge_results():
             record["role"], record["source"]["role"] = role, "web"
             record["job_title"] = result.get("job_title") or record["job_title"]
             accepted_counts["role"] += 1
+        # A list of people or a news story names the person and so passes the link check, but it is not
+        # their website.
+        if result.get("website") and weak_websites.weakness(result["website"], lookup_entries[result["id"]]):
+            result["website"] = None
         for field in ("website", "scholar"):
             if result.get(field) and not record[field] and link_status.get(field) in LINK_ACCEPTED:
                 record[field], record["source"][field] = result[field], "web"
