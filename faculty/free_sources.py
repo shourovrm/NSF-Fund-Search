@@ -132,6 +132,19 @@ def build_record(investigator, faculty_by_family_name):
     }
 
 
+def save_new_records(new_records):
+    """Add this run's records to people.json and return the whole file's content.
+
+    The file is read again on every save because a web lookup may have updated
+    other people's records while this run was going.
+    """
+    people = people_store.load_people()
+    for nsf_id, record in new_records.items():
+        people.setdefault(nsf_id, record)
+    people_store.save_people(people)
+    return people
+
+
 def run(investigators, limit=None):
     """Look up every investigator not yet in people.json. Safe to stop and start again."""
     people = people_store.load_people()
@@ -143,6 +156,7 @@ def run(investigators, limit=None):
         return people
     faculty_by_family_name = csrankings.load_faculty_by_family_name()
     failed_count = 0
+    new_records = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=WORKER_COUNT) as executor:
         future_to_nsf_id = {
             executor.submit(build_record, investigator, faculty_by_family_name): investigator["nsf_id"]
@@ -151,14 +165,21 @@ def run(investigators, limit=None):
         for finished_count, future in enumerate(concurrent.futures.as_completed(future_to_nsf_id), start=1):
             nsf_id = future_to_nsf_id[future]
             try:
-                people[nsf_id] = future.result()
+                new_records[nsf_id] = future.result()
+            except orcid.DailyQuotaExceeded:
+                # Everyone still waiting would fail the same way, so keep what is done and stop.
+                executor.shutdown(wait=False, cancel_futures=True)
+                people = save_new_records(new_records)
+                print(f"ORCID's daily quota is used up; stopped with {len(people)} records saved. Run again tomorrow.",
+                      flush=True)
+                return people
             except Exception as error:  # noqa: BLE001 - one bad lookup must not end a two-hour run
                 # Left out of people.json, so the next run tries this person again.
                 failed_count += 1
                 print(f"failed {nsf_id} {investigators[nsf_id]['name']}: {error}", flush=True)
             if finished_count % SAVE_EVERY == 0:
-                people_store.save_people(people)
+                save_new_records(new_records)
                 print(f"{finished_count}/{len(pending)} looked up", flush=True)
-    people_store.save_people(people)
+    people = save_new_records(new_records)
     print(f"done; {failed_count} lookups failed and will be retried on the next run", flush=True)
     return people

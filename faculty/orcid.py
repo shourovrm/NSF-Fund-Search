@@ -26,6 +26,10 @@ RECENT_DEGREE_YEARS = 3
 RUNNING_DEGREE_MAX_YEARS = 8
 
 
+class DailyQuotaExceeded(Exception):
+    """ORCID serves no more anonymous requests today; retrying within the hour cannot help."""
+
+
 def fetch_json(url):
     """GET a JSON document, retrying when ORCID asks for a pause."""
     for attempt in range(RETRY_COUNT):
@@ -36,6 +40,9 @@ def fetch_json(url):
         except urllib.error.HTTPError as error:
             if error.code not in (429, 500, 502, 503, 504):
                 raise
+            # A 429 is normally a short rate limit; this wording marks the daily one.
+            if error.code == 429 and b"daily quota" in error.read():
+                raise DailyQuotaExceeded(url) from error
         except (urllib.error.URLError, TimeoutError, ConnectionError):
             pass
         time.sleep(2 ** attempt)
