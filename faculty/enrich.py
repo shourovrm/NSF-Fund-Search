@@ -1,0 +1,78 @@
+# /// script
+# requires-python = ">=3.11"
+# dependencies = []
+# ///
+"""Find each lead investigator's department, website, Google Scholar link and role.
+
+Usage:
+    uv run faculty/enrich.py free                 # ORCID, CSRankings and email for everyone; resumable
+    uv run faculty/enrich.py coverage             # how many records have each field
+    uv run faculty/enrich.py web-batch 200        # write lookup files for 200 unresolved people, grouped by university
+    uv run faculty/enrich.py web-batch 200 again  # the same, for people an earlier web lookup left unresolved
+    uv run faculty/enrich.py web-verify           # fetch every link the web lookups returned
+    uv run faculty/enrich.py web-merge            # copy the verified web results into people.json
+
+Results go to data/faculty/people.json, keyed by NSF investigator ID.
+"""
+
+import collections
+import sys
+
+import free_sources
+import investigators
+import people_store
+import web_lookup
+
+
+def run_free_sources():
+    limit = int(sys.argv[2]) if len(sys.argv) > 2 else None
+    free_sources.run(investigators.load_lead_investigators(), limit)
+    print_coverage()
+
+
+def print_coverage():
+    people = people_store.load_people()
+    total = len(people)
+    if total == 0:
+        print("people.json is empty")
+        return
+
+    def share(count):
+        return f"{count} ({100 * count / total:.1f}%)"
+
+    print(f"records: {total}")
+    for field in ("department", "website", "scholar"):
+        records_with_field = [record for record in people.values() if record[field]]
+        by_source = collections.Counter(record["source"][field] for record in records_with_field)
+        print(f"{field}: {share(len(records_with_field))}  by source: {dict(by_source.most_common())}")
+    for label, counter in (
+        ("role", collections.Counter(record["role"] for record in people.values())),
+        ("confidence", collections.Counter(record["confidence"] or "none" for record in people.values())),
+    ):
+        print(f"{label}: " + ", ".join(f"{value} {share(count)}" for value, count in counter.most_common()))
+    resolved_count = sum(1 for record in people.values() if not web_lookup.is_unresolved(record))
+    print(f"department and website both known: {share(resolved_count)}")
+    print(f"unresolved (department or website missing): {share(total - resolved_count)}")
+
+
+def write_web_batch():
+    looked_up_before = len(sys.argv) > 3 and sys.argv[3] == "again"
+    web_lookup.write_batch(investigators.load_lead_investigators(), int(sys.argv[2]), looked_up_before)
+
+
+def main():
+    commands = {
+        "free": run_free_sources,
+        "coverage": print_coverage,
+        "web-batch": write_web_batch,
+        "web-verify": web_lookup.verify_results,
+        "web-merge": web_lookup.merge_results,
+    }
+    if len(sys.argv) < 2 or sys.argv[1] not in commands:
+        print(__doc__)
+        sys.exit(1)
+    commands[sys.argv[1]]()
+
+
+if __name__ == "__main__":
+    main()

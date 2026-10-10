@@ -21,3 +21,6 @@ node_modules/
 .impeccable/review/
 .impeccable/build/
 .impeccable/hook.cache.json
+
+# Faculty lookup downloads and intermediate files; rebuilt by `uv run faculty/enrich.py`
+data/faculty/cache/

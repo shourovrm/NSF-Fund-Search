@@ -29,6 +29,42 @@ every file daily, so file dates do not show whether anything changed;
 The site data covers awards NSF made from 2025 on. Grants made earlier that
 still run past 2027 appear only after their years are downloaded.
 
+## Faculty details
+
+`faculty/enrich.py` finds each lead investigator's department, website, Google
+Scholar link and role, and saves one record per NSF investigator ID in
+`data/faculty/people.json`. Each record names the source of every field and a
+confidence: `high`, `medium` or none.
+
+```sh
+uv run faculty/enrich.py free            # ORCID, CSRankings and the email address; stop and restart at will
+uv run faculty/enrich.py coverage        # how many records have each field
+uv run faculty/enrich.py web-batch 200   # lookup files for 200 unresolved people, grouped by university
+uv run faculty/enrich.py web-verify      # fetch every link the web lookups returned
+uv run faculty/enrich.py web-merge       # copy verified web results into people.json
+```
+
+`free` costs nothing. It matches a person in ORCID by name and institution and
+accepts the record only when it shows a job at that institution that is not a
+student or postdoc post; ORCID's search also matches degrees in progress, which
+otherwise returns namesake students. The role (`faculty`, `not faculty`,
+`unknown`) comes from the ORCID job title, or from CSRankings, which lists only
+faculty.
+
+A person is unresolved while the department or the website is missing.
+`web-batch` writes `data/faculty/cache/web/lookup_NN.jsonl` for agents to
+research; they write `results_NN.jsonl` beside it. `web-verify` fetches each
+returned link and checks that the page names the person, and lists the people
+whose links failed, dealt evenly into three `failures_NN.jsonl` files, for one
+second pass (`retry_NN.jsonl`).
+The lookups can also run through the pi agent with a cheap model and Tavily
+search: `TAVILY_API_KEY=... uv run faculty/pi_lookup.py` runs every lookup file
+that has no results yet, using the instructions in `faculty/web_lookup_prompt.md`.
+`web-batch 200 again` queues people an earlier lookup left unresolved.
+
+`web-merge` keeps a field only when its page loaded and named the person
+(`high`) or the site refused scripts (`medium`); Google Scholar always refuses.
+
 ## Update reminder
 
 `reminder/install.sh` installs a systemd user timer that runs

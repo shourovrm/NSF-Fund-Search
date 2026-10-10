@@ -1,0 +1,264 @@
+"""Web lookups for people the free sources left unresolved: choose a batch, verify the links agents return, merge.
+
+The lookups themselves are done by agents outside this module. They read
+lookup_NN.jsonl and write results_NN.jsonl (first pass) or retry_NN.jsonl
+(second pass, for the people in failures_NN.jsonl) in the same directory, one JSON object per person:
+    {"id", "department", "department_url", "website", "scholar", "job_title", "role", "note"}
+"""
+
+import concurrent.futures
+import json
+import random
+import re
+import urllib.error
+import urllib.request
+
+import names
+import people_store
+import roles
+
+WEB_DIR = people_store.CACHE_DIR / "web"
+CHECKED_PATH = WEB_DIR / "checked.jsonl"
+# The second pass runs on a costlier model, so its size is capped: failures are
+# dealt evenly into this many files, one per agent.
+RETRY_FILE_COUNT = 3
+
+# Small enough that a cheap model finishes its file without losing track of the output format.
+PEOPLE_PER_LOOKUP_FILE = 10
+# Fixed so that re-running web-batch before any merge selects the same people.
+BATCH_RANDOM_SEED = 20261010
+
+LINK_FIELDS = ("department_url", "website", "scholar")
+LINK_TIMEOUT_SECONDS = 25
+LINK_WORKER_COUNT = 8
+# The person's name sits near the top of a profile page; this is enough to reach it on heavy pages.
+LINK_READ_BYTES = 1_500_000
+# Some university sites refuse clients that do not look like a browser.
+BROWSER_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+# The site answered but will not show the page to a script, so the link is neither confirmed nor refuted.
+BLOCKED_STATUS_CODES = {401, 403, 406, 429, 503, 999}
+
+# Google Scholar and sites behind Cloudflare answer 200 with a robot check instead of the page.
+ROBOT_WALL_PATTERN = re.compile(r"not a robot|captcha|just a moment\.\.\.|access denied|enable javascript", re.IGNORECASE)
+
+LINK_OK = "ok"
+LINK_BLOCKED = "blocked"
+LINK_DEAD = "dead"
+LINK_WITHOUT_NAME = "no_name"
+LINK_FAILURES = {LINK_DEAD, LINK_WITHOUT_NAME}
+
+
+def is_unresolved(record):
+    return not record["department"] or not record["website"]
+
+
+def read_jsonl(path):
+    with open(path, encoding="utf-8") as handle:
+        return [json.loads(line) for line in handle if line.strip()]
+
+
+def write_jsonl(path, entries):
+    with open(path, "w", encoding="utf-8") as handle:
+        for entry in entries:
+            handle.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+
+def write_batch(investigators, batch_size, looked_up_before):
+    """Write lookup files for batch_size unresolved people, whole universities at a time.
+
+    Universities are drawn at random, so the batch's hit rate estimates the
+    hit rate for everyone still unresolved. looked_up_before chooses between
+    people no web lookup has tried yet (False) and people an earlier lookup
+    left unresolved (True).
+    """
+    people = people_store.load_people()
+    unresolved_by_institution = {}
+    for nsf_id, record in people.items():
+        was_looked_up = bool(record.get("web_checked"))
+        if is_unresolved(record) and was_looked_up == looked_up_before and nsf_id in investigators:
+            unresolved_by_institution.setdefault(record["institution"], []).append(nsf_id)
+    institutions = sorted(unresolved_by_institution)
+    random.Random(BATCH_RANDOM_SEED).shuffle(institutions)
+
+    batch = []
+    for institution in institutions:
+        for nsf_id in sorted(unresolved_by_institution[institution]):
+            if len(batch) == batch_size:
+                break
+            record = people[nsf_id]
+            batch.append({
+                "id": nsf_id,
+                "name": record["name"],
+                "first_name": investigators[nsf_id]["first_name"],
+                "last_name": investigators[nsf_id]["last_name"],
+                "email": record["email"],
+                "institution": institution,
+                "grant_title": investigators[nsf_id]["grant_titles"][-1],
+                "known_department": record["department"],
+                "known_website": record["website"],
+                "known_scholar": record["scholar"],
+            })
+    # One university's people stay next to each other, so an agent reads each department site once.
+    batch.sort(key=lambda entry: (entry["institution"], entry["name"]))
+
+    WEB_DIR.mkdir(parents=True, exist_ok=True)
+    for old_file in WEB_DIR.glob("*.jsonl"):
+        old_file.unlink()
+    file_count = 0
+    for start in range(0, len(batch), PEOPLE_PER_LOOKUP_FILE):
+        file_count += 1
+        write_jsonl(WEB_DIR / f"lookup_{file_count:02d}.jsonl", batch[start:start + PEOPLE_PER_LOOKUP_FILE])
+    institution_count = len({entry["institution"] for entry in batch})
+    print(f"{len(batch)} people at {institution_count} universities -> {file_count} files in {WEB_DIR}")
+
+
+def page_names_person(page_text, lookup_entry):
+    """True when the page shows the person's email address, or the family name with the given name.
+
+    The given name is matched on its first three letters, so that 'Steve'
+    confirms 'Steven', or as a lone initial, so that 'T. Brent Gunnoe' confirms
+    'Thomas Gunnoe'. The email address covers nicknames such as Mike for Michael.
+    """
+    folded_text = names.fold_accents(page_text)
+    if lookup_entry["email"] and lookup_entry["email"].lower() in folded_text:
+        return True
+    family_pattern = r"\b" + re.escape(names.fold_accents(lookup_entry["last_name"])) + r"\b"
+    if not re.search(family_pattern, folded_text):
+        return False
+    given_words = names.fold_accents(lookup_entry["first_name"]).split()
+    if not given_words:
+        return False
+    given_word = given_words[0]
+    given_pattern = r"\b" + re.escape(given_word[:3]) + r"|\b" + re.escape(given_word[0]) + r"\b"
+    return bool(re.search(given_pattern, folded_text))
+
+
+def check_link(url, lookup_entry):
+    """Fetch the page and return LINK_OK, LINK_BLOCKED, LINK_DEAD or LINK_WITHOUT_NAME."""
+    if not re.match(r"https?://", url):
+        return LINK_DEAD
+    request = urllib.request.Request(url, headers=BROWSER_HEADERS)
+    try:
+        with urllib.request.urlopen(request, timeout=LINK_TIMEOUT_SECONDS) as response:
+            page_text = response.read(LINK_READ_BYTES).decode("utf-8", errors="ignore")
+    except urllib.error.HTTPError as error:
+        return LINK_BLOCKED if error.code in BLOCKED_STATUS_CODES else LINK_DEAD
+    except (urllib.error.URLError, TimeoutError, ConnectionError, ValueError, OSError):
+        return LINK_DEAD
+    if page_names_person(page_text, lookup_entry):
+        return LINK_OK
+    return LINK_BLOCKED if ROBOT_WALL_PATTERN.search(page_text) else LINK_WITHOUT_NAME
+
+
+def load_lookup_entries():
+    entries = {}
+    for path in sorted(WEB_DIR.glob("lookup_*.jsonl")):
+        for entry in read_jsonl(path):
+            entries[entry["id"]] = entry
+    return entries
+
+
+def load_agent_results(prefix):
+    results = {}
+    for path in sorted(WEB_DIR.glob(f"{prefix}_*.jsonl")):
+        for result in read_jsonl(path):
+            results[str(result["id"])] = result
+    return results
+
+
+def check_result(result, lookup_entry):
+    link_status = {}
+    for field in LINK_FIELDS:
+        if result.get(field):
+            link_status[field] = check_link(result[field], lookup_entry)
+    return link_status
+
+
+def failure_reasons(result, link_status):
+    if result is None:
+        return ["no result returned"]
+    reasons = [f"{field} {status}: {result[field]}" for field, status in link_status.items() if status in LINK_FAILURES]
+    if not result.get("department") and not result.get("website"):
+        reasons.append("neither department nor website found")
+    return reasons
+
+
+def verify_results():
+    """Fetch every link in the agents' results; write checked.jsonl and, for the first pass, failures_NN.jsonl."""
+    lookup_entries = load_lookup_entries()
+    first_results = load_agent_results("results")
+    retry_results = load_agent_results("retry")
+    results = {**first_results, **retry_results}
+
+    known_ids = [nsf_id for nsf_id in results if nsf_id in lookup_entries]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=LINK_WORKER_COUNT) as executor:
+        statuses = list(executor.map(lambda nsf_id: check_result(results[nsf_id], lookup_entries[nsf_id]), known_ids))
+    link_status_by_id = dict(zip(known_ids, statuses))
+
+    checked, failures = [], []
+    for nsf_id, entry in lookup_entries.items():
+        result = results.get(nsf_id)
+        link_status = link_status_by_id.get(nsf_id, {})
+        reasons = failure_reasons(result, link_status)
+        if result is not None:
+            checked.append({**result, "id": nsf_id, "link_status": link_status, "retried": nsf_id in retry_results})
+        if reasons:
+            failures.append({**entry, "previous_result": result, "failure_reasons": reasons})
+    write_jsonl(CHECKED_PATH, checked)
+    # The second pass is the last one, so its failures are final and are not queued again.
+    if not retry_results:
+        for file_number in range(1, RETRY_FILE_COUNT + 1):
+            # Dealing in turn keeps the files within one person of each other in size.
+            write_jsonl(WEB_DIR / f"failures_{file_number:02d}.jsonl", failures[file_number - 1::RETRY_FILE_COUNT])
+
+    status_counts = {}
+    for link_status in link_status_by_id.values():
+        for field, status in link_status.items():
+            status_counts[(field, status)] = status_counts.get((field, status), 0) + 1
+    print(f"people in batch {len(lookup_entries)}, with a result {len(checked)}, retried {len(retry_results)}")
+    for (field, status), count in sorted(status_counts.items()):
+        print(f"  {field} {status}: {count}")
+    print(f"people with a failure: {len(failures)}")
+
+
+def merge_results():
+    """Copy fields whose link was verified into people.json.
+
+    A page that loads and names the person confirms the field. A page the site
+    blocked is kept at medium confidence. A dead page, or one without the
+    person's name, drops the field.
+    """
+    people = people_store.load_people()
+    accepted_counts = {"department": 0, "website": 0, "scholar": 0, "role": 0}
+    checked = read_jsonl(CHECKED_PATH)
+    for result in checked:
+        record = people[result["id"]]
+        link_status = result["link_status"]
+        record["web_checked"] = True
+        department_status = link_status.get("department_url")
+
+        if result.get("department") and department_status in (LINK_OK, LINK_BLOCKED):
+            record["department"], record["source"]["department"] = result["department"], "web"
+            accepted_counts["department"] += 1
+            if department_status == LINK_OK:
+                record["confidence"] = "high"
+            # The role was read from the same page as the department.
+            role_is_usable = result.get("role") in (roles.FACULTY, roles.NOT_FACULTY)
+            if role_is_usable and department_status == LINK_OK and record["source"].get("role") != "csrankings":
+                record["role"], record["source"]["role"] = result["role"], "web"
+                record["job_title"] = result.get("job_title") or record["job_title"]
+                accepted_counts["role"] += 1
+        for field in ("website", "scholar"):
+            if result.get(field) and not record[field] and link_status.get(field) in (LINK_OK, LINK_BLOCKED):
+                record[field], record["source"][field] = result[field], "web"
+                accepted_counts[field] += 1
+        if record["confidence"] is None and any(record[field] for field in ("department", "website", "scholar")):
+            record["confidence"] = "medium"
+    people_store.save_people(people)
+    still_unresolved = sum(1 for result in checked if is_unresolved(people[result["id"]]))
+    print(f"merged {len(checked)} people; fields accepted: {accepted_counts}")
+    print(f"resolved by this batch: {len(checked) - still_unresolved}, still unresolved: {still_unresolved}")
