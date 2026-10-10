@@ -51,7 +51,11 @@ otherwise returns namesake students. The role (`faculty`, `not faculty`,
 `unknown`) comes from the ORCID job title, or from CSRankings, which lists only
 faculty.
 
-A person is unresolved while the department or the website is missing.
+A person is unresolved while the website is missing, or the department is
+missing at an employer that has departments. Companies, museums and other
+employers whose staff write from addresses outside `.edu` have none, so their
+people need only a website. Batches list the people missing both fields first,
+then those missing the department, then those missing the website.
 `web-batch` writes `data/faculty/cache/web/lookup_NN.jsonl` for agents to
 research; they write `results_NN.jsonl` beside it. `web-verify` fetches each
 returned link and checks that the page names the person, and lists the people
@@ -72,12 +76,29 @@ a result, never a retyped link; `web-verify` and `web-merge` then run as
 before. Every search is kept in `data/faculty/cache/serper_results.jsonl`, so a
 person is paid for once.
 
+For people the first reading left unresolved, `web-batch 2000 again 300`
+followed by `uv run faculty/serper_search.py --results 8` shows the agents
+eight results of the search already paid for. `--site-search` adds a second
+search of the person's name limited to their institution's own site, which
+returns directory and profile pages where the first search returned news. A
+person whose website is known but whose department is not also gets the text
+of that website as a last result to read the department from.
+
 `free-without-orcid` builds records from CSRankings and the email address for
 people ORCID has not been asked about, for days when ORCID's quota is spent; a
 later `free` run asks ORCID about them and fills in what it knows.
 
-`web-merge` keeps a field only when its page loaded and named the person
-(`high`) or the site refused scripts (`medium`); Google Scholar always refuses.
+`web-verify` gives a link that a plain fetch fails on two more chances: the
+page is opened in a headless browser (`/usr/bin/helium-browser`), which shows
+names that a directory fills in with JavaScript, and failing that the saved
+Google result for that page is checked, which counts when it names the person
+and the page is on their institution's own site. `web-merge` keeps a field
+only when its page loaded and named the person (`high`), or the site refused
+scripts or only Google's result vouches for the page (`medium`); Google
+Scholar always refuses. A page that answers 404 or 410 is never kept.
+
+`uv run nsf_awards.py site` reads `data/faculty/people.json` and puts the
+department, website, Google Scholar link and role on each professor's row.
 
 ## Update reminder
 

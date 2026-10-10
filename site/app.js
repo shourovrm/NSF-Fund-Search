@@ -14,6 +14,8 @@
 
   const starIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>';
   const chevronIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>';
+  const websiteIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></g></svg>';
+  const scholarIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5L12 5l9.5 4.5L12 14z"/><path d="M6.5 11.8V16c1.6 1.4 3.4 2 5.5 2s3.9-.6 5.5-2v-4.2"/></g></svg>';
   const removeIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M7 7l10 10M17 7L7 17"/></svg>';
 
   // ---------------------------------------------------------------------------
@@ -197,15 +199,47 @@
     return `<details class="more-grants"><summary>${otherGrants.length} more grant${otherGrants.length > 1 ? "s" : ""}${chevronIcon}</summary><ul>${items}</ul></details>`;
   }
 
+  // People type their own titles; "assistant professor" and "Assistant Professor" should read alike.
+  function titleCase(jobTitle) {
+    return jobTitle.replace(/\b([a-z])([a-z]{3,})/g, (word, first, rest) => first.toUpperCase() + rest);
+  }
+
+  // Shown only for people who are not professors: they lead the grant but usually cannot be a PhD advisor.
+  function roleTag(pi) {
+    if (pi.role !== "not faculty") return "";
+    const label = pi.jobTitle ? `${titleCase(pi.jobTitle)} · not faculty` : "Not faculty";
+    return `<span class="role-tag">${escapeHtml(label)}</span>`;
+  }
+
+  // "Assistant Professor · Aerospace Engineering": who this person is, in one line.
+  function postLine(pi) {
+    const title = pi.role === "faculty" && pi.jobTitle ? titleCase(pi.jobTitle) : "";
+    // "Professor of Engineering" already names the department.
+    const titleNamesDepartment = pi.department && title.toLowerCase().includes(pi.department.toLowerCase());
+    const post = [title, titleNamesDepartment ? "" : pi.department].filter(Boolean).join(" · ");
+    return post ? `<div class="post">${escapeHtml(post)}</div>` : '<div class="post-unknown">Department not found</div>';
+  }
+
+  // A missing website is said in words, so the gap reads as "not found" rather than as an oversight.
+  function profileLinks(pi) {
+    const links = [];
+    if (pi.website) links.push(`<a class="link-button" href="${escapeHtml(pi.website)}" target="_blank" rel="noopener">${websiteIcon}Website</a>`);
+    if (pi.scholar) links.push(`<a class="link-button" href="${escapeHtml(pi.scholar)}" target="_blank" rel="noopener">${scholarIcon}Scholar</a>`);
+    if (!pi.website) links.push('<span class="link-missing">No website found</span>');
+    return `<div class="link-row">${links.join("")}</div>`;
+  }
+
   function renderRow(result) {
     const { pi, leadGrant: grant, otherGrants } = result;
     const starred = NSF.isShortlisted(pi.id);
     return `<tr>
       <td class="star-cell"><button class="star" type="button" data-star="${escapeHtml(pi.id)}" aria-pressed="${starred}" aria-label="${starred ? "Remove" : "Add"} ${escapeHtml(pi.name)} ${starred ? "from" : "to"} my list">${starIcon}</button></td>
       <td class="pi-cell">
-        <div class="name">${escapeHtml(pi.name)}</div>
+        <div class="name-line"><span class="name">${escapeHtml(pi.name)}</span>${roleTag(pi)}</div>
+        ${postLine(pi)}
         <div class="inst">${escapeHtml(pi.institution)}${pi.state ? ", " + pi.state : ""}</div>
         ${pi.email ? `<a class="email" href="mailto:${escapeHtml(pi.email)}">${escapeHtml(pi.email)}</a>` : ""}
+        ${profileLinks(pi)}
         <div class="pi-start">${startLabel(grant.start)}</div>
       </td>
       <td>

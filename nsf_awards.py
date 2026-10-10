@@ -33,6 +33,8 @@ PROJECT_DIR = Path(__file__).parent
 RAW_DIR = nsf_remote.RAW_DIR
 OUTPUT_DIR = PROJECT_DIR / "data" / "output"
 SITE_DIR = PROJECT_DIR / "site"
+# Department, website, Google Scholar link and role per investigator, written by faculty/enrich.py.
+FACULTY_PEOPLE_PATH = PROJECT_DIR / "data" / "faculty" / "people.json"
 
 # `update` fetches only the changed awards when they are a small part of the
 # year's zip. Each award costs one network round trip (about a second), and a
@@ -383,8 +385,33 @@ def analyze(rows=None):
 SITE_REASONS_PER_TOPIC = 3
 
 
+def load_faculty_by_email():
+    """Return {lower-case email: faculty record}; empty when the faculty lookup has not been run."""
+    if not FACULTY_PEOPLE_PATH.exists():
+        return {}
+    people = json.loads(FACULTY_PEOPLE_PATH.read_text())
+    return {person["email"].lower(): person for person in people.values() if person["email"]}
+
+
+def faculty_details(person):
+    """Return the faculty fields the website shows, leaving out whatever is not known."""
+    details = {}
+    if person["department"]:
+        details["department"] = person["department"]
+    for field in ("website", "scholar"):
+        # The links came from the web; anything that is not a web address must not become a link on the page.
+        if person[field] and person[field].startswith(("http://", "https://")):
+            details[field] = person[field]
+    if person["role"] != "unknown":
+        details["role"] = person["role"]
+        if person["job_title"]:
+            details["jobTitle"] = person["job_title"]
+    return details
+
+
 def build_site_records(rows):
     """Group award rows under their lead PI in the compact shape the website reads."""
+    faculty_by_email = load_faculty_by_email()
     records_by_pi = {}
     for row in rows:
         key = row["pi_email"].lower() or row["pi_name"]
@@ -394,6 +421,8 @@ def build_site_records(rows):
                 "institution": row["institution"], "state": row["state"],
                 "grants": [],
             }
+            if row["pi_email"].lower() in faculty_by_email:
+                records_by_pi[key].update(faculty_details(faculty_by_email[row["pi_email"].lower()]))
         full_title = row["title"] or ""
         grant = {
             "id": row["award_id"],

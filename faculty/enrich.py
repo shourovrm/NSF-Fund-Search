@@ -52,9 +52,14 @@ def print_coverage():
         ("confidence", collections.Counter(record["confidence"] or "none" for record in people.values())),
     ):
         print(f"{label}: " + ", ".join(f"{value} {share(count)}" for value, count in counter.most_common()))
+    without_departments_count = sum(1 for record in people.values() if not web_lookup.department_applies(record))
+    print(f"at employers without departments (email outside .edu): {share(without_departments_count)}")
     resolved_count = sum(1 for record in people.values() if not web_lookup.is_unresolved(record))
-    print(f"department and website both known: {share(resolved_count)}")
-    print(f"unresolved (department or website missing): {share(total - resolved_count)}")
+    print(f"resolved (website known, and department where one applies): {share(resolved_count)}")
+    unresolved = [record for record in people.values() if web_lookup.is_unresolved(record)]
+    missing_labels = ("department and website", "department only", "website only")
+    by_missing_field = collections.Counter(missing_labels[web_lookup.missing_field_rank(record)] for record in unresolved)
+    print(f"unresolved: {share(len(unresolved))}  missing: {dict(by_missing_field.most_common())}")
 
 
 def write_web_batch():

@@ -10,7 +10,11 @@ import concurrent.futures
 import json
 import random
 import re
+import subprocess
+import tempfile
+import threading
 import urllib.error
+import urllib.parse
 import urllib.request
 
 import names
@@ -47,15 +51,60 @@ BLOCKED_STATUS_CODES = {401, 403, 406, 429, 503, 999}
 # Google Scholar and sites behind Cloudflare answer 200 with a robot check instead of the page.
 ROBOT_WALL_PATTERN = re.compile(r"not a robot|captcha|just a moment\.\.\.|access denied|enable javascript", re.IGNORECASE)
 
+# The page is gone for good; no second opinion can bring it back.
+GONE_STATUS_CODES = {404, 410}
+
+# Directory pages that fill the name in with JavaScript, and sites that reject a script with an
+# ordinary-looking page, show the name only in a real browser.
+BROWSER_PATH = "/usr/bin/helium-browser"
+BROWSER_TIMEOUT_SECONDS = 45
+# How long the page's own scripts may run, in the browser's virtual time.
+BROWSER_SCRIPT_BUDGET_MILLISECONDS = 8000
+# Each rendering starts a whole browser, so only a few run at once.
+BROWSER_SLOTS = threading.Semaphore(4)
+
 LINK_OK = "ok"
 LINK_BLOCKED = "blocked"
+# Neither a fetch nor a browser saw the name, but Google's result for this page, on the person's own
+# institution's site, names the person.
+LINK_NAMED_BY_SEARCH = "named_by_search"
 LINK_DEAD = "dead"
 LINK_WITHOUT_NAME = "no_name"
 LINK_FAILURES = {LINK_DEAD, LINK_WITHOUT_NAME}
+# A field is kept at these statuses; only LINK_OK earns high confidence.
+LINK_ACCEPTED = {LINK_OK, LINK_BLOCKED, LINK_NAMED_BY_SEARCH}
+
+
+def department_applies(record):
+    """False for companies, museums and other employers without academic departments.
+
+    Their staff write from addresses outside .edu. Research institutes with
+    departments of their own, such as Woods Hole, use .edu addresses.
+    """
+    return record["email"].lower().endswith(".edu")
 
 
 def is_unresolved(record):
-    return not record["department"] or not record["website"]
+    if not record["website"]:
+        return True
+    return department_applies(record) and not record["department"]
+
+
+def host_of(url):
+    return (urllib.parse.urlparse(url).hostname or "").lower()
+
+
+def missing_field_rank(record):
+    """Order people by what a lookup can add: both fields missing first, then the department, then the website."""
+    department_missing = department_applies(record) and not record["department"]
+    if department_missing and not record["website"]:
+        return 0
+    return 1 if department_missing else 2
+
+
+def registered_email_domain(lookup_entry):
+    """Return the institution's domain from the person's email: cs.cmu.edu gives cmu.edu."""
+    return ".".join(lookup_entry["email"].split("@")[-1].lower().split(".")[-2:])
 
 
 def read_jsonl(path):
@@ -104,11 +153,12 @@ def write_batch(investigators, batch_size, looked_up_before, people_per_file=DEF
                 "known_website": record["website"],
                 "known_scholar": record["scholar"],
             })
-    # One university's people stay next to each other, so an agent reads each department site once.
-    batch.sort(key=lambda entry: (entry["institution"], entry["name"]))
+    # People missing the most come first, so the first files matter most if a run is cut short. Within
+    # that, one university's people stay next to each other, so an agent reads each department site once.
+    batch.sort(key=lambda entry: (missing_field_rank(people[entry["id"]]), entry["institution"], entry["name"]))
 
     WEB_DIR.mkdir(parents=True, exist_ok=True)
-    for old_file in WEB_DIR.glob("*.jsonl"):
+    for old_file in list(WEB_DIR.glob("*.jsonl")) + list(WEB_DIR.glob("read_*.txt")):
         old_file.unlink()
     file_count = 0
     for start in range(0, len(batch), people_per_file):
@@ -139,8 +189,46 @@ def page_names_person(page_text, lookup_entry):
     return bool(re.search(given_pattern, folded_text))
 
 
+def rendered_page_text(url):
+    """Return the page as a real browser shows it after its scripts ran, or '' when the browser fails."""
+    # A profile of its own for each run: browsers sharing one profile hand the page to whichever started
+    # first and print nothing, and the user's own open browser must not be handed it either.
+    # The browser's helper processes can still be writing when it is stopped at the timeout.
+    profile = tempfile.TemporaryDirectory(prefix="faculty_browser_", ignore_cleanup_errors=True)
+    with BROWSER_SLOTS, profile as profile_dir:
+        command = [
+            BROWSER_PATH, "--headless", "--disable-gpu", f"--user-data-dir={profile_dir}",
+            f"--virtual-time-budget={BROWSER_SCRIPT_BUDGET_MILLISECONDS}", "--dump-dom", url,
+        ]
+        try:
+            completed = subprocess.run(command, capture_output=True, timeout=BROWSER_TIMEOUT_SECONDS)
+        except (OSError, subprocess.TimeoutExpired):
+            return ""
+    return completed.stdout.decode("utf-8", errors="ignore")
+
+
+def search_names_person(url, lookup_entry):
+    """True when the saved Google result for this page names the person and the page is on their institution's site."""
+    if not host_of(url).endswith(registered_email_domain(lookup_entry)):
+        return False
+    for search_result in lookup_entry.get("search_results") or []:
+        if search_result["link"] == url:
+            result_text = search_result["title"] + " " + search_result["snippet"]
+            return page_names_person(result_text, {**lookup_entry, "email": ""})
+    return False
+
+
+def second_opinion(url, lookup_entry, fetch_status):
+    """Recheck a link that a plain fetch failed on: first in a browser, then against Google's result."""
+    if page_names_person(rendered_page_text(url), lookup_entry):
+        return LINK_OK
+    if search_names_person(url, lookup_entry):
+        return LINK_NAMED_BY_SEARCH
+    return fetch_status
+
+
 def check_link(url, lookup_entry):
-    """Fetch the page and return LINK_OK, LINK_BLOCKED, LINK_DEAD or LINK_WITHOUT_NAME."""
+    """Fetch the page and return LINK_OK, LINK_BLOCKED, LINK_NAMED_BY_SEARCH, LINK_DEAD or LINK_WITHOUT_NAME."""
     if not re.match(r"https?://", url):
         return LINK_DEAD
     request = urllib.request.Request(url, headers=BROWSER_HEADERS)
@@ -148,12 +236,18 @@ def check_link(url, lookup_entry):
         with urllib.request.urlopen(request, timeout=LINK_TIMEOUT_SECONDS) as response:
             page_text = response.read(LINK_READ_BYTES).decode("utf-8", errors="ignore")
     except urllib.error.HTTPError as error:
-        return LINK_BLOCKED if error.code in BLOCKED_STATUS_CODES else LINK_DEAD
+        if error.code in BLOCKED_STATUS_CODES:
+            return LINK_BLOCKED
+        if error.code in GONE_STATUS_CODES:
+            return LINK_DEAD
+        return second_opinion(url, lookup_entry, LINK_DEAD)
     except (urllib.error.URLError, TimeoutError, ConnectionError, ValueError, OSError):
-        return LINK_DEAD
+        return second_opinion(url, lookup_entry, LINK_DEAD)
     if page_names_person(page_text, lookup_entry):
         return LINK_OK
-    return LINK_BLOCKED if ROBOT_WALL_PATTERN.search(page_text) else LINK_WITHOUT_NAME
+    if ROBOT_WALL_PATTERN.search(page_text):
+        return LINK_BLOCKED
+    return second_opinion(url, lookup_entry, LINK_WITHOUT_NAME)
 
 
 def load_lookup_entries():
@@ -254,8 +348,8 @@ def merge_results():
     """Copy fields whose link was verified into people.json.
 
     A page that loads and names the person confirms the field. A page the site
-    blocked is kept at medium confidence. A dead page, or one without the
-    person's name, drops the field.
+    blocked, or one only Google's result vouches for, is kept at medium
+    confidence. A dead page, or one without the person's name, drops the field.
     """
     people = people_store.load_people()
     accepted_counts = {"department": 0, "website": 0, "scholar": 0, "role": 0}
@@ -266,23 +360,24 @@ def merge_results():
         record["web_checked"] = True
         department_status = link_status.get("department_url")
 
-        if result.get("department") and department_status in (LINK_OK, LINK_BLOCKED):
+        if result.get("department") and department_status in LINK_ACCEPTED:
             record["department"], record["source"]["department"] = result["department"], "web"
             accepted_counts["department"] += 1
             if department_status == LINK_OK:
                 record["confidence"] = "high"
-            # The role was read from the same page as the department. Where the title itself settles
-            # the role, the title rule decides, so that every agent treats "Dean" or "Chair" alike.
-            role = roles.role_from_job_title(result.get("job_title") or "")
-            if role == roles.UNKNOWN:
-                role = result.get("role")
-            role_is_usable = role in (roles.FACULTY, roles.NOT_FACULTY)
-            if role_is_usable and department_status == LINK_OK and record["source"].get("role") != "csrankings":
-                record["role"], record["source"]["role"] = role, "web"
-                record["job_title"] = result.get("job_title") or record["job_title"]
-                accepted_counts["role"] += 1
+        # The role was read from the department page, so it needs that page confirmed, but not a new
+        # department: an agent leaves the department blank when it is already on record. Where the title
+        # itself settles the role, the title rule decides, so that every agent treats "Dean" or "Chair" alike.
+        role = roles.role_from_job_title(result.get("job_title") or "")
+        if role == roles.UNKNOWN:
+            role = result.get("role")
+        role_is_usable = role in (roles.FACULTY, roles.NOT_FACULTY)
+        if role_is_usable and department_status == LINK_OK and record["source"].get("role") != "csrankings":
+            record["role"], record["source"]["role"] = role, "web"
+            record["job_title"] = result.get("job_title") or record["job_title"]
+            accepted_counts["role"] += 1
         for field in ("website", "scholar"):
-            if result.get(field) and not record[field] and link_status.get(field) in (LINK_OK, LINK_BLOCKED):
+            if result.get(field) and not record[field] and link_status.get(field) in LINK_ACCEPTED:
                 record[field], record["source"][field] = result[field], "web"
                 accepted_counts[field] += 1
         if record["confidence"] is None and any(record[field] for field in ("department", "website", "scholar")):

@@ -345,7 +345,7 @@ Corners come in four fixed steps: 8px for controls (buttons, inputs, selects, dr
 - **Sortable headers:** column-header buttons inherit the uppercase label style; hover shifts them to full ink; the active sort turns blue with a direction caret and sets `aria-sort`.
 
 ### Professor Row (signature)
-Star toggle, then professor (name, institution, email, and "Grant started/starts Mon YYYY" for the lead grant), then the lead grant (blue linked title, pill row, a PhD caveat line only for "PhD: unlikely", and a "N more grants" disclosure with a left-ruled list), then Ends, Months left and Funding as right-aligned figures. The star toggle is a 40px outlined square in faint ink; pressed, it fills with amber wash, amber border and amber star.
+Star toggle, then professor (name, with an outlined "Title · not faculty" tag beside it for people who are not professors; a "Job title · Department" line; institution; email; outlined 32px Website and Scholar link buttons in accent ink with a globe and a mortarboard icon; and "Grant started/starts Mon YYYY" for the lead grant; a department or website that was not found is said in faint ink), then the lead grant (blue linked title, pill row, a PhD caveat line only for "PhD: unlikely", and a "N more grants" disclosure with a left-ruled list), then Ends, Months left and Funding as right-aligned figures. The star toggle is a 40px outlined square in faint ink; pressed, it fills with amber wash, amber border and amber star.
 
 ### My list Dialog
 Native modal `dialog`, 480px max, 12px corners, hairline-separated head with an icon close button, and a stacked column of full-width buttons (one primary) with a status line in green (success) or red (error).

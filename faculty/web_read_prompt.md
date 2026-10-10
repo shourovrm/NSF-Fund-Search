@@ -7,6 +7,8 @@ Each person is a block:
     1. <link> | <page title> | <snippet>
     2. ...
 NSF institution names can be legal wrappers (for example "Georgia Tech Research Corporation" is Georgia Tech).
+The heading may end with "department on record: <name>"; that department is already known, so you only need the page and the website.
+A result whose title starts with "WEBSITE ON RECORD" is the person's own website, already known, followed by text taken from that page. If that text states their department, use it and give that result's number as department_result.
 
 For each person write one JSON object on one line, with exactly these keys:
 {"id": "<id copied exactly, as a string>", "department": "<department or school name without 'Department of', or null>", "department_result": <number or null>, "website_result": <number or null>, "job_title": "<title as written in a result, or null>", "role": "faculty" | "not faculty" | "unknown"}
