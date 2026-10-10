@@ -100,8 +100,7 @@
     const years = NSF.meta.sourceYears;
     const yearRange = years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : years[0];
     byId("app-sub").textContent = `NSF awards ${yearRange}, updated at ${NSF.formatShortDate(NSF.meta.generated)}`;
-    byId("coverage-note").textContent =
-      `Covers grants NSF awarded in ${yearRange}. Older grants that still run past 2027 are not included yet.`;
+    byId("coverage-note").textContent = `Covers grants NSF awarded in ${yearRange}.`;
     byId("source-note").textContent =
       `Source: NSF award files for awards made in ${years.join(" and ")}, updated ${NSF.formatDate(NSF.meta.generated)}. ` +
       "Excludes conferences, workshops, SBIR/STTR, I-Corps, fellowships, planning grants, REU sites and undergraduate education grants. " +
