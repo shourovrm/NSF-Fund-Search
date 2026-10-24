@@ -4,7 +4,8 @@
   "description": "Search NSF-funded professors with grants active in Fall 2027",
   "scripts": {
     "dev": "wrangler pages dev",
-    "deploy": "wrangler pages deploy"
+    "deploy": "wrangler pages deploy",
+    "test": "node --test tests/"
   },
   "devDependencies": {
     "wrangler": "4.138.0"
