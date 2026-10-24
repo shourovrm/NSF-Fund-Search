@@ -142,6 +142,7 @@ the list under a SHA-256 fingerprint of a passphrase the user picks, through
 ```sh
 npm install        # installs the pinned wrangler
 npm run dev        # site + sync API on http://localhost:8788 (local KV)
+npm test           # design token and copy gate (docs/design-system.md, docs/copy.md)
 npm run deploy     # publish site/ and functions/ to Cloudflare Pages
 ```
 
