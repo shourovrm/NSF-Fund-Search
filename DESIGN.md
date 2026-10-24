@@ -202,6 +202,8 @@ components:
     width: "min(480px, calc(100vw - 32px))"
 ---
 
+> Superseded on 2026-10-25 by `docs/design-system.md` (Shopify Polaris, Inter). Where the two disagree, that file wins; this one records the earlier Libre Franklin look.
+
 # Design System: NSF Professor Finder
 
 ## Overview

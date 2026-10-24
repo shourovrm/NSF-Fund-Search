@@ -1,16 +1,9 @@
-/* Self-hosted so the site renders identically offline. Libre Franklin is a
-   Franklin Gothic revival, the news-sans family CNN-style layouts are built on. */
+/* Self-hosted so the site renders identically offline. Inter is licensed under the SIL OFL 1.1.
+   The variable file covers every weight, including the 450, 550 and 650 steps the design uses. */
 @font-face {
-  font-family: "Libre Franklin";
-  src: url("LibreFranklin.woff2") format("woff2");
-  font-weight: 300 900;
+  font-family: "Inter";
+  src: url("InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Libre Franklin";
-  src: url("LibreFranklin-Italic.woff2") format("woff2");
-  font-weight: 300 900;
-  font-style: italic;
   font-display: swap;
 }

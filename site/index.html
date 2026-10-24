@@ -7,47 +7,40 @@
 <meta name="description" content="Search professors whose NSF grants are still running in August 2027, by topic, field, grant type and location.">
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="multi-select.css">
 <script>
   // Applied before first paint so a saved dark theme never flashes white.
   try { if (localStorage.getItem("nsf-theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (error) {}
 </script>
 </head>
 <body>
-<!--
-THESIS: The category standard: sidebar filters and a sortable table, executed cleanly; chosen by the user over two own-world directions.
-OWN-WORLD: Grey app ground, white rounded panels, one blue accent, pills for topics and grant types, amber saved stars; Libre Franklin throughout; a re-tuned dark theme on request.
-STORY: Narrow roughly 9,000 funded professors by topic, field, grant type and place; star the ones to email; export the list.
-FIRST VIEWPORT: Header with search, My list and theme buttons; filter panel at left; result count, active-filter chips and the table.
-FORM: Canon card, seed 1a7e87c5.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
--->
 <header class="app-header">
-  <div class="app-header-inner">
-    <div>
-      <h1 class="app-title">NSF Professor Finder</h1>
-      <p class="app-sub" id="app-sub">NSF grants active on Aug 15, 2027</p>
-    </div>
-    <label class="header-search">
-      <span class="visually-hidden">Search</span>
-      <input id="search" type="search" placeholder="Search name, university or grant" autocomplete="off">
-    </label>
-    <div class="header-actions">
-      <button class="icon-button" id="open-list" type="button" aria-haspopup="dialog">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>
-        <span class="button-label">My list</span>
-        <span class="count-badge" id="list-count">0</span>
-      </button>
-      <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
-        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
-        <span class="button-label" id="theme-toggle-label">Dark mode</span>
-      </button>
-    </div>
+  <div class="brand">
+    <h1 class="app-title">NSF Professor Finder</h1>
+    <p class="app-sub" id="app-sub">Grants active on Aug 15, 2027</p>
+  </div>
+  <label class="header-search">
+    <span class="visually-hidden">Search</span>
+    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8.5 14a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM12.5 12.5L17 17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <input id="search" type="search" placeholder="Search name, university or grant" autocomplete="off">
+  </label>
+  <div class="header-actions">
+    <button class="button button-dark" id="open-list" type="button" aria-haspopup="dialog">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L2.8 7.9l5-.7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span class="button-label">My list</span>
+      <span class="count-badge" id="list-count">0</span>
+    </button>
+    <button class="button button-dark theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+      <svg class="icon-moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16 11.5A6.5 6.5 0 018.5 4 6.5 6.5 0 1016 11.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
+      <span class="button-label" id="theme-toggle-label">Dark mode</span>
+    </button>
   </div>
 </header>
 
 <div class="shell">
-  <aside class="filters" id="filters" data-open="false" aria-label="Filters">
+  <aside class="filters card" id="filters" data-open="false" aria-label="Filters">
+    <h2 class="panel-title">Filters</h2>
     <button class="button filters-toggle" id="filters-toggle" type="button" aria-expanded="false" aria-controls="filters-body">
       Filters <span id="filters-toggle-count"></span>
     </button>
@@ -86,47 +79,63 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <div id="ms-departments"></div>
         <p class="field-hint" id="department-hint"></p>
       </div>
-      <div class="filter-field">
-        <label class="field-label" for="min-months">Months left at Aug 15, 2027</label>
-        <select class="select" id="min-months">
-          <option value="0">Any</option><option value="12">12 or more</option><option value="24">24 or more</option><option value="36">36 or more</option>
-        </select>
+      <div class="filter-field" role="group" aria-labelledby="starts-from-label">
+        <span class="field-label" id="starts-from-label">Starts from</span>
+        <div class="select-pair">
+          <select class="select" id="starts-month" aria-label="Start month">
+            <option value="">Any month</option>
+            <option value="01">Jan</option><option value="02">Feb</option><option value="03">Mar</option>
+            <option value="04">Apr</option><option value="05">May</option><option value="06">Jun</option>
+            <option value="07">Jul</option><option value="08">Aug</option><option value="09">Sep</option>
+            <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+          </select>
+          <select class="select" id="starts-year" aria-label="Start year">
+            <option value="">Any year</option>
+          </select>
+        </div>
       </div>
       <div class="filter-field">
-        <label class="field-label" for="min-amount">Funding (matching grants)</label>
+        <span class="field-label" id="min-months-label">Funding left</span>
+        <div class="segmented" id="min-months" role="radiogroup" aria-labelledby="min-months-label">
+          <label class="segment"><input type="radio" name="min-months" value="0" checked><span>Any</span></label>
+          <label class="segment"><input type="radio" name="min-months" value="12"><span>12+<span class="visually-hidden"> months</span></span></label>
+          <label class="segment"><input type="radio" name="min-months" value="24"><span>24+<span class="visually-hidden"> months</span></span></label>
+          <label class="segment"><input type="radio" name="min-months" value="36"><span>36+<span class="visually-hidden"> months</span></span></label>
+        </div>
+      </div>
+      <div class="filter-field">
+        <label class="field-label" for="min-amount">Total funding</label>
         <select class="select" id="min-amount">
           <option value="0">Any amount</option><option value="300000">$300K or more</option><option value="600000">$600K or more</option><option value="1000000">$1M or more</option>
         </select>
       </div>
       <div class="filter-field">
-        <span class="field-label">Show</span>
+        <span class="field-label">More options</span>
         <div id="ms-show"></div>
       </div>
-      <div class="filters-actions">
-        <button class="button" id="reset" type="button">Reset all filters</button>
-      </div>
+      <button class="button button-full" id="reset" type="button">Clear filters</button>
     </div>
   </aside>
 
   <main>
-    <div class="table-card">
+    <div class="table-card card">
       <div class="table-top">
-        <span id="count" aria-live="polite"></span>
-        <label><span class="visually-hidden">Sort by</span>
+        <h2 class="panel-title" id="count" aria-live="polite"></h2>
+        <div class="sort-control">
+          <label class="field-label" for="sort">Sort by</label>
           <select class="select" id="sort">
-            <option value="runway">Sort: months left</option>
-            <option value="newest">Sort: newest grant</option>
-            <option value="amount">Sort: funding</option>
-            <option value="name">Sort: name</option>
-            <option value="institution">Sort: university</option>
+            <option value="runway">Most months left</option>
+            <option value="newest">Newest grant</option>
+            <option value="amount">Most funding</option>
+            <option value="name">Name</option>
+            <option value="institution">University</option>
           </select>
-        </label>
+        </div>
       </div>
-      <p class="coverage-note" id="coverage-note"></p>
       <div class="active-filters" id="active-filters" aria-label="Active filters"></div>
       <table>
         <thead><tr>
-          <th><span class="visually-hidden">Saved</span></th>
+          <th><span class="visually-hidden">My list</span></th>
           <th data-sort-key="name"><button class="sort-header" type="button" data-sort="name">Professor</button></th>
           <th data-sort-key="newest"><button class="sort-header" type="button" data-sort="newest">Lead grant</button></th>
           <th class="num">Ends</th>

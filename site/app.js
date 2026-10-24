@@ -12,10 +12,11 @@
   const byId = (id) => document.getElementById(id);
   const escapeHtml = NSF.escapeHtml;
 
-  const starIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>';
+  // Outlined; the stylesheet fills the path when the star is pressed.
+  const starIcon = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L2.8 7.9l5-.7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>';
   const chevronIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 9l6 6 6-6"/></svg>';
-  const websiteIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></g></svg>';
-  const removeIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M7 7l10 10M17 7L7 17"/></svg>';
+  const removeIcon = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+  const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   // ---------------------------------------------------------------------------
   // Filter dropdowns
@@ -28,7 +29,7 @@
     unlikely: "Rarely fund international PhD students",
   };
 
-  // "Show" options are independent on/off switches in the filter state.
+  // "More options" are independent on/off switches in the filter state.
   const SHOW_OPTIONS = {
     strongOnly: "Strong topic match only",
     shortlistOnly: "My list only",
@@ -62,8 +63,8 @@
     institutions: setBackedDropdown("ms-institutions", "University", "Any university", "institutions", { searchable: true, afterChange: renderDepartmentOptions }),
     departments: setBackedDropdown("ms-departments", "Department", "Any department", "departments", { searchable: true }),
     show: createMultiSelect(byId("ms-show"), {
-      name: "Show",
-      placeholder: "Default view",
+      name: "More options",
+      placeholder: "None",
       getSelected: () => new Set(Object.keys(SHOW_OPTIONS).filter((key) => filters[key])),
       onChange: (key, isChecked) => { filters[key] = isChecked; refresh(); },
       onClear: () => { for (const key of Object.keys(SHOW_OPTIONS)) filters[key] = false; refresh(); },
@@ -123,20 +124,37 @@
 
     const years = NSF.meta.sourceYears;
     const yearRange = years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : years[0];
-    byId("app-sub").textContent = `NSF awards ${yearRange}, updated at ${NSF.formatShortDate(NSF.meta.generated)}`;
-    byId("coverage-note").textContent = `Covers grants NSF awarded in ${yearRange}.`;
+    const updatedOn = formatFullDate(NSF.meta.generated);
+    byId("app-sub").textContent = `Grants active on ${formatFullDate(NSF.meta.fallStart)} · updated ${updatedOn}`;
     byId("source-note").textContent =
-      `Source: NSF award files for awards made in ${years.join(" and ")}, updated ${NSF.formatDate(NSF.meta.generated)}. ` +
+      `Source: NSF grant files for NSF fiscal years ${yearRange}, updated ${updatedOn}. ` +
       "Excludes conferences, workshops, SBIR/STTR, I-Corps, fellowships, planning grants, REU sites and undergraduate education grants. " +
       "“Strong match” means the grant title or NSF program names the topic; other matches come from abstract words. " +
-      "Centers and undergraduate colleges are hidden unless you include them under “Show”.";
+      "Centers and undergraduate colleges are hidden unless you include them under “More options”.";
+  }
+
+  // "Aug 15, 2027". Parsed and formatted in UTC so the day cannot shift with the browser's timezone.
+  function formatFullDate(isoDate) {
+    return new Date(isoDate + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+  }
+
+  function renderStartYearOptions() {
+    const yearSelect = byId("starts-year");
+    for (const year of NSF.startYears) yearSelect.add(new Option(String(year), String(year)));
   }
 
   // Controls mirror `filters`, so reset and chip removal only need to call this.
   function syncControlsFromFilters() {
     for (const dropdown of Object.values(dropdowns)) dropdown.sync();
     byId("phd-level").value = filters.phdLevel;
-    byId("min-months").value = String(filters.minMonths);
+    byId("min-months").querySelector(`input[value="${filters.minMonths}"]`).checked = true;
+    // A year alone is stored as January of that year, so the month select keeps what the user picked.
+    if (!filters.startsFrom) {
+      byId("starts-month").value = "";
+      byId("starts-year").value = "";
+    } else {
+      byId("starts-year").value = filters.startsFrom.slice(0, 4);
+    }
     byId("min-amount").value = String(filters.minAmount);
     byId("search").value = filters.query;
   }
@@ -144,6 +162,12 @@
   // ---------------------------------------------------------------------------
   // Active filter chips
   // ---------------------------------------------------------------------------
+
+  function startsFromChipLabel() {
+    const year = filters.startsFrom.slice(0, 4);
+    const monthNumber = Number(byId("starts-month").value);
+    return monthNumber ? `Starts ${MONTH_NAMES[monthNumber - 1]} ${year} or later` : `Starts ${year} or later`;
+  }
 
   function activeFilterList() {
     const chips = [];
@@ -158,6 +182,7 @@
     for (const state of filters.states) chips.push({ label: NSF.stateLabel(state), remove: () => { filters.states.delete(state); onStatesChanged(); } });
     for (const institution of filters.institutions) chips.push({ label: institution, remove: () => filters.institutions.delete(institution) });
     for (const key of filters.departments) chips.push({ label: departmentLabels.get(key) || key, remove: () => filters.departments.delete(key) });
+    if (filters.startsFrom) chips.push({ label: startsFromChipLabel(), remove: () => { filters.startsFrom = ""; } });
     if (filters.minMonths) chips.push({ label: `${filters.minMonths}+ months left`, remove: () => { filters.minMonths = 0; } });
     if (filters.minAmount) chips.push({ label: `${NSF.formatMoney(filters.minAmount)}+ funding`, remove: () => { filters.minAmount = 0; } });
     if (filters.strongOnly) chips.push({ label: "Strong match", remove: () => { filters.strongOnly = false; } });
@@ -175,7 +200,7 @@
       ? currentChips.map((chip, index) => `<button class="filter-chip" type="button" data-chip="${index}" aria-label="Remove filter ${escapeHtml(chip.label)}">${escapeHtml(chip.label)}${removeIcon}</button>`).join("") +
         '<button class="clear-all" type="button" id="clear-all">Clear all</button>'
       : "";
-    byId("filters-toggle-count").textContent = currentChips.length ? `(${currentChips.length} on)` : "";
+    byId("filters-toggle-count").textContent = currentChips.length ? `(${currentChips.length})` : "";
   }
 
   // ---------------------------------------------------------------------------
@@ -184,7 +209,7 @@
 
   function startLabel(startDate) {
     const hasStarted = new Date(startDate + "T00:00:00") <= new Date();
-    return `Grant ${hasStarted ? "started" : "starts"} ${NSF.formatDate(startDate)}`;
+    return `${hasStarted ? "Started" : "Starts"} ${NSF.formatDate(startDate)}`;
   }
 
   // Most grants usually fund PhD students, so only the exceptions carry a pill.
@@ -207,12 +232,13 @@
       ? '<span class="pill career">CAREER</span>'
       : grant.type === "standard" ? "" : `<span class="pill">${escapeHtml(NSF.GRANT_TYPE_LABELS[grant.type])}</span>`;
     const collabPill = grant.collab ? '<span class="pill">Collaborative</span>' : "";
-    // Selected topics first, so the pill that explains the match is always visible.
-    const topicKeys = [...grant.topicKeys].sort((a, b) => filters.topics.has(b) - filters.topics.has(a));
-    const topicPills = topicKeys.slice(0, TOPIC_PILLS_SHOWN)
-      .map((key) => `<span class="pill topic${key === NSF.OTHER_TOPIC ? " other" : ""}">${escapeHtml(NSF.TOPIC_LABELS[key])}</span>`);
-    const hiddenTopicCount = topicKeys.length - TOPIC_PILLS_SHOWN;
-    if (hiddenTopicCount > 0) topicPills.push(`<span class="pill">+${hiddenTopicCount} topic${hiddenTopicCount > 1 ? "s" : ""}</span>`);
+    // "Other topics" says nothing about the grant, so it never becomes a pill.
+    // Selected topics go first, so the pill that explains the match is always visible.
+    const namedTopicKeys = grant.topicKeys
+      .filter((key) => key !== NSF.OTHER_TOPIC)
+      .sort((a, b) => filters.topics.has(b) - filters.topics.has(a));
+    const topicPills = namedTopicKeys.slice(0, TOPIC_PILLS_SHOWN)
+      .map((key) => `<span class="pill topic">${escapeHtml(NSF.TOPIC_LABELS[key])}</span>`);
     return phdPill(grant) + typePill + collabPill + topicPills.join("");
   }
 
@@ -242,15 +268,17 @@
     // "Professor of Engineering" already names the department.
     const titleNamesDepartment = pi.department && title.toLowerCase().includes(pi.department.toLowerCase());
     const post = [title, titleNamesDepartment ? "" : pi.department].filter(Boolean).join(" · ");
-    return post ? `<div class="post">${escapeHtml(post)}</div>` : '<div class="post-unknown">Department not found</div>';
+    return post ? `<div class="post">${escapeHtml(post)}</div>` : '<div class="post">Department unknown</div>';
   }
 
-  // A missing website is said in words, so the gap reads as "not found" rather than as an oversight.
-  function profileLinks(pi) {
-    const link = pi.website
-      ? `<a class="link-button" href="${escapeHtml(pi.website)}" target="_blank" rel="noopener">${websiteIcon}Website</a>`
-      : '<span class="link-missing">No website found</span>';
-    return `<div class="link-row">${link}</div>`;
+  // Email and website share one line. A missing website is said in words, so the gap reads as
+  // "not found" rather than as an oversight.
+  function contactLine(pi) {
+    const email = pi.email ? `<a href="mailto:${escapeHtml(pi.email)}">${escapeHtml(pi.email)}</a>` : "";
+    const website = pi.website
+      ? `<a href="${escapeHtml(pi.website)}" target="_blank" rel="noopener">Website</a>`
+      : '<span class="contact-missing">No website found</span>';
+    return `<div class="contact">${email}${email ? '<span aria-hidden="true">·</span>' : ""}${website}</div>`;
   }
 
   function renderRow(result) {
@@ -262,18 +290,17 @@
         <div class="name-line"><span class="name">${escapeHtml(pi.name)}</span>${roleTag(pi)}</div>
         ${postLine(pi)}
         <div class="inst">${escapeHtml(pi.institution)}${pi.state ? ", " + pi.state : ""}</div>
-        ${pi.email ? `<a class="email" href="mailto:${escapeHtml(pi.email)}">${escapeHtml(pi.email)}</a>` : ""}
-        ${profileLinks(pi)}
-        <div class="pi-start">${startLabel(grant.start)}</div>
+        ${contactLine(pi)}
       </td>
-      <td>
+      <td class="grant-cell">
         <a class="grant-title" href="${NSF.awardUrl(grant.id)}" target="_blank" rel="noopener">${escapeHtml(grant.title)}</a>
+        <div class="meta">${startLabel(grant.start)}</div>
         <div class="pills">${grantPills(grant)}</div>
         ${phdCaveat(grant)}
         ${otherGrantsList(otherGrants)}
       </td>
       <td class="num" data-label="Ends">${NSF.formatDate(grant.end)}</td>
-      <td class="num" data-label="Left"><span class="months">${Math.max(grant.monthsLeft, 0)}</span> mo</td>
+      <td class="num" data-label="Months left"><span class="months">${Math.max(grant.monthsLeft, 0)}</span> mo</td>
       <td class="num" data-label="Funding">${NSF.formatMoney(result.matchingAmount)}</td>
     </tr>`;
   }
@@ -296,7 +323,7 @@
     byId("count").innerHTML = `<strong>${results.length.toLocaleString()}</strong> professor${results.length === 1 ? "" : "s"}`;
     byId("rows").innerHTML = results.length
       ? results.slice(0, visibleCount).map(renderRow).join("")
-      : '<tr><td class="empty" colspan="6">No professors match these filters. Remove a filter above, or include centers and undergraduate colleges under “Show”.</td></tr>';
+      : '<tr><td class="empty" colspan="6">No professors match these filters. Remove a filter above, or include centers and undergraduate colleges under “More options”.</td></tr>';
     const remaining = results.length - visibleCount;
     byId("load-more").hidden = remaining <= 0;
     byId("load-more").textContent = `Show ${Math.min(PAGE_SIZE, remaining)} more (${remaining.toLocaleString()} left)`;
@@ -316,6 +343,16 @@
 
   byId("phd-level").addEventListener("change", (event) => { filters.phdLevel = event.target.value; refresh(); });
   byId("min-months").addEventListener("change", (event) => { filters.minMonths = Number(event.target.value); refresh(); });
+
+  // A month alone means nothing, so the filter stays off until a year is chosen.
+  function updateStartsFrom() {
+    const year = byId("starts-year").value;
+    const month = byId("starts-month").value || "01";
+    filters.startsFrom = year ? `${year}-${month}` : "";
+    refresh();
+  }
+  byId("starts-month").addEventListener("change", updateStartsFrom);
+  byId("starts-year").addEventListener("change", updateStartsFrom);
   byId("min-amount").addEventListener("change", (event) => { filters.minAmount = Number(event.target.value); refresh(); });
 
   let searchTimer = 0;
@@ -402,7 +439,7 @@
       renderSyncState();
       render();
     } catch (error) {
-      setSyncStatus(`Could not turn on sync: ${error.message}`, true);
+      setSyncStatus(`Couldn't turn on sync: ${error.message}`, true);
     }
     byId("sync-submit").disabled = false;
   });
@@ -428,13 +465,13 @@
     byId("list-dialog").close();
   });
   byId("export-csv").addEventListener("click", () => {
-    if (!NSF.shortlistSize()) { setListStatus("Your list is empty, so there is nothing to download.", true); return; }
+    if (!NSF.shortlistSize()) { setListStatus("Your list is empty, so there is nothing to download", true); return; }
     NSF.downloadFile("nsf-professor-list.csv", NSF.shortlistCsv(), "text/csv");
-    setListStatus("Spreadsheet downloaded.");
+    setListStatus("Spreadsheet downloaded");
   });
   byId("export-backup").addEventListener("click", () => {
     NSF.downloadFile(`nsf-list-backup-${new Date().toISOString().slice(0, 10)}.json`, NSF.shortlistBackup(), "application/json");
-    setListStatus("Backup downloaded.");
+    setListStatus("Backup downloaded");
   });
   byId("import-backup").addEventListener("click", () => byId("import-file").click());
   byId("import-file").addEventListener("change", async (event) => {
@@ -446,7 +483,8 @@
       setListStatus(`Imported: ${addedCount} professor${addedCount === 1 ? "" : "s"} added.${unknownNote}`);
       render();
     } catch (error) {
-      setListStatus(`Could not import this file. Choose a backup downloaded from this site. (${error.message})`, true);
+      console.error("Backup import failed", error);
+      setListStatus("Couldn't import this file. Choose a backup downloaded from this site", true);
     }
     event.target.value = "";
   });
@@ -470,6 +508,7 @@
   });
 
   applyTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+  renderStartYearOptions();
   renderStaticOptions();
   render();
   // Adopts the online list after the first paint, so the table never waits on the network.

@@ -165,6 +165,8 @@
       departments: new Set(),
       minMonths: 0,
       minAmount: 0,
+      // "YYYY-MM" (or "YYYY-01" for a year alone); empty means off.
+      startsFrom: "",
       strongOnly: false,
       shortlistOnly: false,
       includeUndergraduateColleges: false,
@@ -188,6 +190,8 @@
     if (filters.collaborativeOnly && !grant.collab) return false;
     if (!PHD_FILTER_LEVELS[filters.phdLevel].includes(grant.phd)) return false;
     if (grant.monthsLeft < filters.minMonths) return false;
+    // Start dates are ISO strings, so comparing their "YYYY-MM" prefix compares calendar months.
+    if (filters.startsFrom && grant.start.slice(0, 7) < filters.startsFrom) return false;
     return true;
   }
 
@@ -359,9 +363,17 @@
     return String(text ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
   }
 
+  // Every year in which a grant in the data starts, for the "Starts from" year select.
+  function distinctStartYears() {
+    const years = new Set();
+    for (const pi of pis) for (const grant of pi.grants) years.add(Number(grant.start.slice(0, 4)));
+    return [...years].sort((a, b) => a - b);
+  }
+
   window.NSF = {
     meta: data,
     pis,
+    startYears: distinctStartYears(),
     FIELD_LABELS,
     TOPIC_LABELS,
     TOPIC_GROUPS,
