@@ -24,3 +24,6 @@ node_modules/
 
 # Faculty lookup downloads and intermediate files; rebuilt by `uv run faculty/enrich.py`
 data/faculty/cache/
+
+# Design-system mockups (local only)
+.design-mockups/
