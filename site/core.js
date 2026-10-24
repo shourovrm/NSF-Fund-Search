@@ -57,6 +57,18 @@
     return { ...rawGrant, topicKeys, strongTopicKeys, phdReason };
   }
 
+  // People write one department many ways ("Physics & Astronomy", "Department of
+  // Physics and Astronomy"); the filter treats those spellings as one department.
+  function departmentKey(departmentName) {
+    return departmentName
+      .toLowerCase()
+      .replace(/&/g, " and ")
+      .replace(/[.,]/g, " ")
+      .replace(/^\s*(the\s+)?(department|dept|division|school)\s+of\s+/, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
   function normalizePi(rawPi, index) {
     const grants = rawPi.grants.map(normalizeGrant);
     return {
@@ -66,6 +78,7 @@
       institution: rawPi.institution || "",
       state: rawPi.state || "",
       department: rawPi.department || "",
+      departmentKey: departmentKey(rawPi.department || ""),
       website: rawPi.website || "",
       // "faculty", "not faculty", or "" when the lookup could not tell.
       role: rawPi.role || "",
@@ -149,6 +162,7 @@
       phdLevel: "any",
       states: new Set(),
       institutions: new Set(),
+      departments: new Set(),
       minMonths: 0,
       minAmount: 0,
       strongOnly: false,
@@ -197,6 +211,7 @@
     if (filters.shortlistOnly && !shortlist.has(pi.id)) return null;
     if (filters.states.size && !filters.states.has(pi.state)) return null;
     if (filters.institutions.size && !filters.institutions.has(pi.institution)) return null;
+    if (filters.departments.size && !filters.departments.has(pi.departmentKey)) return null;
     if (!queryTerms.every((term) => pi.searchText.includes(term))) return null;
     const matchingGrants = pi.grants.filter((grant) => grantMatches(grant, filters));
     if (!matchingGrants.length) return null;
@@ -262,6 +277,27 @@
       counts.set(pi.institution, (counts.get(pi.institution) || 0) + 1);
     }
     return [...counts].map(([name, count]) => ({ name, count })).sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  // Departments of the professors in the given states and universities (all when
+  // none are selected), largest first. Each is labelled with its most common spelling.
+  function departmentsIn(stateCodes, institutionNames) {
+    const departments = new Map();
+    for (const pi of pis) {
+      if (!pi.departmentKey) continue;
+      if (stateCodes.size && !stateCodes.has(pi.state)) continue;
+      if (institutionNames.size && !institutionNames.has(pi.institution)) continue;
+      if (!departments.has(pi.departmentKey)) departments.set(pi.departmentKey, { count: 0, spellings: new Map() });
+      const department = departments.get(pi.departmentKey);
+      department.count += 1;
+      department.spellings.set(pi.department, (department.spellings.get(pi.department) || 0) + 1);
+    }
+    const list = [];
+    for (const [key, department] of departments) {
+      const [label] = [...department.spellings].sort((a, b) => b[1] - a[1])[0];
+      list.push({ key, label, count: department.count });
+    }
+    return list.sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
   }
 
   // ---------------------------------------------------------------------------
@@ -336,6 +372,7 @@
     states: [...new Set(pis.map((pi) => pi.state).filter(Boolean))].sort((a, b) => stateLabel(a).localeCompare(stateLabel(b))),
     stateLabel,
     institutionsIn,
+    departmentsIn,
     stateCounts: countPisByState(),
     topicCounts: countPisBy((grant) => grant.topicKeys),
     fieldCounts: countPisBy((grant) => [grant.field]),

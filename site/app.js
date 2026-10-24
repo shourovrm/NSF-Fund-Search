@@ -59,7 +59,8 @@
     fields: setBackedDropdown("ms-fields", "Research field", "Any field", "fields"),
     grantTypes: setBackedDropdown("ms-grant-types", "Grant type", "Any grant type", "grantTypes"),
     states: setBackedDropdown("ms-states", "State", "All states", "states", { searchable: true, afterChange: onStatesChanged }),
-    institutions: setBackedDropdown("ms-institutions", "University", "Any university", "institutions", { searchable: true }),
+    institutions: setBackedDropdown("ms-institutions", "University", "Any university", "institutions", { searchable: true, afterChange: renderDepartmentOptions }),
+    departments: setBackedDropdown("ms-departments", "Department", "Any department", "departments", { searchable: true }),
     show: createMultiSelect(byId("ms-show"), {
       name: "Show",
       placeholder: "Default view",
@@ -76,11 +77,32 @@
     byId("institution-hint").textContent = `${institutions.length} universities ${scope}.`;
   }
 
+  // Chips need a label for any selected department, even one outside the current scope.
+  const departmentLabels = new Map(NSF.departmentsIn(new Set(), new Set()).map((department) => [department.key, department.label]));
+
+  // The list follows the selected states and universities. A department name spans
+  // many universities, so a selection outside that scope is kept (with a count of 0)
+  // rather than dropped; the user can still uncheck it here.
+  function renderDepartmentOptions() {
+    const departments = NSF.departmentsIn(filters.states, filters.institutions);
+    const options = departments.map((department) => ({ value: department.key, label: department.label, count: department.count }));
+    const listedKeys = new Set(departments.map((department) => department.key));
+    for (const key of filters.departments) {
+      if (!listedKeys.has(key)) options.unshift({ value: key, label: departmentLabels.get(key) || key, count: 0 });
+    }
+    dropdowns.departments.setOptions(options);
+    let scope = "in all universities";
+    if (filters.institutions.size) scope = `in the selected universit${filters.institutions.size > 1 ? "ies" : "y"}`;
+    else if (filters.states.size) scope = `in the selected state${filters.states.size > 1 ? "s" : ""}`;
+    byId("department-hint").textContent = `${departments.length.toLocaleString()} departments ${scope}.`;
+  }
+
   // A university outside the selected states would silently return zero rows.
   function onStatesChanged() {
     const allowed = new Set(NSF.institutionsIn(filters.states).map((institution) => institution.name));
     for (const name of filters.institutions) if (!allowed.has(name)) filters.institutions.delete(name);
     renderInstitutionOptions();
+    renderDepartmentOptions();
   }
 
   function renderStaticOptions() {
@@ -97,6 +119,7 @@
     dropdowns.states.setOptions(NSF.states.map((state) => ({ value: state, label: NSF.stateLabel(state), count: NSF.stateCounts[state] })));
     dropdowns.show.setOptions(Object.entries(SHOW_OPTIONS).map(([key, label]) => ({ value: key, label })));
     renderInstitutionOptions();
+    renderDepartmentOptions();
 
     const years = NSF.meta.sourceYears;
     const yearRange = years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : years[0];
@@ -134,6 +157,7 @@
     if (filters.collaborativeOnly) chips.push({ label: "Collaborative only", remove: () => { filters.collaborativeOnly = false; } });
     for (const state of filters.states) chips.push({ label: NSF.stateLabel(state), remove: () => { filters.states.delete(state); onStatesChanged(); } });
     for (const institution of filters.institutions) chips.push({ label: institution, remove: () => filters.institutions.delete(institution) });
+    for (const key of filters.departments) chips.push({ label: departmentLabels.get(key) || key, remove: () => filters.departments.delete(key) });
     if (filters.minMonths) chips.push({ label: `${filters.minMonths}+ months left`, remove: () => { filters.minMonths = 0; } });
     if (filters.minAmount) chips.push({ label: `${NSF.formatMoney(filters.minAmount)}+ funding`, remove: () => { filters.minAmount = 0; } });
     if (filters.strongOnly) chips.push({ label: "Strong match", remove: () => { filters.strongOnly = false; } });
@@ -313,6 +337,7 @@
     if (!chip) return;
     currentChips[Number(chip.dataset.chip)].remove();
     renderInstitutionOptions();
+    renderDepartmentOptions();
     syncControlsFromFilters();
     refresh();
   });
@@ -333,6 +358,7 @@
     const sort = filters.sort;
     Object.assign(filters, NSF.createFilterState(), { sort });
     renderInstitutionOptions();
+    renderDepartmentOptions();
     syncControlsFromFilters();
     refresh();
   }
