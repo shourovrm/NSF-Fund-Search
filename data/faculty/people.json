@@ -7631,6 +7631,22 @@
   "web_checked": true,
   "website": null
  },
+ "0000A0X0N": {
+  "confidence": "high",
+  "department": "School of Computing",
+  "email": "xiaopeng.jiang@siu.edu",
+  "institution": "Southern Illinois University at Carbondale",
+  "job_title": "Assistant Professor",
+  "name": "Xiaopeng Jiang",
+  "orcid": "0000-0002-0814-4514",
+  "role": "faculty",
+  "scholar": null,
+  "source": {
+   "department": "orcid",
+   "role": "orcid"
+  },
+  "website": null
+ },
  "0000A0X6Z": {
   "confidence": "high",
   "department": "Psychology",
@@ -36503,6 +36519,23 @@
   },
   "website": "http://eecs.oregonstate.edu/people/bose-bella"
  },
+ "000372425": {
+  "confidence": "high",
+  "department": "Biology",
+  "email": "peggy.biga@txstate.edu",
+  "institution": "Texas State University - San Marcos",
+  "job_title": "Chair and Professor",
+  "name": "Peggy R Biga",
+  "orcid": "0000-0002-0540-291X",
+  "role": "faculty",
+  "scholar": null,
+  "source": {
+   "department": "orcid",
+   "role": "orcid",
+   "website": "orcid"
+  },
+  "website": "https://www.bio.txst.edu/faculty-staff/peggy-biga.html"
+ },
  "000372813": {
   "confidence": "high",
   "department": "Anthropology",
@@ -39052,6 +39085,19 @@
   },
   "web_checked": true,
   "website": "https://umbc.edu/academics/faculty/ansu-chatterjee/"
+ },
+ "000404947": {
+  "confidence": "medium",
+  "department": null,
+  "email": "btenhumberg2@nebraska.edu",
+  "institution": "University of Nebraska-Lincoln",
+  "job_title": null,
+  "name": "Brigitte Tenhumberg",
+  "orcid": "0000-0003-3801-3192",
+  "role": "unknown",
+  "scholar": null,
+  "source": {},
+  "website": null
  },
  "000405648": {
   "confidence": "high",
@@ -52499,6 +52545,22 @@
   },
   "web_checked": true,
   "website": "https://www.chbe.gatech.edu/directory/person/carsten-sievers"
+ },
+ "000512588": {
+  "confidence": "high",
+  "department": "Earth and Environmental Studies",
+  "email": "dengy@mail.montclair.edu",
+  "institution": "Montclair State University",
+  "job_title": "Professor",
+  "name": "Yang Deng",
+  "orcid": "0000-0002-2908-3044",
+  "role": "faculty",
+  "scholar": null,
+  "source": {
+   "department": "orcid",
+   "role": "orcid"
+  },
+  "website": null
  },
  "000512643": {
   "confidence": "high",
@@ -85392,6 +85454,22 @@
   "web_checked": true,
   "website": "https://www.ece.cmu.edu/directory/bios/low-tze-meng.html"
  },
+ "000699006": {
+  "confidence": "high",
+  "department": null,
+  "email": "christine@sdsc.edu",
+  "institution": "University of California-San Diego",
+  "job_title": "Division Director",
+  "name": "Christine R Kirkpatrick",
+  "orcid": "0000-0002-4451-8042",
+  "role": "not faculty",
+  "scholar": null,
+  "source": {
+   "role": "orcid",
+   "website": "orcid"
+  },
+  "website": "http://www.sdsc.edu"
+ },
  "000699105": {
   "confidence": "medium",
   "department": "Lamont-Doherty Earth Observatory",
@@ -103228,6 +103306,22 @@
   },
   "website": "http://www.akthomer.com"
  },
+ "000763443": {
+  "confidence": "high",
+  "department": "Electrical, Computer and Energy Engineering",
+  "email": "taejoonkim@asu.edu",
+  "institution": "Arizona State University",
+  "job_title": "Prof.",
+  "name": "Taejoon Kim",
+  "orcid": "0000-0002-4017-9530",
+  "role": "faculty",
+  "scholar": null,
+  "source": {
+   "department": "orcid",
+   "role": "orcid"
+  },
+  "website": null
+ },
  "000763571": {
   "confidence": "high",
   "department": "Economics",
@@ -104853,6 +104947,22 @@
   "web_checked": true,
   "website": "https://awards.research.usf.edu/profiles/?id=1302"
  },
+ "000771932": {
+  "confidence": "high",
+  "department": "ECE",
+  "email": "ngprelcic@ucsd.edu",
+  "institution": "University of California-San Diego",
+  "job_title": "Professor",
+  "name": "Nuria Gonzalez Prelcic",
+  "orcid": "0000-0002-0828-8454",
+  "role": "faculty",
+  "scholar": null,
+  "source": {
+   "department": "orcid",
+   "role": "orcid"
+  },
+  "website": null
+ },
  "000771975": {
   "confidence": "high",
   "department": "Physics",
@@ -106443,6 +106553,19 @@
   },
   "web_checked": true,
   "website": "https://directory.okstate.edu/index.php/module/Default/action/ViewPerson?dirkey=69700&campus=7"
+ },
+ "000784038": {
+  "confidence": null,
+  "department": null,
+  "email": "yxiang@fau.edu",
+  "institution": "Florida Atlantic University",
+  "job_title": null,
+  "name": "Yu Xiang",
+  "orcid": null,
+  "role": "unknown",
+  "scholar": null,
+  "source": {},
+  "website": null
  },
  "000784041": {
   "confidence": "high",
@@ -114910,6 +115033,22 @@
   "web_checked": true,
   "website": "https://www.design.upenn.edu/people/xiaojiang-li"
  },
+ "000806543": {
+  "confidence": "high",
+  "department": "Chemistry and Biochemistry",
+  "email": "ssalman@cau.edu",
+  "institution": "Kennesaw State University Research and Service Foundation",
+  "job_title": "Assistant Professor",
+  "name": "Seyhan Salman",
+  "orcid": "0000-0002-6124-3706",
+  "role": "faculty",
+  "scholar": null,
+  "source": {
+   "department": "orcid",
+   "role": "orcid"
+  },
+  "website": null
+ },
  "000806603": {
   "confidence": "high",
   "department": "Electrical & Computer Engineering",
@@ -115075,6 +115214,19 @@
   },
   "web_checked": true,
   "website": "http://www.kassandracosta.com/about"
+ },
+ "000806960": {
+  "confidence": null,
+  "department": null,
+  "email": "ncouto@ucsd.edu",
+  "institution": "University of California-San Diego Scripps Inst of Oceanography",
+  "job_title": null,
+  "name": "Nicole Couto",
+  "orcid": null,
+  "role": "unknown",
+  "scholar": null,
+  "source": {},
+  "website": null
  },
  "000806999": {
   "confidence": "high",
@@ -123410,6 +123562,24 @@
   },
   "web_checked": true,
   "website": "https://www.seismo.unr.edu/Faculty/61/"
+ },
+ "000831796": {
+  "confidence": "high",
+  "department": "AI Institute, Computer Science & Engineering",
+  "email": "biplav.s@sc.edu",
+  "institution": "University of South Carolina at Columbia",
+  "job_title": "Professor",
+  "name": "Biplav Srivastava",
+  "orcid": "0000-0002-7292-3838",
+  "role": "faculty",
+  "scholar": "https://scholar.google.com/citations?user=mPC6wp4AAAAJ",
+  "source": {
+   "department": "orcid",
+   "role": "csrankings",
+   "scholar": "csrankings",
+   "website": "csrankings"
+  },
+  "website": "https://sites.google.com/site/biplavsrivastava"
  },
  "000831884": {
   "confidence": "high",
@@ -134450,6 +134620,22 @@
   },
   "web_checked": true,
   "website": "https://profiles.rice.edu/faculty/lu-zhang"
+ },
+ "000862258": {
+  "confidence": "high",
+  "department": "School of Electrical and Computer Engineering",
+  "email": "shuainie@uga.edu",
+  "institution": "University of Georgia Research Foundation Inc",
+  "job_title": "Assistant Professor",
+  "name": "Shuai Nie",
+  "orcid": "0000-0002-1038-4146",
+  "role": "faculty",
+  "scholar": null,
+  "source": {
+   "department": "orcid",
+   "role": "orcid"
+  },
+  "website": null
  },
  "000862279": {
   "confidence": "high",
